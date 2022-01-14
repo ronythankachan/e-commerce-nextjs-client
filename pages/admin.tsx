@@ -7,7 +7,7 @@ import Products from "../components/Products";
 import Sidebar from "../components/Sidebar";
 
 const admin = () => {
-  const [tab, setTab] = useState<String>("dashboard");
+  const [tab, setTab] = useState<String>("products");
   const openedTab = (tab: String) => {
     switch (tab) {
       case "dashboard":

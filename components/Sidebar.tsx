@@ -6,7 +6,7 @@ import {
 
 const Sidebar = (props: { setTab: any }) => {
   return (
-    <div className="w-fit h-screen bg-white shadow-md py-2">
+    <div className="w-fit min-h-screen bg-white shadow-md py-2">
       <div className="nav-btn m-2" onClick={() => props.setTab("dashboard")}>
         <HomeIcon className="h-5 w-5" />
         <p className="text-sm pr-12 hover:pr-12">Dashboard</p>
