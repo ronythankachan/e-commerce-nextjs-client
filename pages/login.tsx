@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Head from "next/head";
 import { useState } from "react";
 
 const login = () => {
@@ -14,7 +15,11 @@ const login = () => {
   };
   return (
     <div className="md:h-screen w-screen flex justify-center items-center">
-      <div className="w-96 bg-white md:shadow-md rounded-md p-6 space-y-10 m-2">
+      <Head>
+        <title>Login</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className="w-96 bg-white md:shadow-md rounded-md p-6 space-y-10 m-2">
         <h1 className="font-bold text-4xl text-center">Login</h1>
         <form className="flex flex-col space-y-4">
           <input
@@ -39,12 +44,12 @@ const login = () => {
           </button>
           <small className="text-center pt-5">
             Don't have an account?
-            <Link href="/auth/signup">
+            <Link href="/signup">
               <a className="text-blue-500 ml-2">Signup</a>
             </Link>
           </small>
         </form>
-      </div>
+      </main>
     </div>
   );
 };

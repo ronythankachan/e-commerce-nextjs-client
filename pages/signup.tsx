@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -17,7 +18,11 @@ const signup = () => {
   };
   return (
     <div className="md:h-screen w-screen flex justify-center items-center">
-      <div className="w-96 bg-white md:shadow-md rounded-md p-6 space-y-10 m-2">
+      <Head>
+        <title>Signup</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className="w-96 bg-white md:shadow-md rounded-md p-6 space-y-10 m-2">
         <h1 className="font-bold text-4xl text-center">Sign up</h1>
         <form className="flex flex-col space-y-4">
           <input
@@ -65,12 +70,12 @@ const signup = () => {
           </button>
           <small className="text-center pt-5">
             Already have an account?
-            <Link href="/auth/login">
+            <Link href="/login">
               <a className="text-blue-500 ml-2">Login</a>
             </Link>
           </small>
         </form>
-      </div>
+      </main>
     </div>
   );
 };
