@@ -1,3 +1,31 @@
+import Product from "./Product";
+
+const products: {
+  id: number;
+  img: string;
+  title: string;
+  price: { currency: string; value: number };
+}[] = [
+  {
+    id: 1,
+    img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+    title: "Jordan shoes",
+    price: {
+      currency: "inr",
+      value: 1200,
+    },
+  },
+  {
+    id: 2,
+    img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+    title: "Nike shoes",
+    price: {
+      currency: "inr",
+      value: 1300,
+    },
+  },
+];
+
 const Products = () => {
   return (
     <div className="bg-gray-50 w-full p-10">
@@ -10,15 +38,15 @@ const Products = () => {
       <section className="bg-white shadow-sm h-screen rounded-md p-3">
         <div className="flex justify-between items-center border-b-2 pb-3">
           <form>
-            <input
-              className="input-text"
-              type="text"
-              placeholder="Search..."
-            />
+            <input className="input-text" type="text" placeholder="Search..." />
           </form>
           <div>filters</div>
         </div>
-        <div>products</div>
+        <div className="flex">
+          {products.map((item) => (
+            <Product product={item} key={item.id} />
+          ))}
+        </div>
       </section>
     </div>
   );
