@@ -4,7 +4,7 @@ import { UserIcon } from "@heroicons/react/outline";
 
 const Navbar = () => {
   return (
-    <ul className="flex justify-between items-center px-5 py-3 bg-white shadow-md h-16 fixed top-0 w-full z-20">
+    <ul className="flex justify-between items-center px-5 py-3 bg-white shadow-sm h-16 fixed top-0 w-full z-20">
       <li className="hover:cursor-pointer">
         <Link href="/">
           <a>
