@@ -113,13 +113,13 @@ const Products = () => {
         </button>
       </header>
       <section className="bg-white shadow-sm rounded-md p-3">
-        <div className="flex justify-between items-center border-b-2 pb-3">
+        <div className="flex justify-between items-center border-b-2 pb-4">
           <form>
             <input className="input-text" type="text" placeholder="Search..." />
           </form>
           <div>filters</div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-8 gap-4 h-fit p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-8 gap-4 h-fit mt-4">
           {products.map((item) => (
             <Product product={item} key={item.id} />
           ))}
