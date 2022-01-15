@@ -107,7 +107,7 @@ const categories: string[] = ["Shoes", "Shirts", "Pants"];
 
 const Products = () => {
   return (
-    <div className="bg-gray-50 w-full p-10 ml-60">
+    <div className="bg-gray-50 w-full p-5 md:p-10 ml-16 md:ml-60">
       <header className="flex justify-between items-center h-10 mb-5 sticky overflow-x-auto">
         <h1 className="text-3xl font-bold">Products</h1>
         <button className="bg-blue-600 px-4 py-2 rounded-md text-white hover:text-gray-300">
@@ -115,19 +115,19 @@ const Products = () => {
         </button>
       </header>
       <section className="bg-white shadow-sm rounded-md p-3">
-        <div className="">
-          <form className="flex justify-between">
-            <input className="input-text" type="text" placeholder="Search..." />
-            <div>
-              <select name="categories" id="categories">
-                <option>All Categories</option>
-                {categories.map((category) => (
-                  <option>{category}</option>
-                ))}
-              </select>
-            </div>
-          </form>
-        </div>
+        <form className="flex flex-col md:flex-row justify-between items-center border-b-2 pb-4 md:space-x-2 space-y-2 md:space-y-0">
+          <input type="text" placeholder="Search..." className="input-text w-full md:w-1/2" />
+          <select
+            name="categories"
+            id="categories"
+            className="input-text bg-white w-full md:w-fit"
+          >
+            <option>All Categories</option>
+            {categories.map((category) => (
+              <option className="p-4">{category}</option>
+            ))}
+          </select>
+        </form>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-8 gap-4 h-fit mt-4">
           {products.map((item) => (
             <Product product={item} key={item.id} />

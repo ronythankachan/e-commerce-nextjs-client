@@ -12,9 +12,9 @@ const Navbar = () => {
           </a>
         </Link>
       </li>
-      <li className="nav-btn">
+      <li className="nav-btn border">
         <UserIcon className="h-5 w-5" />
-        <p className="text-sm">Account</p>
+
       </li>
     </ul>
   );
