@@ -110,13 +110,22 @@ const Products = () => {
     <div className="bg-gray-50 w-full p-5 md:p-10 ml-16 md:ml-60">
       <header className="flex justify-between items-center h-10 mb-5 sticky overflow-x-auto">
         <h1 className="text-3xl font-bold">Products</h1>
-        <button className="bg-blue-600 px-4 py-2 rounded-md text-white hover:text-gray-300">
-          Create new
-        </button>
+        <div className="flex space-x-2">
+          <button className="bg-black px-4 py-2 rounded-md text-white hover:text-gray-300">
+            Create Category
+          </button>
+          <button className="bg-blue-600 px-4 py-2 rounded-md text-white hover:text-gray-300">
+            Add Product
+          </button>
+        </div>
       </header>
       <section className="bg-white shadow-sm rounded-md p-3">
         <form className="flex flex-col md:flex-row justify-between items-center border-b-2 pb-4 md:space-x-2 space-y-2 md:space-y-0">
-          <input type="text" placeholder="Search..." className="input-text w-full md:w-1/2" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="input-text w-full md:w-1/2"
+          />
           <select
             name="categories"
             id="categories"

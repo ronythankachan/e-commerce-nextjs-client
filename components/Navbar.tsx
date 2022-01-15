@@ -14,7 +14,6 @@ const Navbar = () => {
       </li>
       <li className="nav-btn border">
         <UserIcon className="h-5 w-5" />
-
       </li>
     </ul>
   );
