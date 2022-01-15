@@ -103,9 +103,11 @@ const products: Product[] = [
   },
 ];
 
+const categories: string[] = ["Shoes", "Shirts", "Pants"];
+
 const Products = () => {
   return (
-    <div className="bg-gray-50 w-full p-10">
+    <div className="bg-gray-50 w-full p-10 ml-60">
       <header className="flex justify-between items-center h-10 mb-5 sticky overflow-x-auto">
         <h1 className="text-3xl font-bold">Products</h1>
         <button className="bg-blue-600 px-4 py-2 rounded-md text-white hover:text-gray-300">
@@ -113,11 +115,18 @@ const Products = () => {
         </button>
       </header>
       <section className="bg-white shadow-sm rounded-md p-3">
-        <div className="flex justify-between items-center border-b-2 pb-4">
-          <form>
+        <div className="">
+          <form className="flex justify-between">
             <input className="input-text" type="text" placeholder="Search..." />
+            <div>
+              <select name="categories" id="categories">
+                <option>All Categories</option>
+                {categories.map((category) => (
+                  <option>{category}</option>
+                ))}
+              </select>
+            </div>
           </form>
-          <div>filters</div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-8 gap-4 h-fit mt-4">
           {products.map((item) => (

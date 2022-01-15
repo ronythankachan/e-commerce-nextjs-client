@@ -25,10 +25,8 @@ const admin = () => {
         <title>Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <Navbar />
-      </header>
-      <main className="flex">
+      <Navbar />
+      <main className="flex mt-16">
         <Sidebar setTab={setTab} />
         {openedTab(tab)}
       </main>

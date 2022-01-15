@@ -6,20 +6,20 @@ import {
 
 const Sidebar = (props: { setTab: any }) => {
   return (
-    <div className="w-fit min-h-screen bg-white shadow-md py-2">
-      <div className="nav-btn m-2" onClick={() => props.setTab("dashboard")}>
+    <ul className="w-60 min-h-screen bg-white shadow-md py-2 fixed z-10">
+      <li className="nav-btn m-2" onClick={() => props.setTab("dashboard")}>
         <HomeIcon className="h-5 w-5" />
-        <p className="text-sm pr-12 hover:pr-12">Dashboard</p>
-      </div>
-      <div className="nav-btn m-2" onClick={() => props.setTab("products")}>
+        <p className="text-sm ">Dashboard</p>
+      </li>
+      <li className="nav-btn m-2" onClick={() => props.setTab("products")}>
         <ShoppingBagIcon className="h-5 w-5" />
-        <p className="text-sm pr-12 hover:pr-12">Products</p>
-      </div>
-      <div className="nav-btn m-2" onClick={() => props.setTab("orders")}>
+        <p className="text-sm">Products</p>
+      </li>
+      <li className="nav-btn m-2" onClick={() => props.setTab("orders")}>
         <ShoppingCartIcon className="h-5 w-5" />
-        <p className="text-sm pr-12 hover:pr-12">Orders</p>
-      </div>
-    </div>
+        <p className="text-sm">Orders</p>
+      </li>
+    </ul>
   );
 };
 
