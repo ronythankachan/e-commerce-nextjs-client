@@ -24,6 +24,60 @@ const products: {
       value: 1300,
     },
   },
+  {
+    id: 3,
+    img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+    title: "Nike shoes",
+    price: {
+      currency: "inr",
+      value: 1300,
+    },
+  },
+  {
+    id: 4,
+    img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+    title: "Nike shoes",
+    price: {
+      currency: "inr",
+      value: 1300,
+    },
+  },
+  {
+    id: 5,
+    img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+    title: "Nike shoes",
+    price: {
+      currency: "inr",
+      value: 1300,
+    },
+  },
+  {
+    id: 6,
+    img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+    title: "Nike shoes",
+    price: {
+      currency: "inr",
+      value: 1300,
+    },
+  },
+  {
+    id: 7,
+    img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+    title: "Nike shoes",
+    price: {
+      currency: "inr",
+      value: 1300,
+    },
+  },
+  {
+    id: 8,
+    img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+    title: "Nike shoes",
+    price: {
+      currency: "inr",
+      value: 1300,
+    },
+  },
 ];
 
 const Products = () => {
@@ -42,7 +96,7 @@ const Products = () => {
           </form>
           <div>filters</div>
         </div>
-        <div className="flex">
+        <div className="flex flex-wrap mt-2">
           {products.map((item) => (
             <Product product={item} key={item.id} />
           ))}

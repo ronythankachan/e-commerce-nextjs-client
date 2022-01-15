@@ -6,7 +6,7 @@ const currencySymbols: any = {
 };
 const Product = (props: { product: any }) => {
   return (
-    <div className="m-4 border-2 p-2 rounded-md space-y-2">
+    <div className="m-2 border-2 p-2 rounded-md space-y-2">
       <Image width={170} height={180} src={props.product.img} />
       <p className="text-sm text-gray-500 mt-2">{props.product.title}</p>
       <p className="text-sm font-semibold">
