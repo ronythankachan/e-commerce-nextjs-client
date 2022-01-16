@@ -22,7 +22,7 @@ const products: Product[] = [
   },
   {
     id: 2,
-    img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+    img: "https://assets.ajio.com/medias/sys_master/root/20201012/foEA/5f84710bf997dd8c835f0f29/-473Wx593H-460659187-offwhite-MODEL.jpg",
     title: "Nike shoes",
     price: {
       currency: "inr",

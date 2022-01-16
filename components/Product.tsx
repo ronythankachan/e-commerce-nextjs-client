@@ -6,8 +6,8 @@ const currencySymbols: any = {
 };
 const Product = (props: { product: any }) => {
   return (
-    <div className="border-2 p-2 rounded-md space-y-2">
-      <Image width={300} height={340} src={props.product.img} />
+    <div className="border-2 p-2 rounded-md space-y-2 max-w-fit">
+      <Image width={250} height={250} src={props.product.img} className="object-cover"/>
       <p className="text-sm text-gray-500 mt-2">{props.product.title}</p>
       <p className="text-sm font-semibold">
         {currencySymbols[props.product.price.currency] +
