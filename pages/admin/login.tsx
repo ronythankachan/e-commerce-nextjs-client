@@ -44,7 +44,7 @@ const login = () => {
           </button>
           <small className="text-center pt-5">
             Don't have an account?
-            <Link href="/signup">
+            <Link href="/admin/signup">
               <a className="text-blue-500 ml-2">Signup</a>
             </Link>
           </small>

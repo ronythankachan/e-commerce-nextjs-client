@@ -1,7 +1,7 @@
 const Orders = () => {
     return (
         <div className="bg-gray-50 w-full p-5 md:p-10 ml-16 md:ml-60">
-            Orders
+            <h1 className="text-4xl font-bold justify-start">Orders</h1>
         </div>
     )
 }

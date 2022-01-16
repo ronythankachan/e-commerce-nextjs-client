@@ -2,6 +2,7 @@ import {
   HomeIcon,
   ShoppingBagIcon,
   ShoppingCartIcon,
+  UserIcon,
 } from "@heroicons/react/outline";
 
 const Sidebar = (props: { setTab: any }) => {
@@ -18,6 +19,10 @@ const Sidebar = (props: { setTab: any }) => {
       <li className="nav-btn m-2" onClick={() => props.setTab("orders")}>
         <ShoppingCartIcon className="h-5 w-5" />
         <p className="text-sm hidden md:block">Orders</p>
+      </li>
+      <li className="nav-btn m-2" onClick={() => props.setTab("users")}>
+        <UserIcon className="h-5 w-5" />
+        <p className="text-sm hidden md:block">Users</p>
       </li>
     </ul>
   );

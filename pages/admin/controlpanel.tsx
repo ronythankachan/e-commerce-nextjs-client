@@ -1,12 +1,13 @@
 import Head from "next/head";
 import { useState } from "react";
-import Dashboard from "../components/Dashboard";
-import Navbar from "../components/Navbar";
-import Orders from "../components/Orders";
-import Products from "../components/Products";
-import Sidebar from "../components/Sidebar";
+import Dashboard from "../../components/Dashboard";
+import Navbar from "../../components/Navbar";
+import Orders from "../../components/Orders";
+import Products from "../../components/Products";
+import Sidebar from "../../components/Sidebar";
+import Users from "../../components/Users";
 
-const admin = () => {
+const controlpanel = () => {
   const [tab, setTab] = useState<String>("products");
   const openedTab = (tab: String) => {
     switch (tab) {
@@ -16,6 +17,8 @@ const admin = () => {
         return <Products />;
       case "orders":
         return <Orders />;
+      case "users":
+        return <Users />;
     }
   };
 
@@ -34,4 +37,4 @@ const admin = () => {
   );
 };
 
-export default admin;
+export default controlpanel;
