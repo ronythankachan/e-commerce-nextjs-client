@@ -25,7 +25,7 @@ const Navbar = () => {
         <li className="hover:cursor-pointer hover:text-blue-500">Contact</li>
         <li className="flex hover:cursor-pointer hover:text-blue-500">
           <ShoppingCartIcon className="h-5 w-5" />
-          <small className="border rounded-full px-1 text-white h-min -mt-4 bg-green-500">
+          <small className="border rounded-full px-1 text-white h-min -mt-4 -mr-2 bg-green-500">
             3
           </small>
         </li>
