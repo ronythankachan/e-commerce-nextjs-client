@@ -108,7 +108,7 @@ const categories: string[] = ["Shoes", "Shirts", "Pants"];
 const Products = () => {
   return (
     <div className="bg-gray-50 w-full p-5 md:p-10 ml-16 md:ml-60">
-      <header className="flex flex-col md:flex-row justify-between items-center mb-5 sticky">
+      <header className="flex flex-col md:flex-row justify-between md:items-center mb-5 sticky">
         <h1 className="text-4xl font-bold justify-start">Products</h1>
         <div className="flex space-x-2 mt-4 md:mt-0 md:space-y-0">
           <button className="bg-black px-4 py-2 h-16 md:h-fit rounded-md text-white hover:text-gray-300 w-full md:w-fit">
