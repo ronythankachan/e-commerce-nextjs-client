@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
-import Dashboard from "../../components/Dashboard";
-import Navbar from "../../components/Navbar";
-import Orders from "../../components/Orders";
-import Products from "../../components/Products";
-import Sidebar from "../../components/Sidebar";
-import Users from "../../components/Users";
+import Dashboard from "../../components/admin/Dashboard";
+import Navbar from "../../components/admin/Navbar";
+import Orders from "../../components/admin/Orders";
+import Products from "../../components/admin/Products";
+import Sidebar from "../../components/admin/Sidebar";
+import Users from "../../components/admin/Users";
 
 const controlpanel = () => {
   const [tab, setTab] = useState<String>("products");
