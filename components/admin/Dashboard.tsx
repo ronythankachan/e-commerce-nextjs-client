@@ -6,7 +6,7 @@ import {
 
 const Dashboard = () => {
   return (
-    <div className="bg-gray-50 w-full p-5 md:p-10 ml-16 md:ml-60 space-y-4">
+    <div className="bg-gray-50 w-full p-5 md:p-10 ml-16 md:ml-60 space-y-8">
       <h1 className="text-4xl font-bold justify-start">Dashboard</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="bg-white shadow-md rounded h-20 px-10 flex  items-center border space-x-8 min-w-max">

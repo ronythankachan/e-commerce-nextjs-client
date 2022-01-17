@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Brands from "../components/client/Brands";
 import Navbar from "../components/client/Navbar";
 import NewArrivals from "../components/client/NewArrivals";
 
@@ -9,8 +10,9 @@ export default function Home() {
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className="mt-16">
         <Navbar />
+        <Brands />
         <NewArrivals />
       </main>
     </div>
