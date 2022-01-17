@@ -1,0 +1,35 @@
+import { CurrencyDollarIcon, ShoppingCartIcon } from "@heroicons/react/outline";
+import Image from "next/image";
+const currencySymbols: any = {
+  usd: "$",
+  inr: "Rs.",
+};
+const Product = (props: { product: any }) => {
+  return (
+    <div className="border-2 p-2 rounded-md space-y-2 max-w-fit">
+      <Image
+        width={250}
+        height={270}
+        src={props.product.img}
+        className="object-cover"
+      />
+      <p className="text-sm text-gray-500 mt-2">{props.product.title}</p>
+      <p className="text-sm font-semibold">
+        {currencySymbols[props.product.price.currency] +
+          props.product.price.value}
+      </p>
+      <div className="flex space-x-2">
+        <button className="w-1/2 text-xs py-2 px-4 border border-gray-300 flex justify-evenly items-center rounded text-gray-500 hover:cursor-pointer hover:border-black transition-all duration-150 ease-in-out">
+          <ShoppingCartIcon className="w-4 h-4" />
+          Add to Cart
+        </button>
+        <button className="w-1/2 text-xs py-2 px-4 border border-gray-300 flex justify-evenly items-center rounded text-red-500 hover:cursor-pointer hover:text-white hover:bg-red-500 hover:border-none transition-all duration-150 ease-in-out">
+          <CurrencyDollarIcon className="w-4 h-4" />
+          Buy Now
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Product;

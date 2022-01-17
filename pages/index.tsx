@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Navbar from "../components/client/Navbar";
+import NewArrivals from "../components/client/NewArrivals";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       </Head>
       <main>
         <Navbar />
+        <NewArrivals />
       </main>
     </div>
   );
