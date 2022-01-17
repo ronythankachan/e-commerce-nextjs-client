@@ -10,7 +10,7 @@ export default function Home() {
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="mt-16">
+      <main className="mt-16 bg-gray-50">
         <Navbar />
         <Brands />
         <NewArrivals />
