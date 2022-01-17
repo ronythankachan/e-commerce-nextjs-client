@@ -6,7 +6,7 @@ const currencySymbols: any = {
 };
 const Product = (props: { product: any }) => {
   return (
-    <div className="border-2 p-2 rounded-md space-y-2 max-w-fit hover:scale-[102%] transition-all duration-150 ease-out">
+    <div className="border-2 p-2 rounded-md space-y-2 max-w-fit hover:scale-[102%] transition-all duration-150 ease-out hover:cursor-pointer">
       <Image
         width={250}
         height={270}

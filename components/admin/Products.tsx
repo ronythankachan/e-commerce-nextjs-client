@@ -1,7 +1,7 @@
 import Product from "./Product";
 
 interface Product {
-  id: number;
+  id: string;
   img: string;
   title: string;
   price: {
@@ -12,7 +12,7 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 1,
+    id: "1",
     img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     title: "Jordan shoes",
     price: {
@@ -21,7 +21,7 @@ const products: Product[] = [
     },
   },
   {
-    id: 2,
+    id: "2",
     img: "https://assets.ajio.com/medias/sys_master/root/20201012/foEA/5f84710bf997dd8c835f0f29/-473Wx593H-460659187-offwhite-MODEL.jpg",
     title: "Nike shoes",
     price: {
@@ -30,7 +30,7 @@ const products: Product[] = [
     },
   },
   {
-    id: 3,
+    id: "3",
     img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     title: "Nike shoes",
     price: {
@@ -39,7 +39,7 @@ const products: Product[] = [
     },
   },
   {
-    id: 4,
+    id: "4",
     img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     title: "Nike shoes",
     price: {
@@ -48,7 +48,7 @@ const products: Product[] = [
     },
   },
   {
-    id: 5,
+    id: "5",
     img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     title: "Nike shoes",
     price: {
@@ -57,7 +57,7 @@ const products: Product[] = [
     },
   },
   {
-    id: 6,
+    id: "6",
     img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     title: "Nike shoes",
     price: {
@@ -66,7 +66,7 @@ const products: Product[] = [
     },
   },
   {
-    id: 7,
+    id: "7",
     img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     title: "Nike shoes",
     price: {
@@ -75,7 +75,7 @@ const products: Product[] = [
     },
   },
   {
-    id: 8,
+    id: "8",
     img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     title: "Nike shoes",
     price: {
@@ -84,7 +84,7 @@ const products: Product[] = [
     },
   },
   {
-    id: 9,
+    id: "9",
     img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     title: "Nike shoes",
     price: {
@@ -93,7 +93,7 @@ const products: Product[] = [
     },
   },
   {
-    id: 10,
+    id: "10",
     img: "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     title: "Nike shoes",
     price: {
