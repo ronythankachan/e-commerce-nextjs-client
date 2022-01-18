@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import Navbar from "../../components/client/Navbar";
 
 interface Product {
@@ -39,6 +40,10 @@ const product: Product = {
 };
 
 const ProductDetails = () => {
+  const [mainImg, setMainImg] = useState("/favicon.ico");
+  useEffect(() => {
+    setMainImg(product.images[0]);
+  }, []);
   return (
     <div>
       <Head>
@@ -48,7 +53,10 @@ const ProductDetails = () => {
       <div className="mt-16 grid grid-cols-product-details p-10 gap-x-4">
         <div className="bg-gray-30 flex flex-col gap-y-2">
           {product.images.map((image, index) => (
-            <div className="border bg-gray-50 border-gray-200 rounded-md shadow-sm flex justify-center items-center hover:scale-[102%] hover:cursor-pointer transition-all duration-150 ease-out">
+            <div
+              className="border bg-gray-50 border-gray-200 rounded-md shadow-sm flex justify-center items-center hover:scale-[102%] hover:cursor-pointer transition-all duration-150 ease-out"
+              onClick={() => setMainImg(image)}
+            >
               <Image
                 width={100}
                 height={80}
@@ -59,12 +67,13 @@ const ProductDetails = () => {
             </div>
           ))}
         </div>
-        <div className="bg-gray-50 flex items-center justify-center p-1 rounded-md ">
+        <div className="bg-gray-50 flex items-center justify-center p-1 rounded-md">
           <Image
             width={1000}
             height={1000}
-            src={product.images[0]}
-            className="object-cover rounded-md"
+            src={mainImg}
+            alt="test"
+            className="object-cover rounded-md "
           />
         </div>
         <div>details</div>
