@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Navbar from "../components/client/Navbar";
+import Reviews from "../components/client/Reviews";
 
 interface Product {
   id: string;
@@ -50,7 +51,7 @@ const ProductDetails = () => {
         <title>{product.title}</title>
       </Head>
       <Navbar />
-      <div className="mt-16 grid grid-cols-product-details p-10 gap-x-4">
+      <div className="mt-16 grid grid-cols-product-details p-10 gap-x-4 2xl:w-2/4 2xl:mx-auto">
         <div className="flex flex-col gap-y-2">
           {product.images.map((image, index) => (
             <div
@@ -113,9 +114,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <div className="w-full p-5 md:p-10 space-y-8">
-        <h1 className="text-4xl font-bold justify-start">Reviews</h1>
-      </div>
+      <Reviews />
     </div>
   );
 };
