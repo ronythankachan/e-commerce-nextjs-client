@@ -1,4 +1,4 @@
-import { CurrencyRupeeIcon } from "@heroicons/react/outline";
+import { CurrencyRupeeIcon, TruckIcon } from "@heroicons/react/outline";
 import { StarIcon } from "@heroicons/react/solid";
 import Head from "next/head";
 import Image from "next/image";
@@ -45,13 +45,13 @@ const ProductDetails = () => {
     setMainImg(product.images[0]);
   }, []);
   return (
-    <div>
+    <div className="bg-gray-50">
       <Head>
         <title>{product.title}</title>
       </Head>
       <Navbar />
       <div className="mt-16 grid grid-cols-product-details p-10 gap-x-4">
-        <div className="bg-gray-30 flex flex-col gap-y-2">
+        <div className="flex flex-col gap-y-2">
           {product.images.map((image, index) => (
             <div
               className="border bg-gray-50 border-gray-200 rounded-md shadow-sm flex justify-center items-center hover:scale-[102%] hover:cursor-pointer"
@@ -67,7 +67,7 @@ const ProductDetails = () => {
             </div>
           ))}
         </div>
-        <div className="bg-gray-50 flex items-center justify-center p-1 rounded-md">
+        <div className="border shadow-sm bg-gray-50 flex items-center justify-center p-1 rounded-md">
           <Image
             width={500}
             height={500}
@@ -91,13 +91,30 @@ const ProductDetails = () => {
           </p>
           <p className="text-xs font-thin mt-4">SELECT SIZE</p>
           <div className="flex gap-x-4 mt-2">
-            <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">S</h2>
-            <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">M</h2>
-            <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">L</h2>
-            <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">XL</h2>
+            <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">
+              S
+            </h2>
+            <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">
+              M
+            </h2>
+            <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">
+              L
+            </h2>
+            <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">
+              XL
+            </h2>
           </div>
-          <button className="mt-4 px-10 border rounded-md bg-black text-white py-2">Add to cart</button>
+          <button className="mt-4 px-10 border rounded-md bg-black text-white py-2">
+            Add to cart
+          </button>
+          <div className="flex gap-4 items-center mt-4">
+            <TruckIcon className="w-10 h-10" />
+            <p className="text-md font-thin">Delivery in 5-7 days</p>
+          </div>
         </div>
+      </div>
+      <div className="w-full p-5 md:p-10 space-y-8">
+        <h1 className="text-4xl font-bold justify-start">Reviews</h1>
       </div>
     </div>
   );
