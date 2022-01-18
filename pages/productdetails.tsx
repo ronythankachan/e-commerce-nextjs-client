@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Navbar from "../../components/client/Navbar";
+import Navbar from "../components/client/Navbar";
 
 interface Product {
   id: string;
@@ -40,7 +40,7 @@ const product: Product = {
 };
 
 const ProductDetails = () => {
-  const [mainImg, setMainImg] = useState("/favicon.ico");
+  const [mainImg, setMainImg] = useState("/placeholder.jpg");
   useEffect(() => {
     setMainImg(product.images[0]);
   }, []);
@@ -69,10 +69,9 @@ const ProductDetails = () => {
         </div>
         <div className="bg-gray-50 flex items-center justify-center p-1 rounded-md">
           <Image
-            width={1000}
-            height={1000}
+            width={500}
+            height={500}
             src={mainImg}
-            alt="test"
             className="object-cover rounded-md "
           />
         </div>
