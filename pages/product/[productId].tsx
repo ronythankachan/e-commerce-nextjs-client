@@ -1,9 +1,10 @@
 import Head from "next/head";
-import Navbar from "../components/client/Navbar";
-import ProductDetail from "../components/client/ProductDetail";
-import Reviews from "../components/client/Reviews";
+import Navbar from "../../components/client/Navbar";
+import ProductDetail from "../../components/client/ProductDetail";
+import Reviews from "../../components/client/Reviews";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Layout from "../../components/client/Layout";
 
 interface Product {
   id: string;
@@ -43,20 +44,17 @@ const ProductDetails = () => {
   const router = useRouter();
   const { productId } = router.query;
 
-  useEffect(()=>{
-    
-  })
+  useEffect(() => {});
   return (
-    <div>
+    <Layout>
       <Head>
         <title>{product.title}</title>
       </Head>
-      <Navbar />
       <main className="2xl:container 2xl:mx-auto bg-gray-50 mt-16 p-10">
         <ProductDetail product={product} />
         <Reviews id={product.id} />
       </main>
-    </div>
+    </Layout>
   );
 };
 

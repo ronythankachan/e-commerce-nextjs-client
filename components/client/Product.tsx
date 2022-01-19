@@ -8,7 +8,7 @@ const currencySymbols: any = {
 const Product = (props: { product: any }) => {
   return (
     <div className="border-2 p-2 rounded-md space-y-2 w-fit hover:scale-[102%] transition-all duration-150 ease-out hover:cursor-pointer bg-white">
-      <Link href={props.product.id}>
+      <Link href={"/product/" + props.product.id}>
         <a>
           <Image
             width={250}
