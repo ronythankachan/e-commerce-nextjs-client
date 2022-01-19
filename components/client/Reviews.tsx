@@ -1,4 +1,5 @@
 import { StarIcon } from "@heroicons/react/solid";
+import { useEffect, useState } from "react";
 import Review from "./Review";
 
 interface Review {
@@ -46,11 +47,15 @@ const reviews: Review[] = [
   },
 ];
 
-const Reviews = () => {
+const Reviews = (params: { id: string }) => {
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    setReviews(reviews);
+  }, []);
   return (
     <section className="bg-gray-50 w-full p-5 md:p-10 space-y-8 h-screen">
       <h1 className="text-4xl font-bold justify-start flex gap-x-2">
-        Reviews{" "}
+        Reviews
         <span className="flex items-center gap-x-1">
           (4.5 <StarIcon className="w-8 h-8" />)
         </span>
