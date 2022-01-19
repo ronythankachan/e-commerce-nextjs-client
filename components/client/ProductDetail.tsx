@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { StarIcon, TruckIcon } from "@heroicons/react/outline";
+import { StarIcon, TruckIcon } from "@heroicons/react/solid";
 
 const ProductDetail = (params: { product: any }) => {
   const [mainImg, setMainImg] = useState("/placeholder.jpg");
