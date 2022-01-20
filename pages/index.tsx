@@ -4,6 +4,7 @@ import NewArrivals from "../components/client/NewArrivals";
 import Layout from "../components/client/Layout";
 import { ProductType } from "../types";
 import { products, brands } from "../data";
+import { GetStaticProps } from "next";
 
 export default function Home({ products }: { products: ProductType[] }) {
   return (
@@ -20,11 +21,11 @@ export default function Home({ products }: { products: ProductType[] }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       products,
       brands,
     },
   };
-}
+};

@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { StarIcon, TruckIcon } from "@heroicons/react/solid";
+import { ProductType } from "../../types";
 
-const ProductDetail = (params: { product: any }) => {
-  const [mainImg, setMainImg] = useState("/placeholder.jpg");
-  useEffect(() => {
-    setMainImg(params.product.images[0]);
-  }, []);
+const ProductDetail = ({ product }: { product: ProductType }) => {
+  console.log("product is" + product);
+  const [mainImg, setMainImg] = useState(product.images[0]);
   return (
     <section className="grid grid-cols-product-details gap-x-4">
       <div className="flex flex-col gap-y-4">
-        {params.product.images.map((image: string, index: number) => (
+        {product.images.map((image: string, index: number) => (
           <div onClick={() => setMainImg(image)}>
             <Image
               layout="responsive"
@@ -35,19 +34,19 @@ const ProductDetail = (params: { product: any }) => {
       <div className="p-4">
         <div>
           <p className="text-sm font-thin">
-            {params.product.brand.toUpperCase() + "'s"}
+            {product.brand.toUpperCase() + "'s"}
           </p>
           <span className="flex gap-2">
-            <h1 className="text-2xl font-bold">{params.product.title}</h1>
+            <h1 className="text-2xl font-bold">{product.title}</h1>
             <p className="flex items-center gap-1">
               ( 4.5 <StarIcon className="w-3 h-3 inline-block" />)
             </p>
           </span>
-          <h2 className="text-2xl text-gray-500">RS. {params.product.price}</h2>
+          <h2 className="text-2xl text-gray-500">RS. {product.price}</h2>
         </div>
 
         <p className="text-sm font-thin mt-4 text-gray-500">
-          {params.product.description}
+          {product.description}
         </p>
         <small className="text-xs font-thin mt-4">SELECT SIZE</small>
         <div className="flex gap-x-4 mt-2">

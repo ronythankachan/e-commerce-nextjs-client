@@ -1,3 +1,5 @@
+import { ParsedUrlQuery } from "querystring";
+
 interface BrandType {
   id: string;
   name: string;
@@ -17,5 +19,8 @@ interface ProductType {
   extraInfo: string[];
   rating: number;
 }
+interface IParams extends ParsedUrlQuery {
+  id: string;
+}
 
-export type { BrandType, ProductType };
+export type { BrandType, ProductType, IParams };
