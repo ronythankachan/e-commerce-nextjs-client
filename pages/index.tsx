@@ -22,7 +22,7 @@ export default function Home({ products }: { products: ProductType[] }) {
 
 export async function getStaticProps() {
   return {
-    prop: {
+    props: {
       products,
       brands,
     },
