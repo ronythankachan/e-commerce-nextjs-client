@@ -5,22 +5,9 @@ import Reviews from "../../components/client/Reviews";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Layout from "../../components/client/Layout";
+import { ProductType } from "../../types";
 
-interface Product {
-  id: string;
-  title: string;
-  brand: string;
-  description: string;
-  price: number;
-  discount: number;
-  categories: string[];
-  tags: string[];
-  images: string[];
-  extraInfo: string[];
-  rating: number;
-}
-
-const product: Product = {
+const product: ProductType = {
   id: "1",
   title: "Jordan Shoes",
   brand: "Nike",

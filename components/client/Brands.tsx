@@ -1,12 +1,7 @@
-import Image from "next/image";
+import { BrandType } from "../../types";
 import Brand from "./Brand";
-interface Brand {
-  id: string;
-  name: string;
-  img: string;
-}
 
-const brands: Brand[] = [
+const brands: BrandType[] = [
   {
     id: "1",
     name: "Addidas",
