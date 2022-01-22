@@ -1,4 +1,4 @@
-import { BrandType, ProductType } from "./types";
+import { BrandType, CategoryType, ProductType } from "./types";
 
 const products: ProductType[] = [
   {
@@ -105,4 +105,23 @@ const brands: BrandType[] = [
   },
 ];
 
-export { products, brands };
+const categories: CategoryType[] = [
+  {
+    id: "1",
+    category: "Shoes",
+  },
+  {
+    id: "2",
+    category: "Shirts",
+  },
+  {
+    id: "3",
+    category: "Pants",
+  },
+  {
+    id: "4",
+    category: "Hoodies",
+  },
+];
+
+export { products, brands, categories };

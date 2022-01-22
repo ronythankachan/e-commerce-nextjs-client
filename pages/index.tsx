@@ -21,7 +21,7 @@ export default function Home({ products }: { products: ProductType[] }) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       products,

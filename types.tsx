@@ -23,4 +23,9 @@ interface IParams extends ParsedUrlQuery {
   id: string;
 }
 
-export type { BrandType, ProductType, IParams };
+interface CategoryType {
+  id: string;
+  category: string;
+}
+
+export type { BrandType, ProductType, IParams, CategoryType };

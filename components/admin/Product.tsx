@@ -1,23 +1,17 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/outline";
 import Image from "next/image";
-const currencySymbols: any = {
-  usd: "$",
-  inr: "Rs.",
-};
-const Product = (props: { product: any }) => {
+import { ProductType } from "../../types";
+const Product = ({ product }: { product: ProductType }) => {
   return (
     <div className="border-2 p-2 rounded-md space-y-2 max-w-fit">
       <Image
         width={250}
         height={270}
-        src={props.product.img}
+        src={product.images[0]}
         className="object-cover rounded-md"
       />
-      <p className="text-sm text-gray-500 mt-2">{props.product.title}</p>
-      <p className="text-sm font-semibold">
-        {currencySymbols[props.product.price.currency] +
-          props.product.price.value}
-      </p>
+      <p className="text-sm text-gray-500 mt-2">{product.title}</p>
+      <p className="text-sm font-semibold">Rs. {product.price}</p>
       <div className="flex space-x-2">
         <button className="w-1/2 text-xs py-2 px-4 border border-gray-300 flex justify-evenly items-center rounded text-gray-500 hover:cursor-pointer hover:border-black transition-all duration-150 ease-in-out">
           <PencilIcon className="w-4 h-4" />
