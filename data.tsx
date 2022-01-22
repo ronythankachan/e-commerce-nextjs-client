@@ -16,6 +16,7 @@ const products: ProductType[] = [
     ],
     extraInfo: [],
     rating: 7.5,
+    publish: true,
   },
   {
     id: "2",
@@ -32,6 +33,7 @@ const products: ProductType[] = [
     ],
     extraInfo: [],
     rating: 0,
+    publish: true,
   },
   {
     id: "3",
@@ -48,6 +50,7 @@ const products: ProductType[] = [
     ],
     extraInfo: [],
     rating: 4.5,
+    publish: true,
   },
   {
     id: "4",
@@ -64,6 +67,7 @@ const products: ProductType[] = [
     ],
     extraInfo: [],
     rating: 3.2,
+    publish: true,
   },
   {
     id: "5",
@@ -79,6 +83,7 @@ const products: ProductType[] = [
     ],
     extraInfo: [],
     rating: 4,
+    publish: true,
   },
 ];
 

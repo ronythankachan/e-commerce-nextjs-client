@@ -20,7 +20,7 @@ const login = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="w-96 bg-white md:shadow-md rounded-md p-6 space-y-10 m-2">
-        <h1 className="font-bold text-4xl text-center">Login</h1>
+        <h1 className="page-title text-center">Login</h1>
         <form className="flex flex-col space-y-4">
           <input
             className="input-text"

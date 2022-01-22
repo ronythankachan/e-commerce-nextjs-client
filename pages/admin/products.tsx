@@ -4,6 +4,7 @@ import Layout from "../../components/admin/Layout";
 import Product from "../../components/admin/Product";
 import { CategoryType, ProductType } from "../../types";
 import { products, categories } from "../../data";
+import Link from "next/link";
 
 const Products = ({
   products,
@@ -20,14 +21,16 @@ const Products = ({
       </Head>
       <main className="bg-gray-50 w-full p-5 md:p-10 space-y-8">
         <header className="flex flex-col md:flex-row justify-between md:items-center sticky">
-          <h1 className="text-4xl font-bold justify-start">Products</h1>
+          <h1 className="page-title">Products</h1>
           <div className="flex space-x-2 mt-4 md:mt-0 md:space-y-0">
             <button className="bg-black px-4 py-2 h-16 md:h-fit rounded-md text-white hover:text-gray-300 w-full md:w-fit">
               Create Category
             </button>
-            <button className="bg-blue-600 px-4 py-2 h-16 md:h-fit rounded-md text-white hover:text-gray-300 w-full md:w-fit">
-              Add Product
-            </button>
+            <Link href="/admin/saveproduct">
+              <a className="bg-blue-600 px-4 py-2 h-16 md:h-fit rounded-md text-white hover:text-gray-300 w-full md:w-fit">
+                Add Product
+              </a>
+            </Link>
           </div>
         </header>
         <section className="bg-white shadow-sm rounded-md p-3">

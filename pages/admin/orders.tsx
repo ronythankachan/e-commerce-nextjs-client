@@ -9,7 +9,7 @@ const Orders = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-gray-50 p-5 md:p-10">
-        <h1 className="text-4xl font-bold justify-start">Orders</h1>
+        <h1 className="page-title">Orders</h1>
       </div>
     </Layout>
   );

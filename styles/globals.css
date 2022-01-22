@@ -10,3 +10,6 @@
 .nav-btn {
   @apply flex space-x-4 items-center px-4 py-2 rounded-md hover:cursor-pointer hover:text-blue-500 hover:bg-gray-100 transition-all duration-150 ease-out;
 }
+.page-title {
+  @apply text-4xl font-bold;
+}

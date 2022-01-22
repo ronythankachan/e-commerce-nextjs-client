@@ -14,7 +14,7 @@ const dashboard = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="bg-gray-50 w-full p-5 md:p-10 space-y-8">
-        <h1 className="text-4xl font-bold justify-start">Dashboard</h1>
+        <h1 className="page-title">Dashboard</h1>
         <div className="flex flex-col md:flex-row gap-4">
           <div className="bg-white shadow-sm rounded h-20 px-10 flex items-center border space-x-8 min-w-max">
             <CurrencyRupeeIcon className="h-12 w-12 text-green-600 p-2 bg-green-300 rounded-full" />
