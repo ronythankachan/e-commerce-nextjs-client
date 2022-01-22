@@ -16,6 +16,7 @@ const Products = ({
     <Layout>
       <Head>
         <title>Products</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="bg-gray-50 w-full p-5 md:p-10 space-y-8">
         <header className="flex flex-col md:flex-row justify-between md:items-center sticky">

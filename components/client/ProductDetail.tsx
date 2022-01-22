@@ -4,7 +4,6 @@ import { StarIcon, TruckIcon } from "@heroicons/react/solid";
 import { ProductType } from "../../types";
 
 const ProductDetail = ({ product }: { product: ProductType }) => {
-  console.log("product is" + product);
   const [mainImg, setMainImg] = useState(product.images[0]);
   return (
     <section className="grid grid-cols-product-details gap-x-4">

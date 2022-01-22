@@ -1,5 +1,7 @@
 import Image from "next/image";
+import React from "react";
 import { BrandType } from "../../types";
+
 const Brand = ({ brand }: { brand: BrandType }) => {
   return (
     <div className="flex justify-center items-center w-max flex-col min-w-fit space-y-4 hover:cursor-pointer hover:scale-105 transition-all duration-150 ease-out">

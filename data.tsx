@@ -86,22 +86,25 @@ const brands: BrandType[] = [
   {
     id: "1",
     name: "Addidas",
-    img: "https://pbs.twimg.com/profile_images/1387727047468929028/iptHUHoJ_400x400.jpg",
+    image:
+      "https://pbs.twimg.com/profile_images/1387727047468929028/iptHUHoJ_400x400.jpg",
   },
   {
     id: "2",
     name: "Nike",
-    img: "https://c.static-nike.com/a/images/w_1200,c_limit/bzl2wmsfh7kgdkufrrjq/seo-title.jpg",
+    image:
+      "https://c.static-nike.com/a/images/w_1200,c_limit/bzl2wmsfh7kgdkufrrjq/seo-title.jpg",
   },
   {
     id: "3",
     name: "Allen Solly",
-    img: "https://etimg.etb2bimg.com/photo/68610404.cms",
+    image: "https://etimg.etb2bimg.com/photo/68610404.cms",
   },
   {
     id: "4",
     name: "Van Heusen",
-    img: "https://res.cloudinary.com/dyyjph6kx/image/upload/fl_lossy,f_auto,q_auto,w_auto/gift_vouchers/phpHUi5ng_nwb2k3.jpg",
+    image:
+      "https://res.cloudinary.com/dyyjph6kx/image/upload/fl_lossy,f_auto,q_auto,w_auto/gift_vouchers/phpHUi5ng_nwb2k3.jpg",
   },
 ];
 
