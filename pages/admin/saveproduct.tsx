@@ -6,6 +6,7 @@ import { BrandType, CategoryType, ProductType } from "../../types";
 import { brands } from "../../data";
 import { categories } from "../../data";
 import { useFormik } from "formik";
+import { XIcon } from "@heroicons/react/outline";
 
 const productInitialValues: ProductType = {
   id: "",
@@ -46,7 +47,16 @@ const saveproduct = ({
       price: 0,
       discount: 0,
       categories: [],
-      tags: [],
+      tags: [
+        "test",
+        "shirt",
+        "test",
+        "shirt",
+        "test",
+        "shirt",
+        "test",
+        "shirt",
+      ],
       images: [],
       extraInfo: [],
       rating: 7.5,
@@ -111,7 +121,7 @@ const saveproduct = ({
                 </div>
                 <div className="bg-white p-4 rounded-md shadow-md">
                   <div className="form-group">
-                    <label>Description</label>
+                    <label className="text-md ml-1">Description</label>
                     <textarea
                       placeholder="Type description..."
                       className="input-textarea"
@@ -124,13 +134,53 @@ const saveproduct = ({
                 </div>
                 <div className="bg-white p-4 rounded-md shadow-md">
                   <div className="form-group">
-                    <label>Images</label>
+                    <label className="text-md ml-1">Images</label>
                     <input type="file" className="bg-white p-2" />
                   </div>
                 </div>
               </div>
-              <div className="bg-white p-4 rounded-md shadow-md">
-                categories and stuff
+              <div className="bg-white p-4 rounded-md shadow-md space-y-4">
+                <div className="form-group">
+                  <label className="text-md ml-1">Price</label>
+                  <input
+                    type="number"
+                    placeholder="Price"
+                    className="input-text"
+                    name="price"
+                    value={formik.values.price}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="text-md ml-1">Discount</label>
+                  <input
+                    type="number"
+                    placeholder="Discount"
+                    className="input-text"
+                    name="discount"
+                    value={formik.values.discount}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="text-md ml-1">Tags</label>
+                  <input
+                    type="text"
+                    placeholder="Tags"
+                    className="input-text"
+                    name="tags"
+                    value={formik.values.tags}
+                  />
+                  <div className="grid grid-cols-3 gap-2">
+                    {formik.values.tags.map((tag) => (
+                      <div className="flex items-center justify-center gap-x-2 bg-gray-200 px-3 py-1 rounded">
+                        <small>{tag}</small>
+                        <button className="hover:scale-125 transition-all duration-150 ease-in-out">
+                          <XIcon className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div></div>
               </div>
             </div>
           </form>
