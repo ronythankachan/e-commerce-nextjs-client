@@ -32,7 +32,15 @@ const saveproduct = ({ id = "" }: { id: string }) => {
         <title>Save Product</title>
       </Head>
       <main className="bg-gray-50 w-full p-5 md:p-10 space-y-8">
-        <h1 className="page-title">Save Product</h1>
+        <header className="flex flex-col md:flex-row justify-between md:items-center gap-y-4">
+          <h1 className="page-title">Save Product</h1>
+          <button className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
+            Publish Now
+          </button>
+        </header>
+        <section>
+          <form></form>
+        </section>
       </main>
     </Layout>
   );

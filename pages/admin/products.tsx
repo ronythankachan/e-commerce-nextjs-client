@@ -20,14 +20,14 @@ const Products = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="bg-gray-50 w-full p-5 md:p-10 space-y-8">
-        <header className="flex flex-col md:flex-row justify-between md:items-center sticky">
+        <header className="flex flex-col md:flex-row justify-between md:items-center">
           <h1 className="page-title">Products</h1>
           <div className="flex space-x-2 mt-4 md:mt-0 md:space-y-0">
-            <button className="bg-black px-4 py-2 h-16 md:h-fit rounded-md text-white hover:text-gray-300 w-full md:w-fit">
+            <button className="bg-black px-4 py-2  md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
               Create Category
             </button>
             <Link href="/admin/saveproduct">
-              <a className="bg-blue-600 px-4 py-2 h-16 md:h-fit rounded-md text-white hover:text-gray-300 w-full md:w-fit">
+              <a className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
                 Add Product
               </a>
             </Link>
