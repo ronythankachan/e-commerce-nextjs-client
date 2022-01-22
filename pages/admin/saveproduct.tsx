@@ -1,7 +1,11 @@
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/admin/Layout";
-import { ProductType } from "../../types";
+import { BrandType, CategoryType, ProductType } from "../../types";
+import { brands } from "../../data";
+import { categories } from "../../data";
+import { useFormik } from "formik";
 
 const productInitialValues: ProductType = {
   id: "",
@@ -18,9 +22,41 @@ const productInitialValues: ProductType = {
   publish: false,
 };
 
-const saveproduct = ({ id = "" }: { id: string }) => {
+const saveproduct = ({
+  id = "",
+  brands,
+  categories,
+}: {
+  id: string;
+  brands: BrandType[];
+  categories: CategoryType[];
+}) => {
   const isAddMode = !id;
-  const [productData, setProductData] = useState(productInitialValues);
+  const validate = (values: ProductType) => {
+    const errors: any = {};
+    if (!values.title) errors.title = "This field is required";
+    if (!values.brand) errors.brand = "This field is required";
+  };
+  const formik = useFormik({
+    initialValues: {
+      id: "",
+      title: "",
+      brand: "",
+      description: "",
+      price: 0,
+      discount: 0,
+      categories: [],
+      tags: [],
+      images: [],
+      extraInfo: [],
+      rating: 7.5,
+      publish: false,
+    },
+    validate,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   useEffect(() => {
     if (!isAddMode) {
       //  populate productInitialValues
@@ -34,12 +70,16 @@ const saveproduct = ({ id = "" }: { id: string }) => {
       <main className="bg-gray-50 w-full p-5 md:p-10 space-y-8">
         <header className="flex flex-col md:flex-row justify-between md:items-center gap-y-4">
           <h1 className="page-title">Save Product</h1>
-          <button className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
+          <button
+            className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit"
+            type="submit"
+            form="saveForm"
+          >
             Save Now
           </button>
         </header>
         <section>
-          <form>
+          <form id="saveForm" onSubmit={formik.handleSubmit}>
             <div className="grid grid-cols-product-save gap-4">
               <div className="grid grid-cols-1 gap-4">
                 <div className="bg-white p-4 rounded-md shadow-md flex flex-col gap-y-4">
@@ -49,13 +89,23 @@ const saveproduct = ({ id = "" }: { id: string }) => {
                       type="text"
                       placeholder="Title"
                       className="input-text"
+                      name="title"
+                      value={formik.values.title}
+                      onChange={formik.handleChange}
                     />
                   </div>
                   <div className="form-group">
                     <label className="text-md ml-1">Brands</label>
-                    <select className="input-text">
+                    <select
+                      className="input-text"
+                      name="brand"
+                      value={formik.values.brand}
+                      onChange={formik.handleChange}
+                    >
                       <option>Select Brands</option>
-                      <option>Apple </option>
+                      {brands.map((brand) => (
+                        <option key={brand.id}>{brand.name}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -66,6 +116,9 @@ const saveproduct = ({ id = "" }: { id: string }) => {
                       placeholder="Type description..."
                       className="input-textarea"
                       rows={4}
+                      name="description"
+                      value={formik.values.description}
+                      onChange={formik.handleChange}
                     ></textarea>
                   </div>
                 </div>
@@ -87,4 +140,12 @@ const saveproduct = ({ id = "" }: { id: string }) => {
   );
 };
 
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      brands,
+      categories,
+    },
+  };
+};
 export default saveproduct;
