@@ -164,16 +164,26 @@ const saveproduct = ({
                   <label className="text-md ml-1">Tags</label>
                   <input
                     type="text"
-                    placeholder="Tags"
+                    placeholder="Type and press Enter"
                     className="input-text"
                     name="tags"
-                    value={formik.values.tags}
+                    onKeyPress={(event: React.KeyboardEvent) => {
+                      if (event.key === "Enter") {
+                        formik.values.tags.push(
+                          (event.target as HTMLInputElement).value
+                        );
+                        (event.target as HTMLInputElement).value = "";
+                      }
+                    }}
                   />
                   <div className="grid grid-cols-3 gap-2">
-                    {formik.values.tags.map((tag) => (
-                      <div className="flex items-center justify-center gap-x-2 bg-gray-200 px-3 py-1 rounded">
+                    {formik.values.tags.map((tag, index) => (
+                      <div className="flex items-center justify-center gap-x-2 bg-gray-100 px-3 py-1 rounded-md">
                         <small>{tag}</small>
-                        <button className="hover:scale-125 transition-all duration-150 ease-in-out">
+                        <button
+                          className="hover:scale-125 transition-all duration-150 ease-in-out"
+                          onClick={() => formik.values.tags.splice(index, 1)}
+                        >
                           <XIcon className="w-3 h-3" />
                         </button>
                       </div>
