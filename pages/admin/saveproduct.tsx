@@ -35,11 +35,52 @@ const saveproduct = ({ id = "" }: { id: string }) => {
         <header className="flex flex-col md:flex-row justify-between md:items-center gap-y-4">
           <h1 className="page-title">Save Product</h1>
           <button className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
-            Publish Now
+            Save Now
           </button>
         </header>
         <section>
-          <form></form>
+          <form>
+            <div className="grid grid-cols-product-save gap-4">
+              <div className="grid grid-cols-1 gap-4">
+                <div className="bg-white p-4 rounded-md shadow-md flex flex-col gap-y-4">
+                  <div className="form-group">
+                    <label className="text-md ml-1">Title</label>
+                    <input
+                      type="text"
+                      placeholder="Title"
+                      className="input-text"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="text-md ml-1">Brands</label>
+                    <select className="input-text">
+                      <option>Select Brands</option>
+                      <option>Apple </option>
+                    </select>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-md shadow-md">
+                  <div className="form-group">
+                    <label>Description</label>
+                    <textarea
+                      placeholder="Type description..."
+                      className="input-textarea"
+                      rows={4}
+                    ></textarea>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-md shadow-md">
+                  <div className="form-group">
+                    <label>Images</label>
+                    <input type="file" className="bg-white p-2" />
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white p-4 rounded-md shadow-md">
+                categories and stuff
+              </div>
+            </div>
+          </form>
         </section>
       </main>
     </Layout>
