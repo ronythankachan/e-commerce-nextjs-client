@@ -46,7 +46,10 @@ const saveproduct = ({
   const addTags = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
       let value = (event.target as HTMLInputElement).value;
-      formData.tags.push(value);
+      setFormData({
+        ...formData,
+        tags: [...formData.tags, value],
+      });
       (event.target as HTMLInputElement).value = "";
     }
   };
