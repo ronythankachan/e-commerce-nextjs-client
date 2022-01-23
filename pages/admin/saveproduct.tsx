@@ -6,8 +6,9 @@ import { BrandType, CategoryType, ProductType } from "../../types";
 import { brands } from "../../data";
 import { categories } from "../../data";
 import { useFormik } from "formik";
-import { XIcon } from "@heroicons/react/outline";
+import { TrashIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const productInitialValues: ProductType = {
   id: "",
@@ -48,17 +49,13 @@ const saveproduct = ({
       price: 0,
       discount: 0,
       categories: [],
-      tags: [
-        "test",
-        "shirt",
-        "test",
-        "shirt",
-        "test",
-        "shirt",
-        "test",
-        "shirt",
+      tags: ["test", "shirt", "test", "shirt", "test"],
+      images: [
+        "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+        "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+        "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
+        "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
       ],
-      images: [],
       extraInfo: [],
       rating: 7.5,
       publish: false,
@@ -93,7 +90,7 @@ const saveproduct = ({
           <form id="saveForm" onSubmit={formik.handleSubmit}>
             <div className="grid grid-cols-product-save gap-4">
               <div className="grid grid-cols-1 gap-4">
-                <div className="bg-white p-4 rounded-md shadow-md flex flex-col gap-y-4">
+                <div className="bg-white p-4 rounded-md shadow-md flex flex-col gap-y-4 ">
                   <div className="form-group">
                     <label className="text-md ml-1">Title</label>
                     <input
@@ -136,7 +133,37 @@ const saveproduct = ({
                 <div className="bg-white p-4 rounded-md shadow-md">
                   <div className="form-group">
                     <label className="text-md ml-1">Images</label>
-                    <input type="file" className="bg-white p-2" />
+                    <div className="border w-fit rounded-md p-2 bg-black text-white">
+                      <p className="absolute ml-4 ">Browse</p>
+                      <input
+                        type="file"
+                        className="w-24 opacity-0  hover:cursor-pointer"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex gap-x-4 mt-4">
+                    {formik.values.images.map((image, index) => (
+                      <div
+                        key={index}
+                        className="w-24 h-24 relative hover:scale-105 transition-all duration-150 ease-out"
+                      >
+                        <Image
+                          src={image}
+                          layout="fill"
+                          objectFit="cover"
+                          className="rounded-md"
+                        />
+                        <div className="opacity-0 absolute w-full h-full rounded-md hover:bg-black hover:opacity-100 hover:bg-opacity-50 flex justify-center items-center transition-all duration-150 ease-out">
+                          <button
+                            onClick={() =>
+                              formik.values.images.splice(index, 1)
+                            }
+                          >
+                            <TrashIcon className="w-10 h-10 p-2 rounded-full bg-white hover:cursor-pointer" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -191,6 +218,7 @@ const saveproduct = ({
                     ))}
                   </div>
                 </div>
+                <hr />
                 <div className="space-y-4">
                   <h2 className="text-lg font-bold">Categories</h2>
                   <div className="grid grid-cols-2 gap-y-2">
@@ -202,6 +230,7 @@ const saveproduct = ({
                     ))}
                   </div>
                 </div>
+                <hr />
                 <div className="space-y-4">
                   <h2 className="text-lg font-bold">Status</h2>
                   <div className="space-x-2">
