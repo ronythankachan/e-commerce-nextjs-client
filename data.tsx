@@ -10,7 +10,7 @@ const products: ProductType[] = [
     price: 1120,
     discount: 0,
     categories: [],
-    tags: [],
+    tags: ["test", "another"],
     images: [
       "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
     ],

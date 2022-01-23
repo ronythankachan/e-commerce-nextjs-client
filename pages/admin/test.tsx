@@ -18,8 +18,7 @@ const saveproduct = ({
   brands: BrandType[];
   categories: CategoryType[];
 }) => {
-  const { id } = useRouter().query;
-  const addMode = !id;
+  const router = useRouter();
   const [formData, setFormData] = useState<any>({
     id: "",
     title: "",
@@ -36,12 +35,13 @@ const saveproduct = ({
   });
 
   useEffect(() => {
-    if (!addMode) {
-      console.log("addmode is off");
+    const { id } = router.query;
+    if (id) {
+      console.log("edit mode on");
       const product = getProductById(id as string);
       setFormData(product);
     }
-  }, []);
+  }, [router]);
 
   const handleSubmit = (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
@@ -191,7 +191,10 @@ const saveproduct = ({
                   />
                   <div className="grid grid-cols-3 gap-2">
                     {formData.tags.map((tag: string, index: number) => (
-                      <div className="flex items-center justify-between gap-x-2 bg-white border px-2 py-1 rounded-md">
+                      <div
+                        className="flex items-center justify-between gap-x-2 bg-white border px-2 py-1 rounded-md"
+                        key={index}
+                      >
                         <small>{tag}</small>
                         <button
                           className="hover:scale-125 transition-all duration-150 ease-in-out"
