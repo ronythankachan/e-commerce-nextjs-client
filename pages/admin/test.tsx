@@ -46,11 +46,13 @@ const saveproduct = ({
   const addTags = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
       let value = (event.target as HTMLInputElement).value;
-      setFormData({
-        ...formData,
-        tags: [...formData.tags, value],
-      });
-      (event.target as HTMLInputElement).value = "";
+      if (!formData.tags.includes(value)) {
+        setFormData({
+          ...formData,
+          tags: [...formData.tags, value],
+        });
+        (event.target as HTMLInputElement).value = "";
+      }
       event.preventDefault();
     }
   };
