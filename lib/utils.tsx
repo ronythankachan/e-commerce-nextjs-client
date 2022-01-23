@@ -11,4 +11,8 @@ const getAllProductIds = () => {
   });
 };
 
-export { getAllProductIds };
+const getProductById = (id: string) => {
+  return products.find((product) => product.id === id);
+};
+
+export { getAllProductIds, getProductById };
