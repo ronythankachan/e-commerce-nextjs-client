@@ -56,6 +56,15 @@ const saveproduct = ({
       event.preventDefault();
     }
   };
+
+  const deleteTag = (event: React.MouseEvent<HTMLElement>, tag: string) => {
+    event.preventDefault();
+    setFormData({
+      ...formData,
+      tags: formData.tags.filter((tagVal) => tagVal !== tag),
+    });
+  };
+
   const deleteImage = (image: string) => {
     setFormData({
       ...formData,
@@ -210,12 +219,7 @@ const saveproduct = ({
                         <small>{tag}</small>
                         <button
                           className="hover:scale-125 transition-all duration-150 ease-in-out"
-                          onClick={() =>
-                            setFormData({
-                              ...formData,
-                              tags: formData.tags.filter((val) => val !== tag),
-                            })
-                          }
+                          onClick={(event) => deleteTag(event, tag)}
                         >
                           <XIcon className="w-3 h-3" />
                         </button>
