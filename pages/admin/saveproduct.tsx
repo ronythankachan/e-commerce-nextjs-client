@@ -7,6 +7,7 @@ import { brands } from "../../data";
 import { categories } from "../../data";
 import { useFormik } from "formik";
 import { XIcon } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
 
 const productInitialValues: ProductType = {
   id: "",
@@ -24,15 +25,15 @@ const productInitialValues: ProductType = {
 };
 
 const saveproduct = ({
-  id = "",
   brands,
   categories,
 }: {
-  id: string;
   brands: BrandType[];
   categories: CategoryType[];
 }) => {
-  const isAddMode = !id;
+  const { id } = useRouter().query;
+  console.log("id is " + id);
+  const addMode = !id;
   const validate = (values: ProductType) => {
     const errors: any = {};
     if (!values.title) errors.title = "This field is required";
@@ -68,7 +69,7 @@ const saveproduct = ({
     },
   });
   useEffect(() => {
-    if (!isAddMode) {
+    if (!addMode) {
       //  populate productInitialValues
     }
   }, []);
@@ -178,7 +179,7 @@ const saveproduct = ({
                   />
                   <div className="grid grid-cols-3 gap-2">
                     {formik.values.tags.map((tag, index) => (
-                      <div className="flex items-center justify-center gap-x-2 bg-gray-100 px-3 py-1 rounded-md">
+                      <div className="flex items-center justify-between gap-x-2 bg-white border px-2 py-1 rounded-md">
                         <small>{tag}</small>
                         <button
                           className="hover:scale-125 transition-all duration-150 ease-in-out"
@@ -190,7 +191,24 @@ const saveproduct = ({
                     ))}
                   </div>
                 </div>
-                <div></div>
+                <div className="space-y-4">
+                  <h2 className="text-lg font-bold">Categories</h2>
+                  <div className="grid grid-cols-2 gap-y-2">
+                    {categories.map((category) => (
+                      <div key={category.id} className="space-x-2">
+                        <input type="checkbox" />
+                        <label className="text-md">{category.category}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <h2 className="text-lg font-bold">Status</h2>
+                  <div className="space-x-2">
+                    <input type="checkbox" />
+                    <label>Publish to site</label>
+                  </div>
+                </div>
               </div>
             </div>
           </form>
