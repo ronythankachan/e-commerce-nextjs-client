@@ -43,8 +43,17 @@ const saveproduct = ({
     }
   }, [router]);
 
+  const addTags = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      let value = (event.target as HTMLInputElement).value;
+      formData.tags.push(value);
+      (event.target as HTMLInputElement).value = "";
+    }
+  };
+
   const handleSubmit = (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
+    console.log("handle submit executed");
     console.log(formData);
   };
   const handleChange = (event: React.FormEvent<EventTarget>) => {
@@ -180,14 +189,7 @@ const saveproduct = ({
                     placeholder="Type and press Enter"
                     className="input-text"
                     name="tags"
-                    onKeyPress={(event: React.KeyboardEvent) => {
-                      if (event.key === "Enter") {
-                        formData.tags.push(
-                          (event.target as HTMLInputElement).value
-                        );
-                        (event.target as HTMLInputElement).value = "";
-                      }
-                    }}
+                    onKeyPress={addTags}
                   />
                   <div className="grid grid-cols-3 gap-2">
                     {formData.tags.map((tag: string, index: number) => (
@@ -198,7 +200,12 @@ const saveproduct = ({
                         <small>{tag}</small>
                         <button
                           className="hover:scale-125 transition-all duration-150 ease-in-out"
-                          onClick={() => formData.tags.splice(index, 1)}
+                          onClick={() =>
+                            setFormData({
+                              ...formData,
+                              tags: formData.tags.filter((val) => val !== tag),
+                            })
+                          }
                         >
                           <XIcon className="w-3 h-3" />
                         </button>
