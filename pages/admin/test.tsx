@@ -51,6 +51,7 @@ const saveproduct = ({
         tags: [...formData.tags, value],
       });
       (event.target as HTMLInputElement).value = "";
+      event.preventDefault();
     }
   };
   const deleteImage = (image: string) => {
