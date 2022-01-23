@@ -9,6 +9,7 @@ import { useFormik } from "formik";
 import { TrashIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Alert from "../../components/Alert";
 
 const productInitialValues: ProductType = {
   id: "",
@@ -242,6 +243,12 @@ const saveproduct = ({
             </div>
           </form>
         </section>
+        <Alert
+          content="This is a sample alert"
+          type="success"
+          loading={true}
+          visible={true}
+        />
       </main>
     </Layout>
   );
