@@ -53,6 +53,12 @@ const saveproduct = ({
       (event.target as HTMLInputElement).value = "";
     }
   };
+  const deleteImage = (image: string) => {
+    setFormData({
+      ...formData,
+      images: formData.images.filter((img) => img !== image),
+    });
+  };
 
   const handleSubmit = (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
@@ -151,9 +157,7 @@ const saveproduct = ({
                           className="rounded-md"
                         />
                         <div className="opacity-0 absolute w-full h-full rounded-md hover:bg-black hover:opacity-100 hover:bg-opacity-50 flex justify-center items-center transition-all duration-150 ease-out">
-                          <button
-                            onClick={() => formData.images.splice(index, 1)}
-                          >
+                          <button onClick={() => deleteImage(image)}>
                             <TrashIcon className="w-10 h-10 p-2 rounded-full bg-white hover:cursor-pointer" />
                           </button>
                         </div>
@@ -197,7 +201,7 @@ const saveproduct = ({
                   <div className="grid grid-cols-3 gap-2">
                     {formData.tags.map((tag: string, index: number) => (
                       <div
-                        className="flex items-center justify-between gap-x-2 bg-white border px-2 py-1 rounded-md"
+                        className="flex items-center justify-between gap-x-2 bg-white border px-2 py-1 rounded-md min-w-fit"
                         key={index}
                       >
                         <small>{tag}</small>
