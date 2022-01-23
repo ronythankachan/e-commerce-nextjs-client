@@ -148,7 +148,7 @@ const saveproduct = ({
                     </div>
                   </div>
                   <div className="flex gap-x-4 mt-4">
-                    {formData.images.map((image: string, index: number) => (
+                    {formData.images.map((image, index) => (
                       <div
                         key={index}
                         className="w-24 h-24 relative hover:scale-105 transition-all duration-150 ease-out"
@@ -202,7 +202,7 @@ const saveproduct = ({
                     onKeyPress={addTags}
                   />
                   <div className="grid grid-cols-3 gap-2">
-                    {formData.tags.map((tag: string, index: number) => (
+                    {formData.tags.map((tag, index) => (
                       <div
                         className="flex items-center justify-between gap-x-2 bg-white border px-2 py-1 rounded-md min-w-fit"
                         key={index}
