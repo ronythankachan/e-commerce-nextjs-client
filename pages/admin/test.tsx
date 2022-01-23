@@ -19,7 +19,7 @@ const saveproduct = ({
   categories: CategoryType[];
 }) => {
   const router = useRouter();
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState<ProductType>({
     id: "",
     title: "",
     brand: "",
