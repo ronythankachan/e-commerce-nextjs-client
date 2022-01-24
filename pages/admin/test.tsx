@@ -87,10 +87,22 @@ const saveproduct = ({
           categories: formData.categories.filter((cat) => cat !== category),
         });
   };
+  const checkErrors = (): string => {
+    let error = "";
+    if (!formData.title) error = "Title field is required";
+    else if (!formData.brand) error = "Brand field is required";
+    else if (!formData.description) error = "Description field is required";
+    else if (formData.price <= 0) error = "Price should be greater zero";
+    else if (formData.images.length == 0) error = "Add atleast one image";
+    else if (formData.categories.length == 0)
+      error = "Select atleast one category";
+    return error;
+  };
   const handleSubmit = (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
-    console.log("handle submit executed");
-    console.log(formData);
+    const error = checkErrors();
+    if (!error) console.log("Form submitted", formData);
+    else console.log(error);
   };
   const handleChange = (event: React.FormEvent<EventTarget>) => {
     let target = event.target as HTMLInputElement;
