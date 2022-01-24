@@ -90,7 +90,8 @@ const saveproduct = ({
   const checkErrors = (): string => {
     let error = "";
     if (!formData.title) error = "Title field is required";
-    else if (!formData.brand) error = "Brand field is required";
+    else if (!formData.brand || formData.brand === "Select Brand")
+      error = "Brand field is required";
     else if (!formData.description) error = "Description field is required";
     else if (formData.price <= 0) error = "Price should be greater zero";
     else if (formData.images.length == 0) error = "Add atleast one image";
@@ -152,7 +153,7 @@ const saveproduct = ({
                       value={formData.brand}
                       onChange={handleChange}
                     >
-                      <option>Select Brands</option>
+                      <option>Select Brand</option>
                       {brands.map((brand) => (
                         <option key={brand.id}>{brand.name}</option>
                       ))}
@@ -176,10 +177,11 @@ const saveproduct = ({
                   <div className="form-group">
                     <label className="text-md ml-1">Images</label>
                     <div className="border w-fit rounded-md p-2 bg-black text-white">
-                      <p className="absolute ml-4 ">Browse</p>
+                      <p className="absolute ml-4">Browse</p>
                       <input
                         type="file"
                         className="w-24 opacity-0  hover:cursor-pointer"
+                        disabled={formData.images.length === 4}
                       />
                     </div>
                   </div>
