@@ -266,7 +266,13 @@ const saveproduct = ({
                 <div className="space-y-4">
                   <h2 className="text-lg font-bold">Status</h2>
                   <div className="space-x-2">
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      checked={formData.publish}
+                      onChange={() =>
+                        setFormData({ ...formData, publish: !formData.publish })
+                      }
+                    />
                     <label>Publish to site</label>
                   </div>
                 </div>
