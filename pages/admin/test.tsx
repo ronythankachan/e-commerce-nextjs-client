@@ -71,14 +71,29 @@ const saveproduct = ({
       images: formData.images.filter((img) => img !== image),
     });
   };
-
+  const handleCategoryChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    category: string
+  ) => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    value
+      ? setFormData({
+          ...formData,
+          categories: [...formData.categories, category],
+        })
+      : setFormData({
+          ...formData,
+          categories: formData.categories.filter((cat) => cat !== category),
+        });
+  };
   const handleSubmit = (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
     console.log("handle submit executed");
     console.log(formData);
   };
-  const handleChange = (event: React.FormEvent<EventTarget>) => {
-    let target = event.target as HTMLInputElement;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let target = event.target;
     setFormData({
       ...formData,
       [target.name]: target.value,
@@ -233,7 +248,15 @@ const saveproduct = ({
                   <div className="grid grid-cols-2 gap-y-2">
                     {categories.map((category) => (
                       <div key={category.id} className="space-x-2">
-                        <input type="checkbox" />
+                        <input
+                          type="checkbox"
+                          checked={formData.categories.includes(
+                            category.category
+                          )}
+                          onChange={(e) =>
+                            handleCategoryChange(e, category.category)
+                          }
+                        />
                         <label className="text-md">{category.category}</label>
                       </div>
                     ))}
