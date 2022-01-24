@@ -6,13 +6,24 @@ const Alert = ({
   loading,
   type,
   visible,
+  dissapear,
+  duration,
+  setAlertData,
 }: {
   content: string;
   loading: boolean;
   type: string;
   visible: boolean;
+  dissapear: boolean;
+  duration: number;
+  setAlertData: Function;
 }) => {
   if (!visible) return null;
+  if (dissapear) {
+    setTimeout(() => {
+      setAlertData((data: any) => setAlertData({ ...data, visible: false }));
+    }, duration * 1000);
+  }
   return (
     <div
       className={classname(

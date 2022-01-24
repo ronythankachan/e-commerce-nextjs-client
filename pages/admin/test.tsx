@@ -19,6 +19,14 @@ const saveproduct = ({
   categories: CategoryType[];
 }) => {
   const router = useRouter();
+  const [alertData, setAlertData] = useState({
+    content: "",
+    type: "error",
+    loading: false,
+    visible: false,
+    dissapear: false,
+    duration: 1,
+  });
   const [formData, setFormData] = useState<ProductType>({
     id: "",
     title: "",
@@ -102,8 +110,25 @@ const saveproduct = ({
   const handleSubmit = (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
     const error = checkErrors();
-    if (!error) console.log("Form submitted", formData);
-    else console.log(error);
+    if (!error) {
+      console.log("Form submitted", formData);
+      setAlertData({
+        content: "Saving...",
+        type: "success",
+        loading: true,
+        visible: true,
+        dissapear: true,
+        duration: 3,
+      });
+    } else
+      setAlertData({
+        content: error,
+        type: "error",
+        loading: false,
+        visible: true,
+        dissapear: true,
+        duration: 1,
+      });
   };
   const handleChange = (event: React.FormEvent<EventTarget>) => {
     let target = event.target as HTMLInputElement;
@@ -294,12 +319,7 @@ const saveproduct = ({
             </div>
           </form>
         </section>
-        <Alert
-          content="This is a sample alert"
-          type="success"
-          loading={true}
-          visible={true}
-        />
+        <Alert {...alertData} setAlertData={setAlertData} />
       </main>
     </Layout>
   );
