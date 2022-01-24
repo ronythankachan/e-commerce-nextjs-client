@@ -92,8 +92,8 @@ const saveproduct = ({
     console.log("handle submit executed");
     console.log(formData);
   };
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let target = event.target;
+  const handleChange = (event: React.FormEvent<EventTarget>) => {
+    let target = event.target as HTMLInputElement;
     setFormData({
       ...formData,
       [target.name]: target.value,
