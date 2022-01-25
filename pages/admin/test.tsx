@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Alert from "../../components/Alert";
 import { getProductById } from "../../lib/utils";
+import server from "../../axios";
 
 const saveproduct = ({
   brands,
@@ -41,6 +42,7 @@ const saveproduct = ({
     rating: 7.5,
     publish: false,
   });
+  const [imgFile, setImgFile] = useState();
 
   useEffect(() => {
     const { id } = router.query;
@@ -70,6 +72,27 @@ const saveproduct = ({
     setFormData({
       ...formData,
       tags: formData.tags.filter((tagVal) => tagVal !== tag),
+    });
+  };
+  const uploadImage = async (event: any) => {
+    const file = event.target.files[0];
+    console.log("File is", file);
+    //upload it to aws and change update url
+    const body = new FormData();
+    body.append("image", file);
+    const headers = {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDMxMTgwMjYsImV4cCI6MTY0MzIwNDQyNn0.BhMFbdlUzwUUVi3XAY0rZja7i6OOp-DOZFF6eu7m8ek",
+    };
+
+    const result = await server.post("/product/upload", body, {
+      headers: headers,
+    });
+    const url = result.data.url;
+
+    setFormData({
+      ...formData,
+      images: [...formData.images, url],
     });
   };
 
@@ -207,6 +230,7 @@ const saveproduct = ({
                         type="file"
                         className="w-24 opacity-0  hover:cursor-pointer"
                         disabled={formData.images.length === 4}
+                        onChange={uploadImage}
                       />
                     </div>
                   </div>
