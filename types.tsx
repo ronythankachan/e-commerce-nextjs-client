@@ -1,13 +1,13 @@
 import { ParsedUrlQuery } from "querystring";
 
 interface BrandType {
-  id: string;
+  _id: string;
   name: string;
   image: string;
 }
 
 interface ProductType {
-  id: string;
+  _id?: string;
   title: string;
   brand: string;
   description: string;
@@ -22,11 +22,11 @@ interface ProductType {
 }
 
 interface IParams extends ParsedUrlQuery {
-  id: string;
+  _id: string;
 }
 
 interface CategoryType {
-  id: string;
-  category: string;
+  _id: string;
+  name: string;
 }
 export type { BrandType, ProductType, IParams, CategoryType };

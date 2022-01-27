@@ -2,7 +2,7 @@ import { BrandType, CategoryType, ProductType } from "./types";
 
 const products: ProductType[] = [
   {
-    id: "1",
+    _id: "1",
     title: "Jordan shoes",
     brand: "Nike",
     description:
@@ -19,7 +19,7 @@ const products: ProductType[] = [
     publish: true,
   },
   {
-    id: "2",
+    _id: "2",
     title: "Nike Air",
     brand: "Nike",
     description:
@@ -36,7 +36,7 @@ const products: ProductType[] = [
     publish: true,
   },
   {
-    id: "3",
+    _id: "3",
     title: "Fila Comfort - All weather",
     brand: "Nike",
     description:
@@ -53,7 +53,7 @@ const products: ProductType[] = [
     publish: true,
   },
   {
-    id: "4",
+    _id: "4",
     title: "Addidas sport",
     brand: "Addidas",
     description:
@@ -70,7 +70,7 @@ const products: ProductType[] = [
     publish: true,
   },
   {
-    id: "5",
+    _id: "5",
     title: "HRX brand shoes",
     brand: "HRX",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. ",
@@ -89,24 +89,24 @@ const products: ProductType[] = [
 
 const brands: BrandType[] = [
   {
-    id: "1",
+    _id: "1",
     name: "Addidas",
     image:
       "https://pbs.twimg.com/profile_images/1387727047468929028/iptHUHoJ_400x400.jpg",
   },
   {
-    id: "2",
+    _id: "2",
     name: "Nike",
     image:
       "https://c.static-nike.com/a/images/w_1200,c_limit/bzl2wmsfh7kgdkufrrjq/seo-title.jpg",
   },
   {
-    id: "3",
+    _id: "3",
     name: "Allen Solly",
     image: "https://etimg.etb2bimg.com/photo/68610404.cms",
   },
   {
-    id: "4",
+    _id: "4",
     name: "Van Heusen",
     image:
       "https://res.cloudinary.com/dyyjph6kx/image/upload/fl_lossy,f_auto,q_auto,w_auto/gift_vouchers/phpHUi5ng_nwb2k3.jpg",
@@ -115,20 +115,20 @@ const brands: BrandType[] = [
 
 const categories: CategoryType[] = [
   {
-    id: "1",
-    category: "Shoes",
+    _id: "1",
+    name: "Shoes",
   },
   {
-    id: "2",
-    category: "Shirts",
+    _id: "2",
+    name: "Shirts",
   },
   {
-    id: "3",
-    category: "Pants",
+    _id: "3",
+    name: "Pants",
   },
   {
-    id: "4",
-    category: "Hoodies",
+    _id: "4",
+    name: "Hoodies",
   },
 ];
 

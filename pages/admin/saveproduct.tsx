@@ -9,7 +9,12 @@ import { TrashIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Alert from "../../components/Alert";
-import { getProductById, uploadImageToS3 } from "../../lib/utils";
+import {
+  getAllCategoriesAPI,
+  getProductById,
+  saveProductAPI,
+  uploadImageToS3API,
+} from "../../lib/utils";
 import server from "../../axios";
 
 const saveproduct = ({
@@ -29,7 +34,7 @@ const saveproduct = ({
     duration: 1,
   });
   const [formData, setFormData] = useState<ProductType>({
-    id: "",
+    _id: "",
     title: "",
     brand: "",
     description: "",
@@ -47,7 +52,6 @@ const saveproduct = ({
   useEffect(() => {
     const { id } = router.query;
     if (id) {
-      console.log("edit mode on");
       const product = getProductById(id as string);
       setFormData(product);
     }
@@ -76,7 +80,7 @@ const saveproduct = ({
   };
   const uploadImage = async (event: any) => {
     const file = event.target.files[0];
-    const result = await uploadImageToS3(file);
+    const result = await uploadImageToS3API(file);
     console.log(result.url);
     setFormData({
       ...formData,
@@ -118,11 +122,20 @@ const saveproduct = ({
       error = "Select atleast one category";
     return error;
   };
-  const handleSubmit = (event: React.FormEvent<EventTarget>) => {
+  const replaceCategoryAndBrands = () => {
+    const categoryIds = formData.categories.map(
+      (cat) => categories.find((category) => category.name === cat)?._id
+    );
+    console.log(categoryIds);
+  };
+  const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
     const error = checkErrors();
+    replaceCategoryAndBrands();
     if (!error) {
       console.log("Form submitted", formData);
+      const result = await saveProductAPI(formData);
+      alert(result.data);
       setAlertData({
         content: "Saving...",
         type: "success",
@@ -191,7 +204,7 @@ const saveproduct = ({
                     >
                       <option>Select Brand</option>
                       {brands.map((brand) => (
-                        <option key={brand.id}>{brand.name}</option>
+                        <option key={brand._id}>{brand.name}</option>
                       ))}
                     </select>
                   </div>
@@ -298,17 +311,15 @@ const saveproduct = ({
                   <h2 className="text-lg font-bold">Categories</h2>
                   <div className="grid grid-cols-2 gap-y-2">
                     {categories.map((category) => (
-                      <div key={category.id} className="space-x-2">
+                      <div key={category._id} className="space-x-2">
                         <input
                           type="checkbox"
-                          checked={formData.categories.includes(
-                            category.category
-                          )}
+                          checked={formData.categories.includes(category.name)}
                           onChange={(e) =>
-                            handleCategoryChange(e, category.category)
+                            handleCategoryChange(e, category.name)
                           }
                         />
-                        <label className="text-md">{category.category}</label>
+                        <label className="text-md">{category.name}</label>
                       </div>
                     ))}
                   </div>
@@ -338,6 +349,7 @@ const saveproduct = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  const categories = await getAllCategoriesAPI();
   return {
     props: {
       brands,
