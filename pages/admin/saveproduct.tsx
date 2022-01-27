@@ -96,14 +96,16 @@ const saveproduct = ({
   ) => {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
+    const categoryId =
+      categories.find((cat) => cat.name === category)?._id || "";
     value
       ? setFormData({
           ...formData,
-          categories: [...formData.categories, category],
+          categories: [...formData.categories, categoryId],
         })
       : setFormData({
           ...formData,
-          categories: formData.categories.filter((cat) => cat !== category),
+          categories: formData.categories.filter((cat) => cat !== categoryId),
         });
   };
   const checkErrors = (): string => {
@@ -310,7 +312,7 @@ const saveproduct = ({
                       <div key={category._id} className="space-x-2">
                         <input
                           type="checkbox"
-                          checked={formData.categories.includes(category.name)}
+                          checked={formData.categories.includes(category._id)}
                           onChange={(e) =>
                             handleCategoryChange(e, category.name)
                           }
