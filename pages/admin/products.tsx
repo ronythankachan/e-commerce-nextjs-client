@@ -47,15 +47,15 @@ const Products = ({
             >
               <option>All Categories</option>
               {categories.map((category) => (
-                <option className="p-4" key={category.id}>
-                  {category.category}
+                <option className="p-4" key={category._id}>
+                  {category.name}
                 </option>
               ))}
             </select>
           </form>
           <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-8 gap-4 h-fit mt-4">
             {products.map((product) => (
-              <Product product={product} key={product.id} />
+              <Product product={product} key={product._id} />
             ))}
           </div>
         </section>

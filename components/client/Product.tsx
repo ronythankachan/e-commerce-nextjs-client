@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ProductType } from "../../types";
 const Product = ({ product }: { product: ProductType }) => {
   return (
-    <Link href={"/product/" + product.id}>
+    <Link href={"/product/" + product._id}>
       <a className="bg-[#f7f7f7] shadow-md rounded-md space-y-2 w-fit hover:scale-[102%] transition-all duration-150 ease-out hover:cursor-pointer">
         <Image
           width={250}

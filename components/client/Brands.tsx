@@ -7,7 +7,7 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
       <h1 className="text-4xl font-bold justify-start">Brands</h1>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 2xl:grid-cols-12 gap-4">
         {brands.map((brand) => (
-          <Brand brand={brand} key={brand.id} />
+          <Brand brand={brand} key={brand._id} />
         ))}
       </div>
     </section>

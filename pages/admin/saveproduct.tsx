@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/admin/Layout";
 import { BrandType, CategoryType, ProductType } from "../../types";
 import { brands } from "../../data";
-import { categories } from "../../data";
 import { TrashIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -15,7 +14,6 @@ import {
   saveProductAPI,
   uploadImageToS3API,
 } from "../../lib/utils";
-import server from "../../axios";
 
 const saveproduct = ({
   brands,
@@ -47,8 +45,6 @@ const saveproduct = ({
     rating: 7.5,
     publish: false,
   });
-  const [imgFile, setImgFile] = useState();
-
   useEffect(() => {
     const { id } = router.query;
     if (id) {
