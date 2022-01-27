@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/admin/Layout";
 import { BrandType, CategoryType, ProductType } from "../../types";
 import { brands } from "../../data";
-import { TrashIcon, XIcon } from "@heroicons/react/outline";
+import { ArrowLeftIcon, TrashIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Alert from "../../components/Alert";
@@ -14,6 +14,7 @@ import {
   saveProductAPI,
   uploadImageToS3API,
 } from "../../lib/utils";
+import Link from "next/link";
 
 const saveproduct = ({
   brands,
@@ -188,17 +189,25 @@ const saveproduct = ({
       <main className="bg-gray-50 w-full p-5 md:p-10 space-y-8">
         <header className="flex flex-col md:flex-row justify-between md:items-center gap-y-4">
           <h1 className="page-title">Save Product</h1>
-          <button
-            className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit"
-            type="submit"
-            form="saveForm"
-          >
-            Save Now
-          </button>
+          <div className="flex gap-x-4 items-center md:justify-center">
+            <Link href="/admin/products">
+              <a className="flex items-center justify-center gap-x-2 text-blue-500 hover:text-blue-300 border rounded-md px-4 py-2 bg-white">
+                <ArrowLeftIcon className="w-5 h-5" />
+                <p>Go Back</p>
+              </a>
+            </Link>
+            <button
+              className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit"
+              type="submit"
+              form="saveForm"
+            >
+              Save Now
+            </button>
+          </div>
         </header>
         <section>
           <form id="saveForm" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-product-save gap-4">
+            <div className="grid lg:grid-cols-product-save gap-4">
               <div className="grid grid-cols-1 gap-4">
                 <div className="bg-white p-4 rounded-md shadow-md flex flex-col gap-y-4 ">
                   <div className="form-group">
@@ -309,7 +318,7 @@ const saveproduct = ({
                     name="tags"
                     onKeyPress={addTags}
                   />
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                     {formData.tags.map((tag, index) => (
                       <div
                         className="flex items-center justify-between gap-x-2 bg-white border px-2 py-1 rounded-md min-w-fit"
