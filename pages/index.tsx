@@ -3,7 +3,7 @@ import Brands from "../components/client/Brands";
 import NewArrivals from "../components/client/NewArrivals";
 import Layout from "../components/client/Layout";
 import { ProductType } from "../types";
-import { products, brands } from "../data";
+import { brands } from "../data";
 import { GetStaticProps } from "next";
 import { getAllProductsAPI } from "../lib/utils";
 

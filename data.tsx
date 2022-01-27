@@ -1,92 +1,4 @@
-import { BrandType, CategoryType, ProductType } from "./types";
-
-const products: ProductType[] = [
-  {
-    _id: "1",
-    title: "Jordan shoes",
-    brand: "1",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus nisi totam quibusdam alias unde ipsum officia, aut est dolorum omnis ducimus numquam maiores cum sequi possimus assumenda accusantium repellendus ipsam beatae consectetur delectus cumque. Beatae, itaque nulla! Aspernatur, eius libero.",
-    price: 1120,
-    discount: 0,
-    categories: ["61bf8c9b786174c494cd1f4f", "61bf8ce0786174c494cd1f51"],
-    tags: ["test", "another"],
-    images: [
-      "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
-    ],
-    extraInfo: [],
-    rating: 7.5,
-    publish: true,
-  },
-  {
-    _id: "2",
-    title: "Nike Air",
-    brand: "2",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias veritatis assumenda laudantium deleniti quos tenetur, vitae nobis explicabo enim perspiciatis placeat sunt rem, possimus dolorem sint modi saepe facilis eligendi!",
-    price: 1450,
-    discount: 0,
-    categories: [],
-    tags: [],
-    images: [
-      "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
-    ],
-    extraInfo: [],
-    rating: 0,
-    publish: true,
-  },
-  {
-    _id: "3",
-    title: "Fila Comfort - All weather",
-    brand: "3",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque accusamus, voluptatem, nulla repellat harum quia",
-    price: 3480,
-    discount: 0,
-    categories: [],
-    tags: [],
-    images: [
-      "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
-    ],
-    extraInfo: [],
-    rating: 4.5,
-    publish: true,
-  },
-  {
-    _id: "4",
-    title: "Addidas sport",
-    brand: "4",
-    description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque quisquam facere fuga cumque laboriosam autem eos voluptatum, nam quibusdam illum officiis repudiandae nobis, mollitia quasi soluta explicabo nostrum perspiciatis dolore odio sed sapiente in eveniet quam animi. Suscipit dicta id aut unde quidem itaque accusamus excepturi dolor, laborum, eius tempora?",
-    price: 4530,
-    discount: 10,
-    categories: [],
-    tags: [],
-    images: [
-      "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
-    ],
-    extraInfo: [],
-    rating: 3.2,
-    publish: true,
-  },
-  {
-    _id: "5",
-    title: "HRX brand shoes",
-    brand: "4",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. ",
-    price: 3000,
-    discount: 0,
-    categories: [],
-    tags: [],
-    images: [
-      "https://assets.ajio.com/medias/sys_master/root/h5a/h59/13018715881502/-1117Wx1400H-460342492-blue-MODEL.jpg",
-    ],
-    extraInfo: [],
-    rating: 4,
-    publish: true,
-  },
-];
-
+import { BrandType, CategoryType } from "./types";
 const brands: BrandType[] = [
   {
     _id: "1",
@@ -132,4 +44,4 @@ const categories: CategoryType[] = [
   },
 ];
 
-export { products, brands, categories };
+export { brands, categories };

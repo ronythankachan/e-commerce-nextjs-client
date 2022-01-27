@@ -3,7 +3,6 @@ import Head from "next/head";
 import Layout from "../../components/admin/Layout";
 import Product from "../../components/admin/Product";
 import { CategoryType, ProductType } from "../../types";
-import { products, categories } from "../../data";
 import Link from "next/link";
 import { getAllCategoriesAPI, getAllProductsAPI } from "../../lib/utils";
 
