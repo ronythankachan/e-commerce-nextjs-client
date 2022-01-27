@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BallTriangle } from "react-loading-icons";
-import classname from "classnames";
+import cn from "classnames";
 const Alert = ({
   content,
   loading,
@@ -26,7 +26,7 @@ const Alert = ({
   }
   return (
     <div
-      className={classname(
+      className={cn(
         "fixed",
         "bottom-2",
         "right-2",
