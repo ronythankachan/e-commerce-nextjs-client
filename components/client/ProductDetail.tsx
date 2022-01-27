@@ -9,7 +9,11 @@ const ProductDetail = ({ product }: { product: ProductType }) => {
     <section className="grid grid-cols-product-details gap-x-4">
       <div className="flex flex-col gap-y-4">
         {product.images.map((image, index) => (
-          <div onClick={() => setMainImg(image)} key={index}>
+          <div
+            onClick={() => setMainImg(image)}
+            key={index}
+            className="hover:cursor-pointer hover:scale-[102%] transition-all duration-150 ease-out"
+          >
             <Image
               layout="responsive"
               width={100}
@@ -22,7 +26,7 @@ const ProductDetail = ({ product }: { product: ProductType }) => {
           </div>
         ))}
       </div>
-      <div className="h-fit w-fit">
+      <div className="h-fit w-fit ">
         <Image
           width={600}
           height={600}

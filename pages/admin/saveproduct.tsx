@@ -43,6 +43,7 @@ const saveproduct = ({
     extraInfo: [],
     rating: 7.5,
     publish: false,
+    new: false,
   });
   useEffect(() => {
     const { id } = router.query;
@@ -128,6 +129,8 @@ const saveproduct = ({
       error = "Brand field is required";
     else if (!formData.description) error = "Description field is required";
     else if (formData.price <= 0) error = "Price should be greater zero";
+    else if (formData.discount >= 100)
+      error = "Discount should be less than 100%";
     else if (formData.images.length == 0) error = "Add atleast one image";
     else if (formData.categories.length == 0)
       error = "Select atleast one category";
@@ -139,15 +142,25 @@ const saveproduct = ({
     const error = checkErrors();
     if (!error) {
       console.log("Form submitted", formData);
-      const result = await saveProductAPI(formData);
-      alert(result);
       setAlertData({
-        content: "Saving...",
-        type: "success",
-        loading: true,
+        ...alertData,
         visible: true,
+        content: "Saving...",
+        loading: true,
+        type: "success",
+      });
+      await saveProductAPI(formData);
+      setAlertData({
+        ...alertData,
+        visible: true,
+        content: "Saving...",
+        loading: true,
+        type: "success",
         dissapear: true,
-        duration: 3,
+        duration: 1,
+      });
+      router.push({
+        pathname: "/admin/products",
       });
     } else
       setAlertData({
@@ -277,10 +290,10 @@ const saveproduct = ({
                   />
                 </div>
                 <div className="form-group">
-                  <label className="text-md ml-1">Discount</label>
+                  <label className="text-md ml-1">Discount (%)</label>
                   <input
                     type="number"
-                    placeholder="Discount"
+                    placeholder="Type a number"
                     className="input-text"
                     name="discount"
                     value={formData.discount}
@@ -343,6 +356,16 @@ const saveproduct = ({
                       }
                     />
                     <label>Publish to site</label>
+                  </div>
+                  <div className="space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={formData.new}
+                      onChange={() =>
+                        setFormData({ ...formData, new: !formData.new })
+                      }
+                    />
+                    <label>Newly arrived</label>
                   </div>
                 </div>
               </div>

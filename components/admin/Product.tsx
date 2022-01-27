@@ -1,8 +1,20 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { deleteProductAPI } from "../../lib/utils";
 import { ProductType } from "../../types";
+
 const Product = ({ product }: { product: ProductType }) => {
+  const router = useRouter();
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
+  const deleteProduct = async (id: string) => {
+    await deleteProductAPI(id);
+    refreshData();
+  };
   return (
     <div className="border-2 p-2 rounded-md space-y-2 max-w-fit">
       <Image
@@ -20,7 +32,10 @@ const Product = ({ product }: { product: ProductType }) => {
             Edit
           </a>
         </Link>
-        <button className="w-1/2 text-xs py-2 px-4 border border-gray-300 flex justify-evenly items-center rounded text-red-500 hover:cursor-pointer hover:text-white hover:bg-red-500 hover:border-none transition-all duration-150 ease-in-out">
+        <button
+          className="w-1/2 text-xs py-2 px-4 border border-gray-300 flex justify-evenly items-center rounded text-red-500 hover:cursor-pointer hover:text-white hover:bg-red-500 hover:border-none transition-all duration-150 ease-in-out"
+          onClick={() => deleteProduct(product._id!)}
+        >
           <TrashIcon className="w-4 h-4" />
           Delete
         </button>

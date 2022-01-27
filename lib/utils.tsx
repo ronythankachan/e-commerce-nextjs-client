@@ -53,6 +53,11 @@ const saveProductAPI = async (body: ProductType) => {
   return result.data;
 };
 
+const deleteProductAPI = async (id: string) => {
+  const result = await server.delete(`/product/${id}`, headers);
+  return result.data;
+};
+
 export {
   getAllProductIds,
   getProductById,
@@ -60,4 +65,5 @@ export {
   saveProductAPI,
   getAllCategoriesAPI,
   getAllProductsAPI,
+  deleteProductAPI,
 };

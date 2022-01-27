@@ -19,6 +19,7 @@ interface ProductType {
   extraInfo: string[];
   rating: number;
   publish: boolean;
+  new: boolean;
 }
 
 interface IParams extends ParsedUrlQuery {
