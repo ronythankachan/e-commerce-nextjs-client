@@ -47,8 +47,10 @@ const saveproduct = ({
   useEffect(() => {
     const { id } = router.query;
     async function getById() {
-      const product = await getProductById(id as string);
-      if (id) setFormData(product);
+      if (id) {
+        const product = await getProductById(id as string);
+        setFormData(product);
+      }
     }
     getById();
   }, [router]);

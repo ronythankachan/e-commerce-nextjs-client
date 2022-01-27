@@ -9,9 +9,15 @@ const headers = {
   },
 };
 
-const getAllProductIds = async () => {
+// Get all products
+const getAllProductsAPI = async () => {
   const result = await server.get("/product/", headers);
-  const products: ProductType[] = result.data;
+  return result.data;
+};
+
+// Get productIds of all products
+const getAllProductIds = async () => {
+  const products = await getAllProductsAPI();
   return products.map((product: ProductType) => {
     return {
       params: {
@@ -23,12 +29,11 @@ const getAllProductIds = async () => {
 
 // Return product details given an ID
 const getProductById = async (id: string) => {
-  const result = await server.get("/product/", headers);
-  const products: ProductType[] = result.data;
-  const product = products.find((product) => product._id === id);
-  return product!;
+  const result = await server.get(`/product/${id}`, headers);
+  return result.data;
 };
 
+// Get all categories
 const getAllCategoriesAPI = async () => {
   const result = await server.get("/category/", headers);
   return result.data;
@@ -45,11 +50,6 @@ const uploadImageToS3API = async (file: File) => {
 // Add/Update a product in database
 const saveProductAPI = async (body: ProductType) => {
   const result = await server.post("/product/save", body, headers);
-  return result.data;
-};
-
-const getAllProductsAPI = async () => {
-  const result = await server.get("/product/", headers);
   return result.data;
 };
 
