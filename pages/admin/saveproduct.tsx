@@ -108,6 +108,17 @@ const saveproduct = ({
           categories: formData.categories.filter((cat) => cat !== categoryId),
         });
   };
+
+  const handleBrandChange = (event: React.FormEvent<HTMLSelectElement>) => {
+    const value = event.currentTarget.value;
+    if (value !== "Select Brand") {
+      setFormData({
+        ...formData,
+        brand: value,
+      });
+    }
+  };
+
   const checkErrors = (): string => {
     let error = "";
     if (!formData.title) error = "Title field is required";
@@ -120,20 +131,14 @@ const saveproduct = ({
       error = "Select atleast one category";
     return error;
   };
-  const replaceCategoryAndBrands = () => {
-    const categoryIds = formData.categories.map(
-      (cat) => categories.find((category) => category.name === cat)?._id
-    );
-    console.log(categoryIds);
-  };
+
   const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
     const error = checkErrors();
-    replaceCategoryAndBrands();
     if (!error) {
       console.log("Form submitted", formData);
-      const result = await saveProductAPI(formData);
-      alert(result.data);
+      // const result = await saveProductAPI(formData);
+      // alert(result.data);
       setAlertData({
         content: "Saving...",
         type: "success",
@@ -198,11 +203,13 @@ const saveproduct = ({
                       className="input-text"
                       name="brand"
                       value={formData.brand}
-                      onChange={handleChange}
+                      onChange={handleBrandChange}
                     >
                       <option>Select Brand</option>
                       {brands.map((brand) => (
-                        <option key={brand._id}>{brand.name}</option>
+                        <option key={brand._id} value={brand._id}>
+                          {brand.name}
+                        </option>
                       ))}
                     </select>
                   </div>

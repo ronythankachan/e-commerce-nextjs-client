@@ -4,7 +4,7 @@ const products: ProductType[] = [
   {
     _id: "1",
     title: "Jordan shoes",
-    brand: "Nike",
+    brand: "1",
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus nisi totam quibusdam alias unde ipsum officia, aut est dolorum omnis ducimus numquam maiores cum sequi possimus assumenda accusantium repellendus ipsam beatae consectetur delectus cumque. Beatae, itaque nulla! Aspernatur, eius libero.",
     price: 1120,
@@ -21,7 +21,7 @@ const products: ProductType[] = [
   {
     _id: "2",
     title: "Nike Air",
-    brand: "Nike",
+    brand: "2",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias veritatis assumenda laudantium deleniti quos tenetur, vitae nobis explicabo enim perspiciatis placeat sunt rem, possimus dolorem sint modi saepe facilis eligendi!",
     price: 1450,
@@ -38,7 +38,7 @@ const products: ProductType[] = [
   {
     _id: "3",
     title: "Fila Comfort - All weather",
-    brand: "Nike",
+    brand: "3",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque accusamus, voluptatem, nulla repellat harum quia",
     price: 3480,
@@ -55,7 +55,7 @@ const products: ProductType[] = [
   {
     _id: "4",
     title: "Addidas sport",
-    brand: "Addidas",
+    brand: "4",
     description:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque quisquam facere fuga cumque laboriosam autem eos voluptatum, nam quibusdam illum officiis repudiandae nobis, mollitia quasi soluta explicabo nostrum perspiciatis dolore odio sed sapiente in eveniet quam animi. Suscipit dicta id aut unde quidem itaque accusamus excepturi dolor, laborum, eius tempora?",
     price: 4530,
@@ -72,7 +72,7 @@ const products: ProductType[] = [
   {
     _id: "5",
     title: "HRX brand shoes",
-    brand: "HRX",
+    brand: "4",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. ",
     price: 3000,
     discount: 0,
