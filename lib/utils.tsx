@@ -1,5 +1,4 @@
 import server from "../axios";
-import { products } from "../data";
 import { ProductType } from "../types";
 
 const accessToken =
@@ -10,7 +9,9 @@ const headers = {
   },
 };
 
-const getAllProductIds = () => {
+const getAllProductIds = async () => {
+  const result = await server.get("/product/", headers);
+  const products: ProductType[] = result.data;
   return products.map((product: ProductType) => {
     return {
       params: {
@@ -21,7 +22,9 @@ const getAllProductIds = () => {
 };
 
 // Return product details given an ID
-const getProductById = (id: string) => {
+const getProductById = async (id: string) => {
+  const result = await server.get("/product/", headers);
+  const products: ProductType[] = result.data;
   const product = products.find((product) => product._id === id);
   return product!;
 };
@@ -41,9 +44,13 @@ const uploadImageToS3API = async (file: File) => {
 
 // Add/Update a product in database
 const saveProductAPI = async (body: ProductType) => {
-  delete body._id;
   const result = await server.post("/product/save", body, headers);
-  return result;
+  return result.data;
+};
+
+const getAllProductsAPI = async () => {
+  const result = await server.get("/product/", headers);
+  return result.data;
 };
 
 export {
@@ -52,4 +59,5 @@ export {
   uploadImageToS3API,
   saveProductAPI,
   getAllCategoriesAPI,
+  getAllProductsAPI,
 };

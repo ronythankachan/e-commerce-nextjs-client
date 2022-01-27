@@ -32,7 +32,6 @@ const saveproduct = ({
     duration: 1,
   });
   const [formData, setFormData] = useState<ProductType>({
-    _id: "",
     title: "",
     brand: "",
     description: "",
@@ -47,10 +46,11 @@ const saveproduct = ({
   });
   useEffect(() => {
     const { id } = router.query;
-    if (id) {
-      const product = getProductById(id as string);
-      setFormData(product);
+    async function getById() {
+      const product = await getProductById(id as string);
+      if (id) setFormData(product);
     }
+    getById();
   }, [router]);
 
   const addTags = (event: React.KeyboardEvent) => {
@@ -137,8 +137,8 @@ const saveproduct = ({
     const error = checkErrors();
     if (!error) {
       console.log("Form submitted", formData);
-      // const result = await saveProductAPI(formData);
-      // alert(result.data);
+      const result = await saveProductAPI(formData);
+      alert(result);
       setAlertData({
         content: "Saving...",
         type: "success",

@@ -8,8 +8,8 @@ const ProductDetail = ({ product }: { product: ProductType }) => {
   return (
     <section className="grid grid-cols-product-details gap-x-4">
       <div className="flex flex-col gap-y-4">
-        {product.images.map((image: string, index: number) => (
-          <div onClick={() => setMainImg(image)}>
+        {product.images.map((image, index) => (
+          <div onClick={() => setMainImg(image)} key={index}>
             <Image
               layout="responsive"
               width={100}

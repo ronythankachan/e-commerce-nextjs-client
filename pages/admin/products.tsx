@@ -5,6 +5,7 @@ import Product from "../../components/admin/Product";
 import { CategoryType, ProductType } from "../../types";
 import { products, categories } from "../../data";
 import Link from "next/link";
+import { getAllCategoriesAPI, getAllProductsAPI } from "../../lib/utils";
 
 const Products = ({
   products,
@@ -65,6 +66,8 @@ const Products = ({
 };
 export default Products;
 export const getStaticProps: GetStaticProps = async () => {
+  const products = await getAllProductsAPI();
+  const categories = await getAllCategoriesAPI();
   return {
     props: {
       products,

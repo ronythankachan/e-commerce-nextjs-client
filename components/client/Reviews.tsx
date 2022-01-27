@@ -47,7 +47,7 @@ const reviews: Review[] = [
   },
 ];
 
-const Reviews = (params: { id: string }) => {
+const Reviews = ({ id }: { id: string }) => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     setReviews(reviews);
