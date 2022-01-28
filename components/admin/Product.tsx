@@ -15,12 +15,15 @@ const Product = ({ product }: { product: ProductType }) => {
     await deleteProductAPI(id);
     refreshData();
   };
+
   return (
     <div className="border-2 p-2 rounded-md space-y-2 max-w-fit">
       <Image
         width={250}
         height={270}
         src={product.images[0]}
+        placeholder="blur"
+        blurDataURL="/placeholder.jpg"
         className="object-cover rounded-md"
       />
       <p className="text-sm text-gray-500 mt-2">{product.title}</p>

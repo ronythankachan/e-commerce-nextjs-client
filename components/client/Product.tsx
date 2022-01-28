@@ -9,7 +9,10 @@ const Product = ({ product }: { product: ProductType }) => {
           width={250}
           height={270}
           src={product.images[0]}
-          className="object-cover rounded-md"
+          placeholder="blur"
+          blurDataURL="/placeholder.jpg"
+          objectFit="cover"
+          className="rounded-md"
         />
         <div className="py-4 px-4 bg-white">
           <p className="text-lg font-thin text-gray-500">{product.title}</p>

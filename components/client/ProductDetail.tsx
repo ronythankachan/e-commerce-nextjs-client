@@ -20,6 +20,8 @@ const ProductDetail = ({ product }: { product: ProductType }) => {
               height={100}
               src={image}
               key={index}
+              placeholder="blur"
+              blurDataURL="/placeholder.jpg"
               objectFit="cover"
               className="rounded-md"
             />
@@ -31,6 +33,8 @@ const ProductDetail = ({ product }: { product: ProductType }) => {
           width={600}
           height={600}
           src={mainImg}
+          placeholder="blur"
+          blurDataURL="/placeholder.jpg"
           className="object-cover rounded-md"
         />
       </div>
