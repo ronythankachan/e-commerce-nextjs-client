@@ -26,7 +26,7 @@ const Products = ({
             <button className="bg-black px-4 py-2  md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
               Create Category
             </button>
-            <Link href="/admin/saveproduct">
+            <Link href="/admin/product/new">
               <a className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
                 Add Product
               </a>

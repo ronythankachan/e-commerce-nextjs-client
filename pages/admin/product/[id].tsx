@@ -1,25 +1,29 @@
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import Layout from "../../components/admin/Layout";
-import { BrandType, CategoryType, ProductType } from "../../types";
-import { brands } from "../../data";
+import Layout from "../../../components/admin/Layout";
+import { BrandType, CategoryType, IParams, ProductType } from "../../../types";
 import { ArrowLeftIcon, TrashIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Alert from "../../components/Alert";
+import Alert from "../../../components/Alert";
 import {
+  createNewProduct,
+  getAllBrandsAPI,
   getAllCategoriesAPI,
-  getProductById,
+  getAllProductIds,
+  getProductByIdAPI,
   saveProductAPI,
   uploadImageToS3API,
-} from "../../lib/utils";
+} from "../../../lib/utils";
 import Link from "next/link";
 
 const saveproduct = ({
+  product,
   brands,
   categories,
 }: {
+  product: ProductType;
   brands: BrandType[];
   categories: CategoryType[];
 }) => {
@@ -32,31 +36,7 @@ const saveproduct = ({
     dissapear: false,
     duration: 1,
   });
-  const [formData, setFormData] = useState<ProductType>({
-    title: "",
-    brand: "",
-    description: "",
-    price: 0,
-    discount: 0,
-    categories: [],
-    tags: [],
-    images: [],
-    extraInfo: [],
-    rating: 7.5,
-    publish: false,
-    new: false,
-  });
-  useEffect(() => {
-    const { id } = router.query;
-    async function getById() {
-      if (id) {
-        const product = await getProductById(id as string);
-        setFormData(product);
-      }
-    }
-    getById();
-  }, [router]);
-
+  const [formData, setFormData] = useState<ProductType>(product);
   const addTags = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
       let value = (event.target as HTMLInputElement).value;
@@ -386,12 +366,25 @@ const saveproduct = ({
     </Layout>
   );
 };
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await getAllProductIds();
+  return {
+    paths,
+    fallback: true,
+  };
+};
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { id } = context.params as IParams;
+  let product: ProductType;
+  if (id === "new") product = createNewProduct();
+  else product = await getProductByIdAPI(id as string);
   const categories = await getAllCategoriesAPI();
+  const brands = await getAllBrandsAPI();
   return {
     props: {
       brands,
+      product,
       categories,
     },
   };

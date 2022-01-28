@@ -3,7 +3,7 @@ import ProductDetail from "../../components/client/ProductDetail";
 import Layout from "../../components/client/Layout";
 import { IParams, ProductType } from "../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { getAllProductIds, getAllProductsAPI } from "../../lib/utils";
+import { getAllProductIds, getProductByIdAPI } from "../../lib/utils";
 
 const ProductInfo = ({ product }: { product: ProductType }) => {
   return (
@@ -20,7 +20,6 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllProductIds();
-  console.log("paths are", paths);
   return {
     paths,
     fallback: false,
@@ -29,11 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
-  console.log("id is" + id);
-  const products = await getAllProductsAPI();
-  console.log(products);
-  const product = products.find((product: ProductType) => product._id === id);
-  console.log("product is", product);
+  const product = await getProductByIdAPI(id as string);
   return {
     props: {
       product,

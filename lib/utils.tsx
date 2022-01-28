@@ -2,7 +2,7 @@ import server from "../axios";
 import { ProductType } from "../types";
 
 const accessToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDMyODA5NjksImV4cCI6MTY0MzM2NzM2OX0.EP0E6LSyQ-YQ2PrFPc528ayMbsVCO7NVNYgNqOtCXZY";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDMzNjg4MTIsImV4cCI6MTY0MzQ1NTIxMn0.EaU_QzJwxQZMWQb41iaYCXAx5olF7ben2PlIxWj2ro0";
 const headers = {
   headers: {
     Authorization: "Bearer " + accessToken,
@@ -13,6 +13,23 @@ const headers = {
 const getAllProductsAPI = async () => {
   const result = await server.get("/product/", headers);
   return result.data;
+};
+
+const createNewProduct = (): ProductType => {
+  return {
+    title: "",
+    brand: "",
+    description: "",
+    price: 0,
+    discount: 0,
+    categories: [],
+    tags: [],
+    images: [],
+    extraInfo: [],
+    rating: 7.5,
+    publish: false,
+    new: false,
+  };
 };
 
 // Get productIds of all products
@@ -28,7 +45,7 @@ const getAllProductIds = async () => {
 };
 
 // Return product details given an ID
-const getProductById = async (id: string) => {
+const getProductByIdAPI = async (id: string) => {
   const result = await server.get(`/product/${id}`, headers);
   return result.data;
 };
@@ -53,17 +70,26 @@ const saveProductAPI = async (body: ProductType) => {
   return result.data;
 };
 
+// Delete a product using ID
 const deleteProductAPI = async (id: string) => {
   const result = await server.delete(`/product/${id}`, headers);
   return result.data;
 };
 
+// Get all brands
+const getAllBrandsAPI = async () => {
+  const result = await server.get("/brand/", headers);
+  return result.data;
+};
+
 export {
   getAllProductIds,
-  getProductById,
+  getProductByIdAPI,
   uploadImageToS3API,
   saveProductAPI,
   getAllCategoriesAPI,
   getAllProductsAPI,
   deleteProductAPI,
+  getAllBrandsAPI,
+  createNewProduct,
 };
