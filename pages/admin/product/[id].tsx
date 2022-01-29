@@ -341,6 +341,7 @@ const saveproduct = ({
 };
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllProductIds();
+  paths.push({ params: { id: "new" } });
   return {
     paths,
     fallback: true,
