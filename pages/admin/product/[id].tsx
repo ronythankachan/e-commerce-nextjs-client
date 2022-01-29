@@ -20,6 +20,7 @@ import { AlertContext } from "../../../components/general/alert/AlertProvider";
 import {
   showDissapearingErrorAlert,
   showDissapearingSuccessAlert,
+  showErrorAlert,
   showSuccessAlert,
 } from "../../../components/general/alert/AlertActions";
 
@@ -71,18 +72,25 @@ const saveproduct = ({
     const file = event.target.files[0];
     showSuccessAlert(dispatch, "Uploading...please wait");
     const result = await uploadImageToS3API(file);
-    setFormData({
-      ...formData,
-      images: [...formData.images, result.url],
-    });
-    showDissapearingSuccessAlert(dispatch, "Image uploaded successfully");
+    if (formData.images.includes(result.url)) {
+      showErrorAlert(dispatch, "Image already exists");
+    } else {
+      setFormData({
+        ...formData,
+        images: [...formData.images, result.url],
+      });
+      showDissapearingSuccessAlert(dispatch, "Image uploaded successfully");
+    }
   };
 
-  const deleteImage = (image: string) => {
+  const deleteImage = (event: React.MouseEvent<HTMLElement>, image: string) => {
+    event.preventDefault();
+    showSuccessAlert(dispatch, "Deleting...");
     setFormData({
       ...formData,
       images: formData.images.filter((img) => img !== image),
     });
+    showDissapearingSuccessAlert(dispatch, "Deleted");
   };
   const handleCategoryChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -161,6 +169,7 @@ const saveproduct = ({
     <Layout>
       <Head>
         <title>Save Product</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="bg-gray-50 w-full p-5 md:p-10 space-y-8">
         <header className="flex flex-col md:flex-row justify-between md:items-center gap-y-4">
@@ -253,7 +262,7 @@ const saveproduct = ({
                           className="rounded-md"
                         />
                         <div className="opacity-0 absolute w-full h-full rounded-md hover:bg-black hover:opacity-100 hover:bg-opacity-50 flex justify-center items-center transition-all duration-150 ease-out">
-                          <button onClick={() => deleteImage(image)}>
+                          <button onClick={(e) => deleteImage(e, image)}>
                             <TrashIcon className="w-10 h-10 p-2 rounded-full bg-white hover:cursor-pointer" />
                           </button>
                         </div>
