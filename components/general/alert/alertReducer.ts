@@ -1,5 +1,4 @@
-import { AlertType } from "../../../pages/_app"
-
+import { AlertType } from "../../../types"
 export const alertReducer =(state:AlertType,action:any)=>{
     switch(action.type){
         case 'SHOW_ALERT':

@@ -1,5 +1,5 @@
 import { XIcon } from "@heroicons/react/outline";
-import React, { useState } from "react";
+import React from "react";
 
 const Modal = ({
   title,

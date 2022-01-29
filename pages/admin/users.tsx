@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import Layout from "../../components/admin/Layout";
-import Modal from "../../components/Modal";
+import Modal from "../../components/general/modal/Modal";
 
 const users = () => {
   const [open, setOpen] = useState(false);

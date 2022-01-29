@@ -34,7 +34,12 @@ interface CategoryType {
 interface AlertType {
   content: string;
   loading: boolean;
-  visible: boolean;
+  type: AlertCategories;
+}
+export enum AlertCategories {
+  SUCCESS = "success",
+  ERROR = "error",
+  NONE = "NONE",
 }
 
 export type { BrandType, ProductType, IParams, CategoryType, AlertType };
