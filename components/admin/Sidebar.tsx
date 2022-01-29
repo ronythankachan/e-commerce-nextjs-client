@@ -1,8 +1,9 @@
 import {
+  AcademicCapIcon,
+  CollectionIcon,
   HomeIcon,
   ShoppingBagIcon,
   ShoppingCartIcon,
-  SparklesIcon,
   UserIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
@@ -51,6 +52,30 @@ const Sidebar = () => {
         </Link>
       </li>
       <li>
+        <Link href="/admin/brands">
+          <a
+            className={cn("nav-btn", "m-2", {
+              "text-blue-500 bg-gray-100": path.includes("brands"),
+            })}
+          >
+            <AcademicCapIcon className="h-5 w-5" />
+            <p className="text-sm hidden md:block">Brands</p>
+          </a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/admin/categories">
+          <a
+            className={cn("nav-btn", "m-2", {
+              "text-blue-500 bg-gray-100": path.includes("categories"),
+            })}
+          >
+            <CollectionIcon className="h-5 w-5" />
+            <p className="text-sm hidden md:block">Categories</p>
+          </a>
+        </Link>
+      </li>
+      <li>
         <Link href="/admin/users">
           <a
             className={cn("nav-btn", "m-2", {
@@ -59,18 +84,6 @@ const Sidebar = () => {
           >
             <UserIcon className="h-5 w-5" />
             <p className="text-sm hidden md:block">Users</p>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/admin/brands">
-          <a
-            className={cn("nav-btn", "m-2", {
-              "text-blue-500 bg-gray-100": path.includes("brands"),
-            })}
-          >
-            <SparklesIcon className="h-5 w-5" />
-            <p className="text-sm hidden md:block">Brands</p>
           </a>
         </Link>
       </li>

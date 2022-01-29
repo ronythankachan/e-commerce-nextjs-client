@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Layout from "../../components/admin/Layout";
 
-const Orders = () => {
+const orders = () => {
   return (
     <Layout>
       <Head>
@@ -15,4 +15,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default orders;
