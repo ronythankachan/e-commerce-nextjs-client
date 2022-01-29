@@ -2,18 +2,31 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 import { deleteProductAPI } from "../../lib/utils";
 import { ProductType } from "../../types";
+import {
+  showDissapearingSuccessAlert,
+  showSuccessAlert,
+} from "../general/alert/AlertActions";
+import { AlertContext } from "../general/alert/AlertProvider";
 
 const Product = ({ product }: { product: ProductType }) => {
+  //Get alert context
+  const value: any = useContext(AlertContext);
+  const [_, dispatch] = value;
+
+  // Refresh page after deleting
   const router = useRouter();
   const refreshData = () => {
     router.replace(router.asPath);
   };
 
   const deleteProduct = async (id: string) => {
+    showSuccessAlert(dispatch, "Deleting...");
     await deleteProductAPI(id);
     refreshData();
+    showDissapearingSuccessAlert(dispatch, "Deleted successfully");
   };
 
   return (
