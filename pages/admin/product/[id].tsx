@@ -344,7 +344,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   paths.push({ params: { id: "new" } });
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 
