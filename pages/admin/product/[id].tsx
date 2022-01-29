@@ -69,12 +69,13 @@ const saveproduct = ({
   };
   const uploadImage = async (event: any) => {
     const file = event.target.files[0];
+    showSuccessAlert(dispatch, "Uploading...please wait");
     const result = await uploadImageToS3API(file);
-    console.log(result.url);
     setFormData({
       ...formData,
       images: [...formData.images, result.url],
     });
+    showDissapearingSuccessAlert(dispatch, "Image uploaded successfully");
   };
 
   const deleteImage = (image: string) => {
