@@ -82,6 +82,12 @@ const getAllBrandsAPI = async () => {
   return result.data;
 };
 
+// Add a new category
+const saveCategoryAPI = async (name: string) => {
+  const result = await server.post("/category/add", { name }, headers);
+  return result.data;
+};
+
 export {
   getAllProductIds,
   getProductByIdAPI,
@@ -92,4 +98,5 @@ export {
   deleteProductAPI,
   getAllBrandsAPI,
   createNewProduct,
+  saveCategoryAPI,
 };
