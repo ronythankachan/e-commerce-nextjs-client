@@ -23,9 +23,6 @@ const Products = ({
         <header className="flex flex-col md:flex-row justify-between md:items-center">
           <h1 className="page-title">Products</h1>
           <div className="flex space-x-2 mt-4 md:mt-0 md:space-y-0">
-            <button className="bg-black px-4 py-2  md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
-              Create Category
-            </button>
             <Link href="/admin/product/new">
               <a className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
                 Add Product
