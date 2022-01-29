@@ -2,7 +2,7 @@ import server from "../axios";
 import { ProductType } from "../types";
 
 const accessToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDMzNjg4MTIsImV4cCI6MTY0MzQ1NTIxMn0.EaU_QzJwxQZMWQb41iaYCXAx5olF7ben2PlIxWj2ro0";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDM0Nzg2MzEsImV4cCI6MTY0MzU2NTAzMX0.uVXHhcY2t9G0qselSTdwX4WYgTlTV1HFszqe_Bit8rU";
 const headers = {
   headers: {
     Authorization: "Bearer " + accessToken,

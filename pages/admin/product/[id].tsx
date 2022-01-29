@@ -1,12 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../../../components/admin/Layout";
 import { BrandType, CategoryType, IParams, ProductType } from "../../../types";
 import { ArrowLeftIcon, TrashIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Alert from "../../../components/Alert";
 import {
   createNewProduct,
   getAllBrandsAPI,
@@ -122,36 +121,11 @@ const saveproduct = ({
     event.preventDefault();
     const error = checkErrors();
     if (!error) {
-      console.log("Form submitted", formData);
-      setAlertData({
-        ...alertData,
-        visible: true,
-        content: "Saving...",
-        loading: true,
-        type: "success",
-      });
       await saveProductAPI(formData);
-      setAlertData({
-        ...alertData,
-        visible: true,
-        content: "Saving...",
-        loading: true,
-        type: "success",
-        dissapear: true,
-        duration: 1,
-      });
       router.push({
         pathname: "/admin/products",
       });
-    } else
-      setAlertData({
-        content: error,
-        type: "error",
-        loading: false,
-        visible: true,
-        dissapear: true,
-        duration: 1,
-      });
+    } else alert(error);
   };
   const handleChange = (event: React.FormEvent<EventTarget>) => {
     let target = event.target as HTMLInputElement;
@@ -361,7 +335,6 @@ const saveproduct = ({
             </div>
           </form>
         </section>
-        <Alert {...alertData} setAlertData={setAlertData} />
       </main>
     </Layout>
   );

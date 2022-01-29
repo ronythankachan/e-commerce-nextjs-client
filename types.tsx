@@ -31,4 +31,10 @@ interface CategoryType {
   name: string;
 }
 
-export type { BrandType, ProductType, IParams, CategoryType };
+interface AlertType {
+  content: string;
+  loading: boolean;
+  visible: boolean;
+}
+
+export type { BrandType, ProductType, IParams, CategoryType, AlertType };
