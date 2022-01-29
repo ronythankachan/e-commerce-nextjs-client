@@ -259,6 +259,8 @@ const saveproduct = ({
                           src={image}
                           layout="fill"
                           objectFit="cover"
+                          placeholder="blur"
+                          blurDataURL="/placeholder.jpg"
                           className="rounded-md"
                         />
                         <div className="opacity-0 absolute w-full h-full rounded-md hover:bg-black hover:opacity-100 hover:bg-opacity-50 flex justify-center items-center transition-all duration-150 ease-out">
