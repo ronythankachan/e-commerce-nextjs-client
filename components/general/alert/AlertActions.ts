@@ -32,6 +32,7 @@ export const showDissapearingErrorAlert = (dispatch:Function,message:string)=>{
         removeAlert(dispatch)
     },3000)
 }
+
 export const removeAlert = (dispatch:Function)=>{
     dispatch({
         type:"REMOVE_ALERT"
