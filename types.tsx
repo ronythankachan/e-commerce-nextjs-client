@@ -30,4 +30,5 @@ interface CategoryType {
   _id: string;
   name: string;
 }
+
 export type { BrandType, ProductType, IParams, CategoryType };
