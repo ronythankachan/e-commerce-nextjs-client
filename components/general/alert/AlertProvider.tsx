@@ -8,6 +8,7 @@ const intialState: AlertType = {
   type: AlertCategories.NONE,
 };
 
+
 export const AlertContext = createContext(intialState);
 
 const AlertProvider = ({ children }: { children: React.ReactNode }) => {
