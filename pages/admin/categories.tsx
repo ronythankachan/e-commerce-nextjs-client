@@ -59,7 +59,7 @@ const categories = () => {
                 <input
                   type="text"
                   name="categoryInForm"
-                  placeholder="Enter category name"
+                  placeholder="Category name"
                   className="input-text"
                   value={categoryInForm}
                   onChange={handleChange}
