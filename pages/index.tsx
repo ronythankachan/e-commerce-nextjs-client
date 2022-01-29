@@ -2,12 +2,17 @@ import Head from "next/head";
 import Brands from "../components/client/Brands";
 import NewArrivals from "../components/client/NewArrivals";
 import Layout from "../components/client/Layout";
-import { ProductType } from "../types";
-import { brands } from "../data";
+import { BrandType, ProductType } from "../types";
 import { GetStaticProps } from "next";
-import { getAllProductsAPI } from "../lib/utils";
+import { getAllBrandsAPI, getAllProductsAPI } from "../lib/utils";
 
-export default function Home({ products }: { products: ProductType[] }) {
+export default function Home({
+  products,
+  brands,
+}: {
+  products: ProductType[];
+  brands: BrandType[];
+}) {
   return (
     <Layout>
       <Head>
@@ -24,6 +29,7 @@ export default function Home({ products }: { products: ProductType[] }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await getAllProductsAPI();
+  const brands = await getAllBrandsAPI();
   return {
     props: {
       products,
