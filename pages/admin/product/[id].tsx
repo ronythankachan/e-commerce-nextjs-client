@@ -127,7 +127,7 @@ const saveproduct = ({
     else if (!formData.brand || formData.brand === "Select Brand")
       error = "Brand field is required";
     else if (!formData.description) error = "Description field is required";
-    else if (formData.price <= 0) error = "Price should be greater zero";
+    else if (formData.price <= 0) error = "Price should be greater than zero";
     else if (formData.discount >= 100)
       error = "Discount should be less than 100%";
     else if (formData.images.length == 0) error = "Add atleast one image";
