@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Layout from "../../../components/admin/Layout";
 import { BrandType, CategoryType, IParams, ProductType } from "../../../types";
 import { ArrowLeftIcon, TrashIcon, XIcon } from "@heroicons/react/outline";
@@ -16,6 +16,12 @@ import {
   uploadImageToS3API,
 } from "../../../lib/utils";
 import Link from "next/link";
+import { AlertContext } from "../../../components/general/alert/AlertProvider";
+import {
+  showDissapearingErrorAlert,
+  showDissapearingSuccessAlert,
+  showSuccessAlert,
+} from "../../../components/general/alert/AlertActions";
 
 const saveproduct = ({
   product,
@@ -27,6 +33,10 @@ const saveproduct = ({
   categories: CategoryType[];
 }) => {
   const router = useRouter();
+  //Get alert context
+  const value: any = useContext(AlertContext);
+  const [_, dispatch] = value;
+  //Empty form data
   const [alertData, setAlertData] = useState({
     content: "",
     type: "error",
@@ -117,16 +127,27 @@ const saveproduct = ({
     return error;
   };
 
+  //Go to products page after saving
+  const goToProductsPage = () => {
+    router.push({
+      pathname: "/admin/products",
+    });
+  };
+
+  //submit form
   const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
     const error = checkErrors();
     if (!error) {
+      showSuccessAlert(dispatch, "Saving...");
       await saveProductAPI(formData);
-      router.push({
-        pathname: "/admin/products",
-      });
-    } else alert(error);
+      showDissapearingSuccessAlert(dispatch, "Saved successfully");
+      goToProductsPage();
+    } else {
+      showDissapearingErrorAlert(dispatch, error);
+    }
   };
+
   const handleChange = (event: React.FormEvent<EventTarget>) => {
     let target = event.target as HTMLInputElement;
     setFormData({
