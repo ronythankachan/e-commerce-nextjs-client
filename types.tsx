@@ -32,7 +32,7 @@ interface CategoryType {
 }
 
 interface AlertType {
-  content: string;
+  message: string;
   loading: boolean;
   type: AlertCategories;
 }

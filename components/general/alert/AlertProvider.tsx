@@ -3,7 +3,7 @@ import { AlertCategories, AlertType } from "../../../types";
 import { alertReducer } from "./alertReducer";
 
 const intialState: AlertType = {
-  content: "",
+  message: "",
   loading: false,
   type: AlertCategories.NONE,
 };

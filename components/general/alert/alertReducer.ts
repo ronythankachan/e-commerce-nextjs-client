@@ -1,17 +1,17 @@
-import { AlertType } from "../../../types"
+import { AlertCategories, AlertType } from "../../../types"
 export const alertReducer =(state:AlertType,action:any)=>{
     switch(action.type){
-        case 'SHOW_ALERT':
+        case 'SHOW_SUCCESS_ALERT':
             return {
                 ...state,
-                content:action.payload.content,
-                visible:true,
+                message:action.payload.message,
+                type:AlertCategories.SUCCESS
             }
-        case 'HIDE_ALERT':
+        case 'SHOW_ERROR_ALERT':
             return {
                 ...state,
-                content:"",
-                visible:false
+                message:action.payload.message,
+                type:AlertCategories.ERROR
             }
         default:
             return state
