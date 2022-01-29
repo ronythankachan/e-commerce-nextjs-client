@@ -13,6 +13,12 @@ export const alertReducer =(state:AlertType,action:any)=>{
                 message:action.payload.message,
                 type:AlertCategories.ERROR
             }
+        case 'REMOVE_ALERT':
+            return{
+                ...state,
+                message:"",
+                type:AlertCategories.NONE
+            }
         default:
             return state
     }

@@ -4,7 +4,7 @@ import { AlertContext } from "./AlertProvider";
 
 const Alert = () => {
   const value: any = useContext(AlertContext);
-  const [state, dispatch] = value;
+  const [state] = value;
 
   if (state.type === AlertCategories.SUCCESS) {
     return (

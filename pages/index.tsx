@@ -15,22 +15,6 @@ export default function Home({
   products: ProductType[];
   brands: BrandType[];
 }) {
-  const value: any = useContext(AlertContext);
-  const [state, dispatch] = value;
-
-  const showSuccessAlert = () => {
-    dispatch({
-      type: "SHOW_SUCCESS_ALERT",
-      payload: { message: "This is a success alert" },
-    });
-  };
-  const showErrorAlert = () => {
-    dispatch({
-      type: "SHOW_ERROR_ALERT",
-      payload: { message: "This is a error alert" },
-    });
-  };
-
   return (
     <Layout>
       <Head>
@@ -40,9 +24,6 @@ export default function Home({
 
       <div className="mt-16 bg-gray-50">
         <Brands brands={brands} />
-        <button onClick={showSuccessAlert}> Show Success Alert</button>
-        <button onClick={showErrorAlert}> Show Error Alert</button>
-
         <NewArrivals products={products} />
       </div>
     </Layout>
