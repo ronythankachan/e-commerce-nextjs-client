@@ -17,6 +17,8 @@ import {
 } from "../../components/general/alert/AlertActions";
 import { PlusIcon } from "@heroicons/react/outline";
 import Image from "next/image";
+import Brand from "../../components/admin/Brand";
+import { useRouter } from "next/router";
 
 const Brands = ({ brands }: { brands: BrandType[] }) => {
   //Get alert context
@@ -35,9 +37,15 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
       name: "",
     });
   };
+  // Refresh page after deleting
+  const router = useRouter();
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
 
   useEffect(() => {
     clearBrandForm();
+    refreshData();
   }, [open]);
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -123,7 +131,7 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
                 />
                 <button
                   type="submit"
-                  className="bg-green-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit"
+                  className="bg-green-500 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-full h-fit"
                 >
                   Save
                 </button>
@@ -131,7 +139,20 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
             </form>
           </Modal>
         </header>
-        <section></section>
+        <section className="bg-white shadow-sm rounded-md p-3">
+          <form className="flex flex-col md:flex-row justify-between items-center border-b-2 pb-4 md:space-x-2 space-y-2 md:space-y-0">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="input-text w-full md:w-1/2"
+            />
+          </form>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4 mt-4 justify-items-center">
+            {brands.map((brand) => (
+              <Brand brand={brand} key={brand._id} />
+            ))}
+          </div>
+        </section>
       </main>
     </Layout>
   );

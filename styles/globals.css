@@ -19,3 +19,6 @@
 .form-group {
   @apply flex flex-col gap-y-2;
 }
+.animation {
+  @apply transition-all duration-150 ease-out;
+}

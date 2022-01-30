@@ -85,7 +85,13 @@ const getAllBrandsAPI = async () => {
 // Add a new brand
 const saveBrandAPI = async (brand: BrandType) => {
   const result = await server.post("/brand/add", brand, headers);
-  return;
+  return result.data;
+};
+
+// Delete a brand
+const deleteBrandAPI = async (id: string) => {
+  const result = await server.delete(`/brand/${id}`, headers);
+  return result.data;
 };
 
 // Add a new category
@@ -106,4 +112,5 @@ export {
   createNewProduct,
   saveCategoryAPI,
   saveBrandAPI,
+  deleteBrandAPI
 };
