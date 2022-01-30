@@ -3,8 +3,8 @@ import Head from "next/head";
 import React, { useContext, useState } from "react";
 import { AlertContext } from "../../components/general/alert/AlertProvider";
 import {
-  showDissapearingErrorAlert,
   showDissapearingSuccessAlert,
+  showErrorAlert,
   showSuccessAlert,
 } from "../../components/general/alert/AlertActions";
 import { loginAPI } from "../../lib/utils";
@@ -53,7 +53,7 @@ const login = () => {
     event.preventDefault();
     const error = checkErrors();
     if (error) {
-      showDissapearingErrorAlert(dispatch, error);
+      showErrorAlert(dispatch, error);
     } else {
       showSuccessAlert(dispatch, "Validating...");
       try {
@@ -64,7 +64,7 @@ const login = () => {
         clearLoginForm();
         router.push("/admin/dashboard");
       } catch (err: any) {
-        showDissapearingErrorAlert(dispatch, err.response.data.message);
+        showErrorAlert(dispatch, err.response.data.message);
       }
     }
   };

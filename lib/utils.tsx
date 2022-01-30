@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import server from "../axios";
-import { BrandType, CategoryType, ProductType } from "../types";
+import { BrandType, CategoryType, ProductType, UserType } from "../types";
 
 const accessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDM1NzEwMDcsImV4cCI6MTY0MzY1NzQwN30.DV_4CLLqH1Xn43cBhMcM2XJNbpz9W6OUHwQf5Yxw7n8";
@@ -32,8 +32,14 @@ const createNewProduct = (): ProductType => {
     new: false,
   };
 };
+// Sign Up API
 
-// Admin login api
+const signUpAPI = async (user: UserType) => {
+  const result = await server.post("/auth/signup", user);
+  return result.data;
+};
+
+// Login api
 const loginAPI = async (user: { email: string; password: string }) => {
   const result = await server.post("/auth/login", user);
   return result.data;
@@ -115,6 +121,7 @@ const deleteCategoryAPI = async (id: string) => {
 
 export {
   loginAPI,
+  signUpAPI,
   getAllProductIds,
   getProductByIdAPI,
   uploadImageToS3API,

@@ -42,4 +42,19 @@ export enum AlertCategories {
   NONE = "NONE",
 }
 
-export type { BrandType, ProductType, IParams, CategoryType, AlertType };
+interface UserType {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  cpassword?: string;
+}
+
+export type {
+  BrandType,
+  ProductType,
+  IParams,
+  CategoryType,
+  AlertType,
+  UserType,
+};

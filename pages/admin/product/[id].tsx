@@ -18,7 +18,6 @@ import {
 import Link from "next/link";
 import { AlertContext } from "../../../components/general/alert/AlertProvider";
 import {
-  showDissapearingErrorAlert,
   showDissapearingSuccessAlert,
   showErrorAlert,
   showSuccessAlert,
@@ -153,7 +152,7 @@ const saveproduct = ({
       showDissapearingSuccessAlert(dispatch, "Saved successfully");
       goToProductsPage();
     } else {
-      showDissapearingErrorAlert(dispatch, error);
+      showErrorAlert(dispatch, error);
     }
   };
 
