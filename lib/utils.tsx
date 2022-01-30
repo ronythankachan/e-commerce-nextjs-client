@@ -1,8 +1,9 @@
+import { AxiosError } from "axios";
 import server from "../axios";
 import { BrandType, CategoryType, ProductType } from "../types";
 
 const accessToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDM0Nzg2MzEsImV4cCI6MTY0MzU2NTAzMX0.uVXHhcY2t9G0qselSTdwX4WYgTlTV1HFszqe_Bit8rU";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDM1NzEwMDcsImV4cCI6MTY0MzY1NzQwN30.DV_4CLLqH1Xn43cBhMcM2XJNbpz9W6OUHwQf5Yxw7n8";
 const headers = {
   headers: {
     Authorization: "Bearer " + accessToken,
@@ -30,6 +31,12 @@ const createNewProduct = (): ProductType => {
     publish: false,
     new: false,
   };
+};
+
+// Admin login api
+const loginAPI = async (user: { email: string; password: string }) => {
+  const result = await server.post("/auth/login", user);
+  return result.data;
 };
 
 // Get productIds of all products
@@ -107,6 +114,7 @@ const deleteCategoryAPI = async (id: string) => {
 };
 
 export {
+  loginAPI,
   getAllProductIds,
   getProductByIdAPI,
   uploadImageToS3API,

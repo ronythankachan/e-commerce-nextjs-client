@@ -1,8 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { UserIcon } from "@heroicons/react/outline";
+import Router from "next/router";
 
 const Navbar = () => {
+  const router = Router;
+  const logOut = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    router.push("/admin/login");
+  };
   return (
     <ul className="flex justify-between items-center px-5 py-3 bg-white shadow-sm h-16 fixed top-0 w-full z-20">
       <li className="hover:cursor-pointer">
@@ -13,7 +19,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li className="nav-btn border">
-        <UserIcon className="h-5 w-5" />
+        <button onClick={logOut}>Log out</button>
       </li>
     </ul>
   );
