@@ -147,7 +147,7 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
               className="input-text w-full md:w-1/2"
             />
           </form>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4 mt-4 justify-items-center">
+          <div className=" grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4 mt-4 justify-items-center">
             {brands.map((brand) => (
               <Brand brand={brand} key={brand._id} />
             ))}

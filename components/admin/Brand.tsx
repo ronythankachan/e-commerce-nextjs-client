@@ -29,8 +29,8 @@ const Brand = ({ brand }: { brand: BrandType }) => {
   };
 
   return (
-    <div className="w-44 shadow-md border rounded-md relative">
-      <div className="relative w-full h-36">
+    <div className="w-40 shadow-md border rounded-md relative p-1">
+      <div className="relative w-full h-28">
         <Image
           src={brand.image}
           layout="fill"
