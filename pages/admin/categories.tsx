@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../../components/admin/Layout";
 import {
   showDissapearingSuccessAlert,
@@ -17,9 +17,19 @@ const categories = () => {
   const [_, dispatch] = value;
 
   const [open, setOpen] = useState(false);
-  const [categoryData, setCategoryInForm] = useState<CategoryType>({
+  const [categoryData, setCategoryData] = useState<CategoryType>({
     name: "",
   });
+
+  const clearCategoryForm = () => {
+    setCategoryData({
+      name: "",
+    });
+  };
+
+  useEffect(() => {
+    clearCategoryForm();
+  }, [open]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -35,7 +45,7 @@ const categories = () => {
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     let target = event.target as HTMLInputElement;
-    setCategoryInForm({
+    setCategoryData({
       ...categoryData,
       [target.name]: target.value,
     });

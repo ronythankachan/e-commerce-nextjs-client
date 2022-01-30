@@ -8,7 +8,7 @@ import {
   uploadImageToS3API,
 } from "../../lib/utils";
 import Modal from "../../components/general/modal/Modal";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AlertContext } from "../../components/general/alert/AlertProvider";
 import {
   showDissapearingSuccessAlert,
@@ -28,6 +28,17 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
     image: "",
     name: "",
   });
+
+  const clearBrandForm = () => {
+    setBrandData({
+      image: "",
+      name: "",
+    });
+  };
+
+  useEffect(() => {
+    clearBrandForm();
+  }, [open]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -81,7 +92,7 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
             <form onSubmit={handleSubmit}>
               <div className="form-group w-56">
                 {brandData.image ? (
-                  <div className="relative w-full h-44">
+                  <div className="relative w-full h-44 border rounded-md">
                     <Image
                       src={brandData.image}
                       placeholder="blur"
