@@ -4,7 +4,19 @@ import Layout from "../../components/admin/Layout";
 import Product from "../../components/admin/Product";
 import { CategoryType, ProductType } from "../../types";
 import Link from "next/link";
-import { getAllCategoriesAPI, getAllProductsAPI } from "../../lib/utils";
+import {
+  getAllCategoriesAPI,
+  getAllProductsAPI,
+  saveCategoryAPI,
+} from "../../lib/utils";
+import { useContext, useEffect, useState } from "react";
+import Modal from "../../components/general/modal/Modal";
+import { AlertContext } from "../../components/general/alert/AlertProvider";
+import {
+  showDissapearingSuccessAlert,
+  showErrorAlert,
+  showSuccessAlert,
+} from "../../components/general/alert/AlertActions";
 
 const Products = ({
   products,
@@ -13,6 +25,45 @@ const Products = ({
   products: ProductType[];
   categories: CategoryType[];
 }) => {
+  //Get alert context
+  const value: any = useContext(AlertContext);
+  const [_, dispatch] = value;
+
+  const [open, setOpen] = useState(false);
+  const [categoryData, setCategoryData] = useState<CategoryType>({
+    name: "",
+  });
+
+  const clearCategoryForm = () => {
+    setCategoryData({
+      name: "",
+    });
+  };
+
+  useEffect(() => {
+    clearCategoryForm();
+  }, [open]);
+
+  const handleCategorySubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!categoryData.name)
+      showErrorAlert(dispatch, "Category field is required");
+    else {
+      showSuccessAlert(dispatch, "Saving...");
+      await saveCategoryAPI(categoryData);
+      setOpen(false);
+      showDissapearingSuccessAlert(dispatch, "Category added successfully");
+    }
+  };
+
+  const handleCategoryChange = (event: React.FormEvent<HTMLInputElement>) => {
+    let target = event.target as HTMLInputElement;
+    setCategoryData({
+      ...categoryData,
+      [target.name]: target.value,
+    });
+  };
+
   return (
     <Layout>
       <Head>
@@ -23,12 +74,38 @@ const Products = ({
         <header className="flex flex-col md:flex-row justify-between md:items-center">
           <h1 className="page-title">Products</h1>
           <div className="flex space-x-2 mt-4 md:mt-0 md:space-y-0">
+            <button
+              className="bg-black px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit"
+              onClick={() => setOpen(true)}
+            >
+              Add Category
+            </button>
             <Link href="/admin/product/new">
               <a className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
                 Add Product
               </a>
             </Link>
           </div>
+          <Modal title="Add Category" open={open} setOpen={setOpen}>
+            <form onSubmit={handleCategorySubmit}>
+              <div className="flex items-center gap-x-2">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Category name"
+                  className="input-text"
+                  value={categoryData.name}
+                  onChange={handleCategoryChange}
+                />
+                <button
+                  type="submit"
+                  className="bg-green-600 px-4 py-3 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </Modal>
         </header>
         <section className="bg-white shadow-sm rounded-md p-3">
           <form className="flex flex-col md:flex-row justify-between items-center border-b-2 pb-4 md:space-x-2 space-y-2 md:space-y-0">

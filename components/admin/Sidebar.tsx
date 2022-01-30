@@ -64,18 +64,6 @@ const Sidebar = () => {
         </Link>
       </li>
       <li>
-        <Link href="/admin/categories">
-          <a
-            className={cn("nav-btn", "m-2", {
-              "text-blue-500 bg-gray-100": path.includes("categories"),
-            })}
-          >
-            <CollectionIcon className="h-5 w-5" />
-            <p className="text-sm hidden md:block">Categories</p>
-          </a>
-        </Link>
-      </li>
-      <li>
         <Link href="/admin/users">
           <a
             className={cn("nav-btn", "m-2", {
