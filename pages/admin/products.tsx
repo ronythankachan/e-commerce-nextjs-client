@@ -5,6 +5,7 @@ import Product from "../../components/admin/Product";
 import { CategoryType, ProductType } from "../../types";
 import Link from "next/link";
 import {
+  deleteCategoryAPI,
   getAllCategoriesAPI,
   getAllProductsAPI,
   saveCategoryAPI,
@@ -17,6 +18,8 @@ import {
   showErrorAlert,
   showSuccessAlert,
 } from "../../components/general/alert/AlertActions";
+import { TrashIcon } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
 
 const Products = ({
   products,
@@ -40,8 +43,15 @@ const Products = ({
     });
   };
 
+  // Refresh page after deleting
+  const router = useRouter();
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
   useEffect(() => {
     clearCategoryForm();
+    refreshData();
   }, [open]);
 
   const handleCategorySubmit = async (event: React.FormEvent) => {
@@ -64,6 +74,13 @@ const Products = ({
     });
   };
 
+  const deleteCategory = async (id: string) => {
+    showSuccessAlert(dispatch, "Deleting");
+    await deleteCategoryAPI(id);
+    refreshData();
+    showDissapearingSuccessAlert(dispatch, "Category deleted successfully");
+  };
+
   return (
     <Layout>
       <Head>
@@ -78,7 +95,7 @@ const Products = ({
               className="bg-black px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit"
               onClick={() => setOpen(true)}
             >
-              Add Category
+              Categories
             </button>
             <Link href="/admin/product/new">
               <a className="bg-blue-600 px-4 py-2 md:h-fit rounded-md text-white hover:text-gray-300 w-fit h-fit">
@@ -105,6 +122,23 @@ const Products = ({
                 </button>
               </div>
             </form>
+            <hr className="mt-2" />
+            <div className="space-y-2 py-2">
+              {categories.map((category) => (
+                <div
+                  className="flex items-center justify-between px-3 py-2 rounded-md bg-gray-50 border"
+                  key={category._id}
+                >
+                  <small>{category.name}</small>
+                  <button
+                    className="p-1 bg-gray-300 rounded hover:scale-105"
+                    onClick={() => deleteCategory(category._id!)}
+                  >
+                    <TrashIcon className="w-3 h-3" />
+                  </button>
+                </div>
+              ))}
+            </div>
           </Modal>
         </header>
         <section className="bg-white shadow-sm rounded-md p-3">

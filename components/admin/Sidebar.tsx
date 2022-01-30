@@ -1,6 +1,5 @@
 import {
   AcademicCapIcon,
-  CollectionIcon,
   HomeIcon,
   ShoppingBagIcon,
   ShoppingCartIcon,

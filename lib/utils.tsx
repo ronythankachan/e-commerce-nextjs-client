@@ -100,6 +100,12 @@ const saveCategoryAPI = async (category: CategoryType) => {
   return result.data;
 };
 
+// Delete a category
+const deleteCategoryAPI = async (id: string) => {
+  const result = await server.delete(`/category/${id}`, headers);
+  return result.data;
+};
+
 export {
   getAllProductIds,
   getProductByIdAPI,
@@ -111,6 +117,7 @@ export {
   getAllBrandsAPI,
   createNewProduct,
   saveCategoryAPI,
+  deleteCategoryAPI,
   saveBrandAPI,
-  deleteBrandAPI
+  deleteBrandAPI,
 };
