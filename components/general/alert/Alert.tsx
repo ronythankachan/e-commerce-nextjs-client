@@ -13,7 +13,7 @@ const Alert = () => {
 
   if (state.type === AlertCategories.SUCCESS) {
     return (
-      <div className="fixed right-4 bottom-4 bg-green-500 px-4 py-2 rounded-md flex items-center text-sm text-white gap-x-2">
+      <div className="fixed right-4 bottom-4 bg-green-500 px-4 py-2 rounded-md flex items-center text-sm text-white gap-x-2 z-40">
         {state.loading ? (
           <BallTriangle className="w-5 h-5" stroke="#fff" />
         ) : (
@@ -24,7 +24,7 @@ const Alert = () => {
     );
   } else if (state.type === AlertCategories.ERROR) {
     return (
-      <div className="fixed right-4 bottom-4 bg-red-500 px-4 py-2 rounded-md flex items-center text-sm text-white gap-x-2">
+      <div className="fixed right-4 bottom-4 bg-red-500 px-4 py-2 rounded-md flex items-center text-sm text-white gap-x-2 z-40">
         <ExclamationCircleIcon className="w-5 h-5" />
         <p>{state.message}</p>
       </div>

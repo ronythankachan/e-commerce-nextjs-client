@@ -1,7 +1,7 @@
 import { ParsedUrlQuery } from "querystring";
 
 interface BrandType {
-  _id: string;
+  _id?: string;
   name: string;
   image: string;
 }
@@ -27,7 +27,7 @@ interface IParams extends ParsedUrlQuery {
 }
 
 interface CategoryType {
-  _id: string;
+  _id?: string;
   name: string;
 }
 

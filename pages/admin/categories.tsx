@@ -9,6 +9,7 @@ import {
 import { AlertContext } from "../../components/general/alert/AlertProvider";
 import Modal from "../../components/general/modal/Modal";
 import { saveCategoryAPI } from "../../lib/utils";
+import { CategoryType } from "../../types";
 
 const categories = () => {
   //Get alert context
@@ -16,14 +17,17 @@ const categories = () => {
   const [_, dispatch] = value;
 
   const [open, setOpen] = useState(false);
-  const [categoryInForm, setCategoryInForm] = useState("");
+  const [categoryData, setCategoryInForm] = useState<CategoryType>({
+    name: "",
+  });
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!categoryInForm) showErrorAlert(dispatch, "Category field is required");
+    if (!categoryData.name)
+      showErrorAlert(dispatch, "Category field is required");
     else {
       showSuccessAlert(dispatch, "Saving...");
-      await saveCategoryAPI(categoryInForm);
+      await saveCategoryAPI(categoryData);
       setOpen(false);
       showDissapearingSuccessAlert(dispatch, "Category added successfully");
     }
@@ -31,7 +35,10 @@ const categories = () => {
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     let target = event.target as HTMLInputElement;
-    setCategoryInForm(target.value);
+    setCategoryInForm({
+      ...categoryData,
+      [target.name]: target.value,
+    });
   };
 
   return (
@@ -40,7 +47,7 @@ const categories = () => {
         <title>Categories</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-gray-50 p-5 md:p-10 space-y-8">
+      <main className="bg-gray-50 p-5 md:p-10 space-y-8">
         <header className="flex flex-col md:flex-row justify-between md:items-center">
           <h1 className="page-title">Categories</h1>
           <div className="flex space-x-2 mt-4 md:mt-0 md:space-y-0">
@@ -51,17 +58,15 @@ const categories = () => {
               Add Category
             </button>
           </div>
-        </header>
-        <main>
           <Modal title="Add Category" open={open} setOpen={setOpen}>
             <form onSubmit={handleSubmit}>
               <div className="flex items-center gap-x-2">
                 <input
                   type="text"
-                  name="categoryInForm"
+                  name="name"
                   placeholder="Category name"
                   className="input-text"
-                  value={categoryInForm}
+                  value={categoryData.name}
                   onChange={handleChange}
                 />
                 <button
@@ -73,8 +78,9 @@ const categories = () => {
               </div>
             </form>
           </Modal>
-        </main>
-      </div>
+        </header>
+        <section></section>
+      </main>
     </Layout>
   );
 };

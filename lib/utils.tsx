@@ -1,5 +1,5 @@
 import server from "../axios";
-import { ProductType } from "../types";
+import { BrandType, CategoryType, ProductType } from "../types";
 
 const accessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDM0Nzg2MzEsImV4cCI6MTY0MzU2NTAzMX0.uVXHhcY2t9G0qselSTdwX4WYgTlTV1HFszqe_Bit8rU";
@@ -82,9 +82,15 @@ const getAllBrandsAPI = async () => {
   return result.data;
 };
 
+// Add a new brand
+const saveBrandAPI = async (brand: BrandType) => {
+  const result = await server.post("/brand/add", brand, headers);
+  return;
+};
+
 // Add a new category
-const saveCategoryAPI = async (name: string) => {
-  const result = await server.post("/category/add", { name }, headers);
+const saveCategoryAPI = async (category: CategoryType) => {
+  const result = await server.post("/category/add", category, headers);
   return result.data;
 };
 
@@ -99,4 +105,5 @@ export {
   getAllBrandsAPI,
   createNewProduct,
   saveCategoryAPI,
+  saveBrandAPI,
 };

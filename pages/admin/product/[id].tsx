@@ -330,7 +330,7 @@ const saveproduct = ({
                       <div key={category._id} className="space-x-2">
                         <input
                           type="checkbox"
-                          checked={formData.categories.includes(category._id)}
+                          checked={formData.categories.includes(category._id!)}
                           onChange={(e) =>
                             handleCategoryChange(e, category.name)
                           }
