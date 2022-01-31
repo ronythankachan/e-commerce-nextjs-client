@@ -1,9 +1,8 @@
-import { AxiosError } from "axios";
 import server from "../axios";
 import { BrandType, CategoryType, ProductType, UserType } from "../types";
 
 const accessToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDM1NzEwMDcsImV4cCI6MTY0MzY1NzQwN30.DV_4CLLqH1Xn43cBhMcM2XJNbpz9W6OUHwQf5Yxw7n8";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjQzNjYxMzc4LCJleHAiOjE2NDQyNjYxNzh9.HJWnKV-DdMdMoaca3PV-HH-U5lN9AYppc9W28DCTd3c";
 const headers = {
   headers: {
     Authorization: "Bearer " + accessToken,
