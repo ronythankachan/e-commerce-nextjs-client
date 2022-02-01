@@ -1,14 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import Router from "next/router";
+import { useCookies } from "react-cookie";
 
 const Navbar = () => {
   const router = Router;
+  const [cookie, setCookie, removeCookie] = useCookies(["user"]);
+
   const logOut = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    router.push("/admin/login");
+    removeCookie("user");
+    router.push("/login");
   };
+
   return (
     <ul className="flex justify-between items-center px-5 py-3 bg-white shadow-sm h-16 fixed top-0 w-full z-20">
       <li className="hover:cursor-pointer">

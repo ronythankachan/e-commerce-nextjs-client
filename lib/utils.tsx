@@ -1,5 +1,11 @@
 import server from "../axios";
 import { BrandType, CategoryType, ProductType, UserType } from "../types";
+import cookie from "cookie";
+import { IncomingMessage } from "http";
+
+export function parseCookies(req: IncomingMessage) {
+  return cookie.parse(req ? req.headers.cookie || "" : document.cookie);
+}
 
 const accessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjQzNjYxMzc4LCJleHAiOjE2NDQyNjYxNzh9.HJWnKV-DdMdMoaca3PV-HH-U5lN9AYppc9W28DCTd3c";

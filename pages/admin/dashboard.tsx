@@ -3,8 +3,11 @@ import {
   ShoppingBagIcon,
   TruckIcon,
 } from "@heroicons/react/outline";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Layout from "../../components/admin/Layout";
+import { parseCookies } from "../../lib/utils";
+import jwt_decode from "jwt-decode";
 
 const dashboard = () => {
   return (
@@ -44,3 +47,30 @@ const dashboard = () => {
 };
 
 export default dashboard;
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const data = parseCookies(req);
+  const user = data.user ? JSON.parse(data.user) : null;
+  if (!user || !user.accessToken) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const decoded_user: any = jwt_decode(user.accessToken);
+  if (!decoded_user.admin) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: true,
+      },
+    };
+  }
+  return {
+    props: {
+      user: decoded_user,
+    },
+  };
+};
