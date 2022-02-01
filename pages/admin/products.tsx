@@ -179,8 +179,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       products,
       categories,
-      protected: true,
-      admin: true,
     },
   };
 };
