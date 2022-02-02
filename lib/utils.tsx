@@ -22,6 +22,33 @@ const isValidUser = async (req: IncomingMessage) => {
   }
 };
 
+const checkAdminAccess = async (req: IncomingMessage, resolvedUrl: string) => {
+  const user: any = await isValidUser(req);
+  if (!user) {
+    return {
+      redirect: {
+        source: resolvedUrl,
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  if (!user.admin) {
+    return {
+      redirect: {
+        source: resolvedUrl,
+        destination: "/",
+        permanent: true,
+      },
+    };
+  }
+  return {
+    props: {
+      user,
+    },
+  };
+};
+
 const accessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjQzNjYxMzc4LCJleHAiOjE2NDQyNjYxNzh9.HJWnKV-DdMdMoaca3PV-HH-U5lN9AYppc9W28DCTd3c";
 const headers = {
@@ -148,7 +175,7 @@ const deleteCategoryAPI = async (id: string) => {
 export {
   loginAPI,
   signUpAPI,
-  isValidUser,
+  checkAdminAccess,
   getAllProductIds,
   getProductByIdAPI,
   uploadImageToS3API,

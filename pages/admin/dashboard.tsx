@@ -6,7 +6,7 @@ import {
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Layout from "../../components/admin/Layout";
-import { isValidUser } from "../../lib/utils";
+import { checkAdminAccess } from "../../lib/utils";
 
 const dashboard = () => {
   return (
@@ -51,27 +51,5 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
   resolvedUrl,
 }) => {
-  console.log(resolvedUrl);
-  const user: any = await isValidUser(req);
-  if (!user) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-  if (!user.admin) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: true,
-      },
-    };
-  }
-  return {
-    props: {
-      user,
-    },
-  };
+  return await checkAdminAccess(req, resolvedUrl);
 };
