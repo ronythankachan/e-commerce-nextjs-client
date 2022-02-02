@@ -6,8 +6,7 @@ import {
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Layout from "../../components/admin/Layout";
-import { parseCookies } from "../../lib/utils";
-import jwt_decode from "jwt-decode";
+import { isValidUser } from "../../lib/utils";
 
 const dashboard = () => {
   return (
@@ -48,10 +47,13 @@ const dashboard = () => {
 
 export default dashboard;
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const data = parseCookies(req);
-  const user = data.user ? JSON.parse(data.user) : null;
-  if (!user || !user.accessToken) {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  resolvedUrl,
+}) => {
+  console.log(resolvedUrl);
+  const user: any = await isValidUser(req);
+  if (!user) {
     return {
       redirect: {
         destination: "/login",
@@ -59,8 +61,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       },
     };
   }
-  const decoded_user: any = jwt_decode(user.accessToken);
-  if (!decoded_user.admin) {
+  if (!user.admin) {
     return {
       redirect: {
         destination: "/",
@@ -70,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   }
   return {
     props: {
-      user: decoded_user,
+      user,
     },
   };
 };

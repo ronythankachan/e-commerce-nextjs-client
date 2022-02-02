@@ -2,10 +2,25 @@ import server from "../axios";
 import { BrandType, CategoryType, ProductType, UserType } from "../types";
 import cookie from "cookie";
 import { IncomingMessage } from "http";
+import jwtDecode from "jwt-decode";
 
 export function parseCookies(req: IncomingMessage) {
   return cookie.parse(req ? req.headers.cookie || "" : document.cookie);
 }
+
+// Check if there is an accesstoken and is a valid user
+const isValidUser = async (req: IncomingMessage) => {
+  const data = parseCookies(req);
+  const user = data.user ? JSON.parse(data.user) : null;
+  if (!user || !user.accessToken) return null;
+  try {
+    await authorizeAPI(user.accessToken);
+    const decoded_user = jwtDecode(user.accessToken);
+    return decoded_user;
+  } catch (err) {
+    return null;
+  }
+};
 
 const accessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjQzNjYxMzc4LCJleHAiOjE2NDQyNjYxNzh9.HJWnKV-DdMdMoaca3PV-HH-U5lN9AYppc9W28DCTd3c";
@@ -47,6 +62,12 @@ const signUpAPI = async (user: UserType) => {
 // Login api
 const loginAPI = async (user: { email: string; password: string }) => {
   const result = await server.post("/auth/login", user);
+  return result.data;
+};
+
+// Check if a token is valid
+const authorizeAPI = async (accessToken: string) => {
+  const result = await server.post("/auth/authorize", { accessToken }, headers);
   return result.data;
 };
 
@@ -127,6 +148,7 @@ const deleteCategoryAPI = async (id: string) => {
 export {
   loginAPI,
   signUpAPI,
+  isValidUser,
   getAllProductIds,
   getProductByIdAPI,
   uploadImageToS3API,
