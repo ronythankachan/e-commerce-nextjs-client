@@ -26,15 +26,16 @@ const checkAdminAccess = async (req: IncomingMessage, resolvedUrl: string) => {
   const user: any = await isValidUser(req);
   if (!user) {
     return {
+      propReturn: false,
       redirect: {
-        source: resolvedUrl,
-        destination: "/login",
+        destination: `/login?next=${resolvedUrl}`,
         permanent: false,
       },
     };
   }
   if (!user.admin) {
     return {
+      propReturn: false,
       redirect: {
         source: resolvedUrl,
         destination: "/",
@@ -43,6 +44,7 @@ const checkAdminAccess = async (req: IncomingMessage, resolvedUrl: string) => {
     };
   }
   return {
+    propReturn: true,
     props: {
       user,
     },

@@ -51,5 +51,17 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
   resolvedUrl,
 }) => {
-  return await checkAdminAccess(req, resolvedUrl);
+  const result: any = await checkAdminAccess(req, resolvedUrl);
+  if (!result.propReturn) {
+    return {
+      redirect: {
+        ...result.redirect,
+      },
+    };
+  }
+  return {
+    props: {
+      ...result.props,
+    },
+  };
 };

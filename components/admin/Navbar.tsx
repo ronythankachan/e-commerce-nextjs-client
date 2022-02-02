@@ -8,7 +8,7 @@ const Navbar = () => {
   const [cookie, setCookie, removeCookie] = useCookies(["user"]);
 
   const logOut = () => {
-    removeCookie("user");
+    removeCookie("user", { path: "/" });
     router.push("/login");
   };
 
