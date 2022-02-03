@@ -1,15 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import Router from "next/router";
-import { useCookies } from "react-cookie";
 
 const Navbar = () => {
-  const router = Router;
-  const [cookie, setCookie, removeCookie] = useCookies(["user"]);
-
   const logOut = () => {
-    removeCookie("user", { path: "/" });
-    router.push("/login");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    Router.push("/login");
   };
 
   return (
