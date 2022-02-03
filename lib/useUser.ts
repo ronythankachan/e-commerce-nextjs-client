@@ -26,7 +26,7 @@ const useUser = ({
       }
     };
     verifyUser();
-  }, []);
+  }, [router]);
   return {
     user,
   };
