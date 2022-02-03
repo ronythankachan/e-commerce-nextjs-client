@@ -62,7 +62,9 @@ const login = () => {
         localStorage.setItem("refreshToken", result.refreshToken);
         showDissapearingSuccessAlert(dispatch, "Logged In successfully");
         clearLoginForm();
-        router.push("/admin/dashboard");
+        const { next } = router.query;
+        if (next) router.push(next as string);
+        else router.push("/admin/dashboard");
       } catch (err: any) {
         showErrorAlert(dispatch, err.response.data.message);
       }

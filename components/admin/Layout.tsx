@@ -4,10 +4,27 @@ import Loading from "../general/loading/Loading";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  const { user }: { user: any } = useUser({ redirect: "/login", source: "" });
+const Layout = ({
+  children,
+  source,
+}: {
+  children: React.ReactNode;
+  source: string;
+}) => {
+  const { user }: { user: any } = useUser({
+    redirect: "/login",
+    source,
+  });
   if (!user || typeof window === undefined) {
-    return <Loading />;
+    return (
+      <div>
+        <Navbar />
+        <div className="flex mt-16">
+          <Sidebar />
+          <Loading />
+        </div>
+      </div>
+    );
   }
   if (user && !user.admin) {
     Router.push("/");

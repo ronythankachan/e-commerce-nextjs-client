@@ -1,10 +1,10 @@
 import React from "react";
-import Bars from "react-loading-icons/dist/components/bars";
+import Oval from "react-loading-icons/dist/components/oval";
 
 const Loading = () => {
   return (
     <div className="w-screen h-screen bg-white flex items-center justify-center">
-      <Bars className="w-16 h-16" stroke="#000" fill="#000" />
+      <Oval className="w-10 h-10" stroke="#000" fill="#000" />
     </div>
   );
 };

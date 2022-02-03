@@ -5,7 +5,7 @@ import { authorizeAPI } from "./utils";
 
 const useUser = ({
   redirect,
-  source = "",
+  source,
 }: {
   redirect: string;
   source: string;
@@ -17,11 +17,11 @@ const useUser = ({
     const verifyUser = async () => {
       const accessToken: string = localStorage.getItem("accessToken") || "";
       try {
-        const result = await authorizeAPI(accessToken);
+        await authorizeAPI(accessToken);
         const decoded_token: any = jwtDecode(accessToken);
         setUser(decoded_token);
       } catch (err) {
-        if (source) router.push(`${redirect}/${source}`);
+        if (source) router.push(`${redirect}?next=${source}`);
         else router.push(`${redirect}`);
       }
     };

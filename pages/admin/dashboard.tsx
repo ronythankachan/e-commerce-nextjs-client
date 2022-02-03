@@ -4,11 +4,13 @@ import {
   TruckIcon,
 } from "@heroicons/react/outline";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Layout from "../../components/admin/Layout";
 
 const dashboard = () => {
+  const router = useRouter();
   return (
-    <Layout>
+    <Layout source={router.asPath}>
       <Head>
         <title>Dashboard</title>
         <link rel="icon" href="/favicon.ico" />

@@ -82,7 +82,7 @@ const Products = ({
   };
 
   return (
-    <Layout>
+    <Layout source={router.asPath}>
       <Head>
         <title>Products</title>
         <link rel="icon" href="/favicon.ico" />
