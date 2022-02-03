@@ -5,7 +5,6 @@ import Product from "../../components/admin/Product";
 import { CategoryType, ProductType } from "../../types";
 import Link from "next/link";
 import {
-  checkAdminAccess,
   deleteCategoryAPI,
   getAllCategoriesAPI,
   getAllProductsAPI,
@@ -174,23 +173,11 @@ const Products = ({
 };
 export default Products;
 
-export const getServerSideProps: GetServerSideProps = async ({
-  req,
-  resolvedUrl,
-}) => {
-  const result: any = await checkAdminAccess(req, resolvedUrl);
-  if (!result.propReturn) {
-    return {
-      redirect: {
-        ...result.redirect,
-      },
-    };
-  }
+export const getStaticProps: GetStaticProps = async () => {
   const products = await getAllProductsAPI();
   const categories = await getAllCategoriesAPI();
   return {
     props: {
-      ...result.props,
       products,
       categories,
     },

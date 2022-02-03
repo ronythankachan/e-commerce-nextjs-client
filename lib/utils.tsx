@@ -177,6 +177,7 @@ const deleteCategoryAPI = async (id: string) => {
 export {
   loginAPI,
   signUpAPI,
+  authorizeAPI,
   checkAdminAccess,
   getAllProductIds,
   getProductByIdAPI,

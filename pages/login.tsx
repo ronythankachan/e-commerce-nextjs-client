@@ -9,10 +9,8 @@ import {
 } from "../components/general/alert/AlertActions";
 import { loginAPI } from "../lib/utils";
 import { useRouter } from "next/router";
-import { useCookies } from "react-cookie";
 
 const login = () => {
-  const [cookie, setCookie] = useCookies(["user"]);
   const router = useRouter();
   //Get alert context
   const value: any = useContext(AlertContext);
@@ -60,11 +58,8 @@ const login = () => {
       showSuccessAlert(dispatch, "Validating...");
       try {
         const result = await loginAPI(formData);
-        setCookie("user", JSON.stringify(result), {
-          path: "/",
-          maxAge: 3600 * 24, // Expires after 24hr
-          sameSite: true,
-        });
+        localStorage.setItem("accessToken", result.accessToken);
+        localStorage.setItem("refreshToken", result.refreshToken);
         showDissapearingSuccessAlert(dispatch, "Logged In successfully");
         clearLoginForm();
         router.push("/admin/dashboard");

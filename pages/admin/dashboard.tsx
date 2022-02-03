@@ -3,10 +3,8 @@ import {
   ShoppingBagIcon,
   TruckIcon,
 } from "@heroicons/react/outline";
-import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Layout from "../../components/admin/Layout";
-import { checkAdminAccess } from "../../lib/utils";
 
 const dashboard = () => {
   return (
@@ -46,22 +44,3 @@ const dashboard = () => {
 };
 
 export default dashboard;
-
-export const getServerSideProps: GetServerSideProps = async ({
-  req,
-  resolvedUrl,
-}) => {
-  const result: any = await checkAdminAccess(req, resolvedUrl);
-  if (!result.propReturn) {
-    return {
-      redirect: {
-        ...result.redirect,
-      },
-    };
-  }
-  return {
-    props: {
-      ...result.props,
-    },
-  };
-};
