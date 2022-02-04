@@ -1,61 +1,11 @@
 import server from "../axios";
 import { BrandType, CategoryType, ProductType, UserType } from "../types";
-import cookie from "cookie";
-import { IncomingMessage } from "http";
-import jwtDecode from "jwt-decode";
 
-export function parseCookies(req: IncomingMessage) {
-  return cookie.parse(req ? req.headers.cookie || "" : document.cookie);
-}
-
-// Check if there is an accesstoken and is a valid user
-const isValidUser = async (req: IncomingMessage) => {
-  const data = parseCookies(req);
-  const user = data.user ? JSON.parse(data.user) : null;
-  if (!user || !user.accessToken) return null;
-  try {
-    await authorizeAPI(user.accessToken);
-    const decoded_user = jwtDecode(user.accessToken);
-    return decoded_user;
-  } catch (err) {
-    return null;
-  }
-};
-
-const checkAdminAccess = async (req: IncomingMessage, resolvedUrl: string) => {
-  const user: any = await isValidUser(req);
-  if (!user) {
-    return {
-      propReturn: false,
-      redirect: {
-        destination: `/login?next=${resolvedUrl}`,
-        permanent: false,
-      },
-    };
-  }
-  if (!user.admin) {
-    return {
-      propReturn: false,
-      redirect: {
-        source: resolvedUrl,
-        destination: "/",
-        permanent: true,
-      },
-    };
-  }
-  return {
-    propReturn: true,
-    props: {
-      user,
-    },
-  };
-};
-
-const accessToken =
+const at =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjQzNjYxMzc4LCJleHAiOjE2NDQyNjYxNzh9.HJWnKV-DdMdMoaca3PV-HH-U5lN9AYppc9W28DCTd3c";
 const headers = {
   headers: {
-    Authorization: "Bearer " + accessToken,
+    Authorization: "Bearer " + at,
   },
 };
 
@@ -177,7 +127,6 @@ const deleteCategoryAPI = async (id: string) => {
 export {
   loginAPI,
   signUpAPI,
-  checkAdminAccess,
   getAllProductIds,
   getProductByIdAPI,
   uploadImageToS3API,
