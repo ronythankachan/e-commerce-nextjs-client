@@ -165,7 +165,7 @@ const saveproduct = ({
   };
 
   return (
-    <Layout source={router.asPath}>
+    <Layout>
       <Head>
         <title>Save Product</title>
         <link rel="icon" href="/favicon.ico" />

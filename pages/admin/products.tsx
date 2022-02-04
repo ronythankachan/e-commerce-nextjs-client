@@ -5,6 +5,7 @@ import Product from "../../components/admin/Product";
 import { CategoryType, ProductType } from "../../types";
 import Link from "next/link";
 import {
+  checkAdminAccess,
   deleteCategoryAPI,
   getAllCategoriesAPI,
   getAllProductsAPI,
@@ -82,7 +83,7 @@ const Products = ({
   };
 
   return (
-    <Layout source={router.asPath}>
+    <Layout>
       <Head>
         <title>Products</title>
         <link rel="icon" href="/favicon.ico" />
@@ -173,11 +174,23 @@ const Products = ({
 };
 export default Products;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  resolvedUrl,
+}) => {
+  const result: any = await checkAdminAccess(req, resolvedUrl);
+  if (!result.propReturn) {
+    return {
+      redirect: {
+        ...result.redirect,
+      },
+    };
+  }
   const products = await getAllProductsAPI();
   const categories = await getAllCategoriesAPI();
   return {
     props: {
+      ...result.props,
       products,
       categories,
     },

@@ -1,11 +1,9 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import Layout from "../../components/admin/Layout";
 
 const orders = () => {
-  const router = useRouter();
   return (
-    <Layout source={router.asPath}>
+    <Layout>
       <Head>
         <title>Orders</title>
         <link rel="icon" href="/favicon.ico" />

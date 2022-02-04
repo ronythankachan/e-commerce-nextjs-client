@@ -80,7 +80,7 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
   };
 
   return (
-    <Layout source={router.asPath}>
+    <Layout>
       <Head>
         <title>Brands</title>
         <link rel="icon" href="/favicon.ico" />

@@ -1,14 +1,12 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import Layout from "../../components/admin/Layout";
 import Modal from "../../components/general/modal/Modal";
 
 const users = () => {
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   return (
-    <Layout source={router.asPath}>
+    <Layout>
       <Head>
         <title>Users</title>
         <link rel="icon" href="/favicon.ico" />
