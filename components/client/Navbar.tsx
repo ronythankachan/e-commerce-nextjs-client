@@ -12,7 +12,7 @@ const Navbar = () => {
       <li>
         <Link href="/">
           <a>
-            <Image src="/vercel.svg" width={100} height={100} />
+            <Image src="/logo.png" width={50} height={50} />
           </a>
         </Link>
       </li>

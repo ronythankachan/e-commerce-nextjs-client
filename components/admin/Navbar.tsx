@@ -15,9 +15,9 @@ const Navbar = () => {
   return (
     <ul className="flex justify-between items-center px-5 py-3 bg-white shadow-sm h-16 fixed top-0 w-full z-20">
       <li className="hover:cursor-pointer">
-        <Link href="/admin">
+        <Link href="/admin/dashboard">
           <a>
-            <Image src="/vercel.svg" width={100} height={100} />
+            <Image src="/logo.png" width={50} height={50} />
           </a>
         </Link>
       </li>

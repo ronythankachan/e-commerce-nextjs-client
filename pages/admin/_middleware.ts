@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode";
 import { NextURL } from "next/dist/server/web/next-url";
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 import { backendURL } from "../../lib/utils";
@@ -6,8 +7,12 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   const userCookie: string = req.cookies.user;
   const redirectUrl: NextURL = getRedirectUrl(req);
   if (userCookie === undefined) return NextResponse.redirect(redirectUrl);
-  else if ((await authorizeStatus(userCookie)) !== 200)
-    return NextResponse.redirect(redirectUrl);
+  else {
+    const accessToken = JSON.parse(userCookie).accessToken;
+    const isAuth = await authorize(accessToken);
+    if (!isAuth) return NextResponse.redirect(redirectUrl);
+    else if (!isAdmin(accessToken)) return NextResponse.redirect("/");
+  }
 }
 
 const getRedirectUrl = (req: NextRequest) => {
@@ -17,8 +22,12 @@ const getRedirectUrl = (req: NextRequest) => {
   return redirectUrl;
 };
 
-const authorizeStatus = async (userCookie: string): Promise<number> => {
-  const accessToken = JSON.parse(userCookie).accessToken;
+const isAdmin = (accessToken: string): boolean => {
+  const user: any = jwtDecode(accessToken);
+  return user.admin;
+};
+
+const authorize = async (accessToken: string): Promise<boolean> => {
   const result = await fetch(`${backendURL}/auth/authorize`, {
     method: "POST",
     body: JSON.stringify({ accessToken }),
@@ -27,5 +36,6 @@ const authorizeStatus = async (userCookie: string): Promise<number> => {
       "Content-Type": "application/json",
     },
   });
-  return result.status;
+  if (result.status === 200) return true;
+  return false;
 };
