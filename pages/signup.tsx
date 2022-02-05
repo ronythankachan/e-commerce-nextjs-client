@@ -141,7 +141,7 @@ const signup = () => {
           </button>
           <small className="text-center pt-5">
             Already have an account?
-            <Link href="/admin/login">
+            <Link href="/login">
               <a className="text-blue-500 ml-2">Login</a>
             </Link>
           </small>
