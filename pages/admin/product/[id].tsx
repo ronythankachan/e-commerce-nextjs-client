@@ -1,11 +1,10 @@
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import React, { useContext, useState } from "react";
 import Layout from "../../../components/admin/Layout";
 import {
   BrandType,
   CategoryType,
-  IParams,
   ProductType,
   TokenType,
 } from "../../../types";

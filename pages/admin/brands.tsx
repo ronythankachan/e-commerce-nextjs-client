@@ -1,8 +1,9 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Layout from "../../components/admin/Layout";
-import { BrandType } from "../../types";
+import { BrandType, TokenType } from "../../types";
 import {
+  extractTokensFromCookie,
   getAllBrandsAPI,
   saveBrandAPI,
   uploadImageToS3API,
@@ -20,7 +21,13 @@ import Image from "next/image";
 import Brand from "../../components/admin/Brand";
 import { useRouter } from "next/router";
 
-const Brands = ({ brands }: { brands: BrandType[] }) => {
+const Brands = ({
+  brands,
+  tokens,
+}: {
+  brands: BrandType[];
+  tokens: TokenType;
+}) => {
   //Get alert context
   const value: any = useContext(AlertContext);
   const [_, dispatch] = value;
@@ -53,10 +60,14 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
     if (!brandData.image) showErrorAlert(dispatch, "Add brand image");
     else if (!brandData.name) showErrorAlert(dispatch, "Brand name is missing");
     else {
-      showSuccessAlert(dispatch, "Saving...");
-      await saveBrandAPI(brandData);
-      setOpen(false);
-      showDissapearingSuccessAlert(dispatch, "Brand added successfully");
+      try {
+        showSuccessAlert(dispatch, "Saving...");
+        await saveBrandAPI(brandData);
+        setOpen(false);
+        showDissapearingSuccessAlert(dispatch, "Brand added successfully");
+      } catch (err: any) {
+        showErrorAlert(dispatch, err.response.data.message);
+      }
     }
   };
 
@@ -70,13 +81,17 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
 
   const uploadImage = async (event: any) => {
     const file = event.target.files[0];
-    showSuccessAlert(dispatch, "Uploading...please wait");
-    const result = await uploadImageToS3API(file);
-    setBrandData({
-      ...brandData,
-      image: result.url,
-    });
-    showDissapearingSuccessAlert(dispatch, "Image uploaded successfully");
+    try {
+      showSuccessAlert(dispatch, "Uploading...please wait");
+      const result = await uploadImageToS3API(file, tokens.accessToken);
+      setBrandData({
+        ...brandData,
+        image: result.url,
+      });
+      showDissapearingSuccessAlert(dispatch, "Image uploaded successfully");
+    } catch (err: any) {
+      showErrorAlert(dispatch, err.response.data.message);
+    }
   };
 
   return (
@@ -160,11 +175,13 @@ const Brands = ({ brands }: { brands: BrandType[] }) => {
 
 export default Brands;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const tokens: TokenType = extractTokensFromCookie(req.cookies);
   const brands = await getAllBrandsAPI();
   return {
     props: {
       brands,
+      tokens,
     },
   };
 };
