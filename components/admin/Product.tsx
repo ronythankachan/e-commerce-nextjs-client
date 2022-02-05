@@ -4,14 +4,21 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { deleteProductAPI } from "../../lib/utils";
-import { ProductType } from "../../types";
+import { ProductType, TokenType } from "../../types";
 import {
   showDissapearingSuccessAlert,
+  showErrorAlert,
   showSuccessAlert,
 } from "../general/alert/AlertActions";
 import { AlertContext } from "../general/alert/AlertProvider";
 
-const Product = ({ product }: { product: ProductType }) => {
+const Product = ({
+  product,
+  tokens,
+}: {
+  product: ProductType;
+  tokens: TokenType;
+}) => {
   //Get alert context
   const value: any = useContext(AlertContext);
   const [_, dispatch] = value;
@@ -24,9 +31,14 @@ const Product = ({ product }: { product: ProductType }) => {
 
   const deleteProduct = async (id: string) => {
     showSuccessAlert(dispatch, "Deleting...");
-    await deleteProductAPI(id);
-    refreshData();
-    showDissapearingSuccessAlert(dispatch, "Deleted successfully");
+    try {
+      console.log(tokens);
+      await deleteProductAPI(id, tokens.accessToken);
+      refreshData();
+      showDissapearingSuccessAlert(dispatch, "Deleted successfully");
+    } catch (err: any) {
+      showErrorAlert(dispatch, err.response.data.message);
+    }
   };
 
   return (

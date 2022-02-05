@@ -1,13 +1,20 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import React, { useContext, useState } from "react";
 import Layout from "../../../components/admin/Layout";
-import { BrandType, CategoryType, IParams, ProductType } from "../../../types";
+import {
+  BrandType,
+  CategoryType,
+  IParams,
+  ProductType,
+  TokenType,
+} from "../../../types";
 import { ArrowLeftIcon, TrashIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import {
   createNewProduct,
+  extractTokensFromCookie,
   getAllBrandsAPI,
   getAllCategoriesAPI,
   getAllProductIds,
@@ -27,10 +34,12 @@ const saveproduct = ({
   product,
   brands,
   categories,
+  tokens,
 }: {
   product: ProductType;
   brands: BrandType[];
   categories: CategoryType[];
+  tokens: TokenType;
 }) => {
   const router = useRouter();
   //Get alert context
@@ -70,15 +79,19 @@ const saveproduct = ({
   const uploadImage = async (event: any) => {
     const file = event.target.files[0];
     showSuccessAlert(dispatch, "Uploading...please wait");
-    const result = await uploadImageToS3API(file);
-    if (formData.images.includes(result.url)) {
-      showErrorAlert(dispatch, "Image already exists");
-    } else {
-      setFormData({
-        ...formData,
-        images: [...formData.images, result.url],
-      });
-      showDissapearingSuccessAlert(dispatch, "Image uploaded successfully");
+    try {
+      const result = await uploadImageToS3API(file, tokens.accessToken);
+      if (formData.images.includes(result.url)) {
+        showErrorAlert(dispatch, "Image already exists");
+      } else {
+        setFormData({
+          ...formData,
+          images: [...formData.images, result.url],
+        });
+        showDissapearingSuccessAlert(dispatch, "Image uploaded successfully");
+      }
+    } catch (err: any) {
+      showErrorAlert(dispatch, err.response.message);
     }
   };
 
@@ -147,10 +160,14 @@ const saveproduct = ({
     event.preventDefault();
     const error = checkErrors();
     if (!error) {
-      showSuccessAlert(dispatch, "Saving...");
-      await saveProductAPI(formData);
-      showDissapearingSuccessAlert(dispatch, "Saved successfully");
-      goToProductsPage();
+      try {
+        showSuccessAlert(dispatch, "Saving...");
+        await saveProductAPI(formData, tokens.accessToken);
+        showDissapearingSuccessAlert(dispatch, "Saved successfully");
+        goToProductsPage();
+      } catch (err: any) {
+        showErrorAlert(dispatch, err.response.data.message);
+      }
     } else {
       showErrorAlert(dispatch, error);
     }
@@ -371,20 +388,15 @@ const saveproduct = ({
     </Layout>
   );
 };
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllProductIds();
-  paths.push({ params: { id: "new" } });
-  return {
-    paths,
-    fallback: false,
-  };
-};
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { id } = context.params as IParams;
-  let product: ProductType;
-  if (id === "new") product = createNewProduct();
-  else product = await getProductByIdAPI(id as string);
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  params,
+}) => {
+  const tokens: TokenType = extractTokensFromCookie(req.cookies);
+  const id = params?.id as string;
+  const product: ProductType =
+    id === "new" ? createNewProduct() : await getProductByIdAPI(id);
   const categories = await getAllCategoriesAPI();
   const brands = await getAllBrandsAPI();
   return {
@@ -392,6 +404,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       brands,
       product,
       categories,
+      tokens,
     },
   };
 };

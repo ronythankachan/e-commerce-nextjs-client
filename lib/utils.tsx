@@ -1,18 +1,36 @@
+import { NextApiRequestCookies } from "next/dist/server/api-utils";
 import server from "../axios";
 import {
   BrandType,
   CategoryType,
   LoginFormType,
   ProductType,
+  TokenType,
   UserType,
 } from "../types";
-export const backendURL = "http://localhost:8000";
+
 const at =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjQ0MDE0Nzg5LCJleHAiOjE2NDQwMTQ4NDl9.-nAzATIQvD9Ehf0UStumkrRQ0aeKlwr2xk8hzjTg_PY";
 const headers = {
   headers: {
     Authorization: "Bearer " + at,
   },
+};
+
+export const extractTokensFromCookie = (
+  cookies: NextApiRequestCookies
+): TokenType => {
+  return cookies.user === undefined
+    ? { accessToken: "", refreshToken: "" }
+    : JSON.parse(cookies.user);
+};
+
+export const generateAuthHeader = (accessToken: string) => {
+  return {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
 };
 
 // Initial data for new product
@@ -76,22 +94,33 @@ const getAllCategoriesAPI = async () => {
 };
 
 // Upload image to amazon s3
-const uploadImageToS3API = async (file: File) => {
+const uploadImageToS3API = async (file: File, accessToken: string) => {
   const body = new FormData();
   body.append("image", file);
-  const result = await server.post("/product/upload", body, headers);
+  const result = await server.post(
+    "/product/upload",
+    body,
+    generateAuthHeader(accessToken)
+  );
   return result.data;
 };
 
 // Add/Update a product in database
-const saveProductAPI = async (body: ProductType) => {
-  const result = await server.post("/product/save", body, headers);
+const saveProductAPI = async (body: ProductType, accessToken: string) => {
+  const result = await server.post(
+    "/product/save",
+    body,
+    generateAuthHeader(accessToken)
+  );
   return result.data;
 };
 
 // Delete a product using ID
-const deleteProductAPI = async (id: string) => {
-  const result = await server.delete(`/product/${id}`, headers);
+const deleteProductAPI = async (id: string, accessToken: string) => {
+  const result = await server.delete(
+    `/product/${id}`,
+    generateAuthHeader(accessToken)
+  );
   return result.data;
 };
 
@@ -120,8 +149,11 @@ const saveCategoryAPI = async (category: CategoryType) => {
 };
 
 // Delete a category
-const deleteCategoryAPI = async (id: string) => {
-  const result = await server.delete(`/category/${id}`, headers);
+const deleteCategoryAPI = async (id: string, accessToken: string) => {
+  const result = await server.delete(
+    `/category/${id}`,
+    generateAuthHeader(accessToken)
+  );
   return result.data;
 };
 
@@ -142,3 +174,4 @@ export {
   saveBrandAPI,
   deleteBrandAPI,
 };
+export const backendURL = "http://localhost:8000";

@@ -2,10 +2,11 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Layout from "../../components/admin/Layout";
 import Product from "../../components/admin/Product";
-import { CategoryType, ProductType } from "../../types";
+import { CategoryType, ProductType, TokenType } from "../../types";
 import Link from "next/link";
 import {
   deleteCategoryAPI,
+  extractTokensFromCookie,
   getAllCategoriesAPI,
   getAllProductsAPI,
   saveCategoryAPI,
@@ -24,11 +25,14 @@ import { useRouter } from "next/router";
 const Products = ({
   products,
   categories,
+  tokens,
 }: {
   products: ProductType[];
   categories: CategoryType[];
+  tokens: TokenType;
 }) => {
   //Get alert context
+
   const value: any = useContext(AlertContext);
   const [_, dispatch] = value;
 
@@ -59,10 +63,14 @@ const Products = ({
     if (!categoryData.name)
       showErrorAlert(dispatch, "Category field is required");
     else {
-      showSuccessAlert(dispatch, "Saving...");
-      await saveCategoryAPI(categoryData);
-      setOpen(false);
-      showDissapearingSuccessAlert(dispatch, "Category added successfully");
+      try {
+        showSuccessAlert(dispatch, "Saving...");
+        await saveCategoryAPI(categoryData);
+        setOpen(false);
+        showDissapearingSuccessAlert(dispatch, "Category added successfully");
+      } catch (err: any) {
+        showErrorAlert(dispatch, err.response.data.message);
+      }
     }
   };
 
@@ -75,10 +83,14 @@ const Products = ({
   };
 
   const deleteCategory = async (id: string) => {
-    showSuccessAlert(dispatch, "Deleting");
-    await deleteCategoryAPI(id);
-    refreshData();
-    showDissapearingSuccessAlert(dispatch, "Category deleted successfully");
+    try {
+      showSuccessAlert(dispatch, "Deleting");
+      await deleteCategoryAPI(id, tokens.accessToken);
+      refreshData();
+      showDissapearingSuccessAlert(dispatch, "Category deleted successfully");
+    } catch (err: any) {
+      showErrorAlert(dispatch, err.response.data.message);
+    }
   };
 
   return (
@@ -163,7 +175,7 @@ const Products = ({
           </form>
           <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-8 gap-4 h-fit mt-4">
             {products.map((product) => (
-              <Product product={product} key={product._id} />
+              <Product product={product} key={product._id} tokens={tokens} />
             ))}
           </div>
         </section>
@@ -173,13 +185,15 @@ const Products = ({
 };
 export default Products;
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const tokens = extractTokensFromCookie(req.cookies);
   const products = await getAllProductsAPI();
   const categories = await getAllCategoriesAPI();
   return {
     props: {
       products,
       categories,
+      tokens,
     },
   };
 };
