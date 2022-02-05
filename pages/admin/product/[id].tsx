@@ -17,7 +17,6 @@ import {
   extractTokensFromCookie,
   getAllBrandsAPI,
   getAllCategoriesAPI,
-  getAllProductIds,
   getProductByIdAPI,
   saveProductAPI,
   uploadImageToS3API,
@@ -46,14 +45,6 @@ const saveproduct = ({
   const value: any = useContext(AlertContext);
   const [_, dispatch] = value;
   //Empty form data
-  const [alertData, setAlertData] = useState({
-    content: "",
-    type: "error",
-    loading: false,
-    visible: false,
-    dissapear: false,
-    duration: 1,
-  });
   const [formData, setFormData] = useState<ProductType>(product);
   const addTags = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
