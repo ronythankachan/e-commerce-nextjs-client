@@ -10,6 +10,7 @@ import {
 import { loginAPI } from "../lib/utils";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
+import { LoginFormType, TokenType } from "../types";
 
 const login = () => {
   const [cookie, setCookie] = useCookies(["user"]);
@@ -17,7 +18,7 @@ const login = () => {
   //Get alert context
   const value: any = useContext(AlertContext);
   const [_, dispatch] = value;
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<LoginFormType>({
     email: "",
     password: "",
   });
@@ -51,23 +52,35 @@ const login = () => {
     });
   };
 
+  // Save access and refresh tokens in cookie for 1 hr
+  const saveTokensInCookie = (tokens: TokenType) => {
+    setCookie("user", JSON.stringify(tokens), {
+      path: "/",
+      maxAge: 3600,
+      sameSite: true,
+    });
+  };
+
+  // Reroute to home page if next path is not availble
+  const reRouteIfPresent = () => {
+    const { next } = router.query;
+    if (next) router.push(next as string);
+    else router.push("/");
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const error = checkErrors();
     if (error) {
       showErrorAlert(dispatch, error);
     } else {
-      showSuccessAlert(dispatch, "Validating...");
+      showSuccessAlert(dispatch, "Logging in...");
       try {
-        const result = await loginAPI(formData);
-        setCookie("user", JSON.stringify(result), {
-          path: "/",
-          maxAge: 3600 * 24, // Expires after 24hr
-          sameSite: true,
-        });
+        const tokens: TokenType = await loginAPI(formData);
+        saveTokensInCookie(tokens);
         showDissapearingSuccessAlert(dispatch, "Logged In successfully");
         clearLoginForm();
-        router.push("/admin/dashboard");
+        reRouteIfPresent();
       } catch (err: any) {
         showErrorAlert(dispatch, err.response.data.message);
       }

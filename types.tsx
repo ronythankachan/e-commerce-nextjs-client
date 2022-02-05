@@ -49,6 +49,14 @@ interface UserType {
   password: string;
   cpassword?: string;
 }
+interface LoginFormType {
+  email: string;
+  password: string;
+}
+interface TokenType {
+  accessToken: string;
+  refreshToken: string;
+}
 
 export type {
   BrandType,
@@ -57,4 +65,6 @@ export type {
   CategoryType,
   AlertType,
   UserType,
+  LoginFormType,
+  TokenType,
 };

@@ -1,20 +1,21 @@
 import server from "../axios";
-import { BrandType, CategoryType, ProductType, UserType } from "../types";
-
+import {
+  BrandType,
+  CategoryType,
+  LoginFormType,
+  ProductType,
+  UserType,
+} from "../types";
+export const backendURL = "http://localhost:8000";
 const at =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjQzNjYxMzc4LCJleHAiOjE2NDQyNjYxNzh9.HJWnKV-DdMdMoaca3PV-HH-U5lN9AYppc9W28DCTd3c";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbnkubWFpbDJtZUBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjQ0MDE0Nzg5LCJleHAiOjE2NDQwMTQ4NDl9.-nAzATIQvD9Ehf0UStumkrRQ0aeKlwr2xk8hzjTg_PY";
 const headers = {
   headers: {
     Authorization: "Bearer " + at,
   },
 };
 
-// Get all products
-const getAllProductsAPI = async () => {
-  const result = await server.get("/product/", headers);
-  return result.data;
-};
-
+// Initial data for new product
 const createNewProduct = (): ProductType => {
   return {
     title: "",
@@ -31,22 +32,22 @@ const createNewProduct = (): ProductType => {
     new: false,
   };
 };
-// Sign Up API
 
+// Sign Up API
 const signUpAPI = async (user: UserType) => {
   const result = await server.post("/auth/signup", user);
   return result.data;
 };
 
 // Login api
-const loginAPI = async (user: { email: string; password: string }) => {
+const loginAPI = async (user: LoginFormType) => {
   const result = await server.post("/auth/login", user);
   return result.data;
 };
 
-// Check if a token is valid
-const authorizeAPI = async (accessToken: string) => {
-  const result = await server.post("/auth/authorize", { accessToken }, headers);
+// Get all products
+const getAllProductsAPI = async () => {
+  const result = await server.get("/product/");
   return result.data;
 };
 
@@ -64,13 +65,13 @@ const getAllProductIds = async () => {
 
 // Return product details given an ID
 const getProductByIdAPI = async (id: string) => {
-  const result = await server.get(`/product/${id}`, headers);
+  const result = await server.get(`/product/${id}`);
   return result.data;
 };
 
 // Get all categories
 const getAllCategoriesAPI = async () => {
-  const result = await server.get("/category/", headers);
+  const result = await server.get("/category/");
   return result.data;
 };
 
@@ -96,7 +97,7 @@ const deleteProductAPI = async (id: string) => {
 
 // Get all brands
 const getAllBrandsAPI = async () => {
-  const result = await server.get("/brand/", headers);
+  const result = await server.get("/brand/");
   return result.data;
 };
 
