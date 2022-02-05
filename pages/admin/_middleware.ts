@@ -1,20 +1,20 @@
+import { NextURL } from "next/dist/server/web/next-url";
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 import { backendURL } from "../../lib/utils";
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   const userCookie: string = req.cookies.user;
-  const redirectUrl: string = getRedirectUrl(req)!;
-  console.log("redirecturl", redirectUrl);
-  if (userCookie === undefined)
-    return NextResponse.redirect(`/login?next=${redirectUrl}`);
+  const redirectUrl: NextURL = getRedirectUrl(req);
+  if (userCookie === undefined) return NextResponse.redirect(redirectUrl);
   else if ((await authorizeStatus(userCookie)) !== 200)
-    return NextResponse.redirect(`/login?next=${redirectUrl}`);
+    return NextResponse.redirect(redirectUrl);
 }
 
 const getRedirectUrl = (req: NextRequest) => {
-  return req.page.params?.id !== undefined
-    ? req.page.name?.replace("[id]", req.page.params.id)
-    : req.page.name;
+  const redirectUrl = req.nextUrl.clone();
+  redirectUrl.searchParams.append("next", redirectUrl.pathname);
+  redirectUrl.pathname = `/login`;
+  return redirectUrl;
 };
 
 const authorizeStatus = async (userCookie: string): Promise<number> => {
