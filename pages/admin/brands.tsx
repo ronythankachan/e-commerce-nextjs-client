@@ -19,7 +19,7 @@ import {
 import { PlusIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Brand from "../../components/admin/Brand";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 
 const Brands = ({
   brands,
@@ -31,7 +31,6 @@ const Brands = ({
   //Get alert context
   const value: any = useContext(AlertContext);
   const [_, dispatch] = value;
-
   const [open, setOpen] = useState(false);
   const [brandData, setBrandData] = useState<BrandType>({
     image: "",
@@ -44,10 +43,10 @@ const Brands = ({
       name: "",
     });
   };
+
   // Refresh page after deleting
-  const router = useRouter();
   const refreshData = () => {
-    router.replace(router.asPath);
+    Router.replace(Router.asPath);
   };
 
   useEffect(() => {

@@ -20,7 +20,7 @@ import {
   showSuccessAlert,
 } from "../../components/general/alert/AlertActions";
 import { TrashIcon } from "@heroicons/react/outline";
-import { useRouter } from "next/router";
+import Router from "next/router";
 
 const Products = ({
   products,
@@ -32,10 +32,8 @@ const Products = ({
   tokens: TokenType;
 }) => {
   //Get alert context
-
   const value: any = useContext(AlertContext);
   const [_, dispatch] = value;
-
   const [open, setOpen] = useState(false);
   const [categoryData, setCategoryData] = useState<CategoryType>({
     name: "",
@@ -48,15 +46,9 @@ const Products = ({
   };
 
   // Refresh page after deleting
-  const router = useRouter();
   const refreshData = () => {
-    router.replace(router.asPath);
+    Router.replace(Router.asPath);
   };
-
-  useEffect(() => {
-    clearCategoryForm();
-    refreshData();
-  }, [open]);
 
   const handleCategorySubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -66,7 +58,8 @@ const Products = ({
       try {
         showSuccessAlert(dispatch, "Saving...");
         await saveCategoryAPI(categoryData, tokens.accessToken);
-        setOpen(false);
+        clearCategoryForm();
+        refreshData();
         showDissapearingSuccessAlert(dispatch, "Category added successfully");
       } catch (err: any) {
         showErrorAlert(dispatch, err.response.data.message);
