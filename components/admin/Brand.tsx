@@ -42,6 +42,7 @@ const Brand = ({ brand, tokens }: { brand: BrandType; tokens: TokenType }) => {
           objectFit="cover"
           placeholder="blur"
           blurDataURL="/placeholder.jpg"
+          className="rounded-t-md"
         />
       </div>
       <hr />
