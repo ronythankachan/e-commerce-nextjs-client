@@ -65,7 +65,7 @@ const Products = ({
     else {
       try {
         showSuccessAlert(dispatch, "Saving...");
-        await saveCategoryAPI(categoryData);
+        await saveCategoryAPI(categoryData, tokens.accessToken);
         setOpen(false);
         showDissapearingSuccessAlert(dispatch, "Category added successfully");
       } catch (err: any) {

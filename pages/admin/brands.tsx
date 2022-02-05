@@ -62,7 +62,7 @@ const Brands = ({
     else {
       try {
         showSuccessAlert(dispatch, "Saving...");
-        await saveBrandAPI(brandData);
+        await saveBrandAPI(brandData, tokens.accessToken);
         setOpen(false);
         showDissapearingSuccessAlert(dispatch, "Brand added successfully");
       } catch (err: any) {
@@ -164,7 +164,7 @@ const Brands = ({
           </form>
           <div className=" grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-4 mt-4 justify-items-center">
             {brands.map((brand) => (
-              <Brand brand={brand} key={brand._id} />
+              <Brand brand={brand} key={brand._id} tokens={tokens} />
             ))}
           </div>
         </section>

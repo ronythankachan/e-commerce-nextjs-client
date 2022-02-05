@@ -3,14 +3,15 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { deleteBrandAPI } from "../../lib/utils";
-import { BrandType } from "../../types";
+import { BrandType, TokenType } from "../../types";
 import {
   showDissapearingSuccessAlert,
+  showErrorAlert,
   showSuccessAlert,
 } from "../general/alert/AlertActions";
 import { AlertContext } from "../general/alert/AlertProvider";
 
-const Brand = ({ brand }: { brand: BrandType }) => {
+const Brand = ({ brand, tokens }: { brand: BrandType; tokens: TokenType }) => {
   //Get alert context
   const value: any = useContext(AlertContext);
   const [_, dispatch] = value;
@@ -22,10 +23,14 @@ const Brand = ({ brand }: { brand: BrandType }) => {
   };
 
   const deleteBrand = async () => {
-    showSuccessAlert(dispatch, "Deleting");
-    await deleteBrandAPI(brand._id!);
-    refreshData();
-    showDissapearingSuccessAlert(dispatch, "Brand deleted successfully");
+    try {
+      showSuccessAlert(dispatch, "Deleting");
+      await deleteBrandAPI(brand._id!, tokens.accessToken);
+      refreshData();
+      showDissapearingSuccessAlert(dispatch, "Brand deleted successfully");
+    } catch (err: any) {
+      showErrorAlert(dispatch, err.response.data.message);
+    }
   };
 
   return (

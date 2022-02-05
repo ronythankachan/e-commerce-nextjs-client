@@ -131,20 +131,31 @@ const getAllBrandsAPI = async () => {
 };
 
 // Add a new brand
-const saveBrandAPI = async (brand: BrandType) => {
-  const result = await server.post("/brand/add", brand, headers);
+const saveBrandAPI = async (brand: BrandType, accessToken: string) => {
+  const result = await server.post(
+    "/brand/add",
+    brand,
+    generateAuthHeader(accessToken)
+  );
   return result.data;
 };
 
 // Delete a brand
-const deleteBrandAPI = async (id: string) => {
-  const result = await server.delete(`/brand/${id}`, headers);
+const deleteBrandAPI = async (id: string, accessToken: string) => {
+  const result = await server.delete(
+    `/brand/${id}`,
+    generateAuthHeader(accessToken)
+  );
   return result.data;
 };
 
 // Add a new category
-const saveCategoryAPI = async (category: CategoryType) => {
-  const result = await server.post("/category/add", category, headers);
+const saveCategoryAPI = async (category: CategoryType, accessToken: string) => {
+  const result = await server.post(
+    "/category/add",
+    category,
+    generateAuthHeader(accessToken)
+  );
   return result.data;
 };
 
