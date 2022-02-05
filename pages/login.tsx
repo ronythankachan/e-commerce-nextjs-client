@@ -55,7 +55,6 @@ const login = () => {
   const saveTokensInCookie = (tokens: TokenType) => {
     setCookie("user", JSON.stringify(tokens), {
       path: "/",
-      maxAge: 3600,
       sameSite: true,
     });
   };
