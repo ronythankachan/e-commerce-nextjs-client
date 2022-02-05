@@ -8,13 +8,12 @@ import {
   showSuccessAlert,
 } from "../components/general/alert/AlertActions";
 import { loginAPI } from "../lib/utils";
-import { useRouter } from "next/router";
+import Router from "next/router";
 import { useCookies } from "react-cookie";
 import { LoginFormType, TokenType } from "../types";
 
 const login = () => {
   const [cookie, setCookie] = useCookies(["user"]);
-  const router = useRouter();
   //Get alert context
   const value: any = useContext(AlertContext);
   const [_, dispatch] = value;
@@ -63,9 +62,9 @@ const login = () => {
 
   // Reroute to home page if next path is not availble
   const reRouteIfPresent = () => {
-    const { next } = router.query;
-    if (next) router.push(next as string);
-    else router.push("/");
+    const { next } = Router.query;
+    if (next) Router.push(next as string);
+    else Router.push("/");
   };
 
   const handleSubmit = async (event: React.FormEvent) => {

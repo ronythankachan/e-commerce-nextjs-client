@@ -19,7 +19,7 @@ import {
 import { PlusIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Brand from "../../components/admin/Brand";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 
 const Brands = ({
   brands,

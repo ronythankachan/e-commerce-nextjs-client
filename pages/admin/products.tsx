@@ -11,7 +11,7 @@ import {
   getAllProductsAPI,
   saveCategoryAPI,
 } from "../../lib/utils";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "../../components/general/modal/Modal";
 import { AlertContext } from "../../components/general/alert/AlertProvider";
 import {
