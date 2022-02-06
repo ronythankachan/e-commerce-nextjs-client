@@ -60,10 +60,10 @@ const Products = ({
 
   useEffect(() => {
     const queryParams: string = createSearchQuery();
-    if (queryParams) {
-      const newRoute: string = `${Router.basePath}?${queryParams}`;
-      Router.push(newRoute);
-    }
+    const newRoute: string = queryParams
+      ? `${Router.basePath}?${queryParams}`
+      : Router.basePath;
+    Router.push(newRoute);
   }, [searchFormData]);
 
   return (
