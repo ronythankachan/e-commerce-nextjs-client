@@ -41,9 +41,9 @@ const ProductSearchForm = ({
         value={searchFormData.search}
         onChange={handleSearchChange}
       />
-      <div className="space-y-2 md:space-x-4">
+      <div className="flex flex-col w-full md:w-fit md:flex-row gap-2">
         <select
-          className="input-text w-full md:w-fit"
+          className="input-text w-full "
           name="brand"
           value={searchFormData.brand}
           onChange={handleSelectChange}
@@ -56,7 +56,7 @@ const ProductSearchForm = ({
           ))}
         </select>
         <select
-          className="input-text w-full md:w-fit"
+          className="input-text w-full"
           name="category"
           value={searchFormData.category}
           onChange={handleSelectChange}
