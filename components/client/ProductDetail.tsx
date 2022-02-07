@@ -85,3 +85,4 @@ const ProductDetail = ({ product }: { product: ProductType }) => {
 };
 
 export default ProductDetail;
+

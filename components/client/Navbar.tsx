@@ -20,7 +20,11 @@ const Navbar = () => {
         <MenuAlt1Icon className="w-5 h-5 flex md:hidden" />
       </li>
       <div className="md:flex items-center space-x-6 hidden">
-        <li className="hover:cursor-pointer hover:text-blue-500">Products</li>
+        <li className="hover:cursor-pointer hover:text-blue-500">
+          <Link href="/products">
+            <a>Products</a>
+          </Link>
+        </li>
         <li className="hover:cursor-pointer hover:text-blue-500">About</li>
         <li className="hover:cursor-pointer hover:text-blue-500">Contact</li>
         <li className="flex hover:cursor-pointer hover:text-blue-500">

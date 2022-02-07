@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import Router from "next/router";
 import ProductSearchForm from "../../components/admin/ProductSearchForm";
 import CategoryModal from "../../components/admin/CategoryModal";
-import { Url } from "url";
 
 export interface SearchFormDataType {
   search: string;
