@@ -1,4 +1,3 @@
-import { ShoppingCartIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductType } from "../../types";
