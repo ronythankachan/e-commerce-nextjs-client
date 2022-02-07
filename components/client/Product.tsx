@@ -4,7 +4,7 @@ import { ProductType } from "../../types";
 const Product = ({ product }: { product: ProductType }) => {
   return (
     <Link href={"/product/" + product._id}>
-      <a className="border p-1 rounded-md bg-white">
+      <a className="border p-1 rounded-md bg-white hover:cursor-pointer hover:scale-[102%] animation">
         <Image
           width={250}
           height={270}

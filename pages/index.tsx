@@ -4,11 +4,7 @@ import NewArrivals from "../components/client/NewArrivals";
 import Layout from "../components/client/Layout";
 import { BrandType, ProductType } from "../types";
 import { GetStaticProps } from "next";
-import {
-  getAllBrandsAPI,
-  getAllProductsAPI,
-  getPublishedProductsAPI,
-} from "../lib/utils";
+import { getAllBrandsAPI, getAllProductsAPI } from "../lib/utils";
 
 export default function Home({
   products,
