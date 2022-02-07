@@ -119,7 +119,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
   query,
 }) => {
-  console.log("queries are ", query);
   const tokens = extractTokensFromCookie(req.cookies);
   const products = await getAllProductsAPI();
   const categories = await getAllCategoriesAPI();

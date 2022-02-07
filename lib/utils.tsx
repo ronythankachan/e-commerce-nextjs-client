@@ -64,8 +64,13 @@ const loginAPI = async (user: LoginFormType) => {
 };
 
 // Get all products
-const getAllProductsAPI = async () => {
-  const result = await server.get("/product/");
+const getAllProductsAPI = async (body: any = {}) => {
+  const result = await server.post("/product/", body);
+  return result.data;
+};
+// Get all products
+const getPublishedProductsAPI = async () => {
+  const result = await server.get("/product/published");
   return result.data;
 };
 
@@ -184,5 +189,6 @@ export {
   deleteCategoryAPI,
   saveBrandAPI,
   deleteBrandAPI,
+  getPublishedProductsAPI,
 };
 export const backendURL = "http://localhost:8000";

@@ -4,9 +4,11 @@ import NewArrivals from "../components/client/NewArrivals";
 import Layout from "../components/client/Layout";
 import { BrandType, ProductType } from "../types";
 import { GetStaticProps } from "next";
-import { getAllBrandsAPI, getAllProductsAPI } from "../lib/utils";
-import { useContext } from "react";
-import { AlertContext } from "../components/general/alert/AlertProvider";
+import {
+  getAllBrandsAPI,
+  getAllProductsAPI,
+  getPublishedProductsAPI,
+} from "../lib/utils";
 
 export default function Home({
   products,
@@ -31,7 +33,7 @@ export default function Home({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await getAllProductsAPI();
+  const products = await getAllProductsAPI({ publish: true });
   const brands = await getAllBrandsAPI();
   return {
     props: {
