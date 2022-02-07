@@ -1,10 +1,11 @@
+import { ShoppingCartIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductType } from "../../types";
 const Product = ({ product }: { product: ProductType }) => {
   return (
     <Link href={"/product/" + product._id}>
-      <a className="bg-[#f7f7f7] shadow-md rounded-md w-fit hover:scale-[102%] transition-all duration-150 ease-out hover:cursor-pointer">
+      <a className="border p-1 rounded-md bg-white">
         <Image
           width={250}
           height={270}
@@ -14,9 +15,21 @@ const Product = ({ product }: { product: ProductType }) => {
           objectFit="cover"
           className="rounded-md"
         />
-        <div className="py-4 px-4 bg-white">
-          <p className="text-lg font-thin text-gray-500">{product.title}</p>
-          <p className="text-sm font-thin">Rs. {product.price}</p>
+        <div className="py-4 px-2 space-y-1">
+          <h3 className="text-gray-500 font-thin">{product.title}</h3>
+          <p className=" text-sm">Rs. {product.price}</p>
+
+          {product.discount ? (
+            <div className="flex items-center gap-x-2">
+              <p className="line-through text-sm text-gray-500">
+                Rs.
+                {Math.ceil((product.price * 100) / (100 - product.discount))}
+              </p>
+              <p className="px-2 text-red-500 text-sm">
+                -{product.discount}% off
+              </p>
+            </div>
+          ) : null}
         </div>
       </a>
     </Link>
