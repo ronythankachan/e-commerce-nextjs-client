@@ -42,7 +42,7 @@ const Filters = ({
   };
 
   return (
-    <div className="w-60 bg-white min-h-screen p-5 shadow-md fixed md:visible invisible">
+    <div className="w-60 bg-white min-h-screen p-5 shadow-md fixed md:block hidden">
       <form className="space-y-4">
         <div className="form-group">
           <h2 className="text-lg font-bold ml-1">Brands</h2>

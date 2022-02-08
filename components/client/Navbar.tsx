@@ -1,9 +1,4 @@
-import {
-  ArrowRightIcon,
-  MenuAlt1Icon,
-  ShoppingCartIcon,
-  UserIcon,
-} from "@heroicons/react/outline";
+import { MenuAlt1Icon, ShoppingCartIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
 import DropDown from "../general/dropdown/DropDown";
@@ -22,29 +17,41 @@ const Navbar = () => {
         <MenuAlt1Icon className="w-5 h-5 flex md:hidden" />
       </li>
       <div className="md:flex items-center space-x-6 hidden">
-        <li className="hover:cursor-pointer hover:text-gray-400">
+        <li>
           <Link href="/products">
-            <a>Products</a>
+            <a className="hover:cursor-pointer hover:text-gray-400">Products</a>
           </Link>
         </li>
-        <li className="hover:cursor-pointer hover:text-gray-400">About</li>
-        <li className="hover:cursor-pointer hover:text-gray-400">Contact</li>
-        <li className="flex hover:cursor-pointer hover:text-gray-400">
-          <ShoppingCartIcon className="h-5 w-5" />
-          <small className="border rounded-full px-1 text-white h-min -mt-4 -mr-2 bg-green-500">
-            3
-          </small>
+        <li>
+          <Link href="/about">
+            <a className="hover:cursor-pointer hover:text-gray-400">About</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/contact">
+            <a className="hover:cursor-pointer hover:text-gray-400">Contact</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/cart">
+            <a className="flex hover:cursor-pointer hover:text-gray-400">
+              <ShoppingCartIcon className="h-5 w-5" />
+              <small className="border rounded-full px-1 text-white h-min -mt-4 -mr-2 bg-green-500">
+                3
+              </small>
+            </a>
+          </Link>
         </li>
         <li>
           <DropDown title="Account">
-            <Link href="login">
+            <Link href="/login">
               <a className="w-full px-2 py-2 rounded hover:bg-blue-100">
                 Login
               </a>
             </Link>
-            <Link href="login">
+            <Link href="/orders">
               <a className="w-full px-2 py-2 rounded hover:bg-blue-100">
-                Orders
+                My Orders
               </a>
             </Link>
           </DropDown>

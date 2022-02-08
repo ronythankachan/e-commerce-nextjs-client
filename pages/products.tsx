@@ -46,7 +46,19 @@ const products = ({
         />
         <div className="flex flex-col items-center md:ml-60 w-full p-3">
           <form className="w-full md:w-1/2 pb-5 md:p-5">
-            <input type="text" placeholder="Search..." className="input-text" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="input-text"
+              name="search"
+              value={filters.search}
+              onChange={(e) =>
+                setFilters({
+                  ...filters,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
           </form>
           <Products products={products} />
         </div>
