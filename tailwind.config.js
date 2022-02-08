@@ -8,7 +8,6 @@ module.exports = {
       gridTemplateColumns: {
         "product-details": "1fr 5fr 7fr",
         "product-save": "2fr 1fr",
-        "product-page": "1fr 6fr",
       },
     },
   },
