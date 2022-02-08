@@ -58,6 +58,11 @@ interface TokenType {
   refreshToken: string;
 }
 
+interface FilterType {
+  search: string;
+  brand: string;
+  categories: string[];
+}
 
 export type {
   BrandType,
@@ -68,4 +73,5 @@ export type {
   UserType,
   LoginFormType,
   TokenType,
+  FilterType,
 };

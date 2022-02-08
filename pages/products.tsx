@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Filters from "../components/client/Filters";
 import Layout from "../components/client/Layout";
 import Product from "../components/client/Product";
@@ -10,7 +10,7 @@ import {
   getAllCategoriesAPI,
   getAllProductsAPI,
 } from "../lib/utils";
-import { BrandType, CategoryType, ProductType } from "../types";
+import { BrandType, CategoryType, FilterType, ProductType } from "../types";
 
 const products = ({
   products,
@@ -21,7 +21,16 @@ const products = ({
   brands: BrandType[];
   categories: CategoryType[];
 }) => {
-  console.log(products);
+  const [filters, setFilters] = useState<FilterType>({
+    search: "",
+    brand: "",
+    categories: [],
+  });
+  //whenever a change in filters, reload the data
+  useEffect(() => {
+    console.log(filters);
+  }, [filters]);
+
   return (
     <Layout>
       <Head>
@@ -29,7 +38,12 @@ const products = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="mt-16 bg-gray-50 flex">
-        <Filters brands={brands} categories={categories} />
+        <Filters
+          brands={brands}
+          categories={categories}
+          filters={filters}
+          setFilters={setFilters}
+        />
         <div className="flex flex-col items-center md:ml-60 w-full p-3">
           <form className="w-full md:w-1/2 pb-5 md:p-5">
             <input type="text" placeholder="Search..." className="input-text" />
