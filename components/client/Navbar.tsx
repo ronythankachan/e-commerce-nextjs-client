@@ -1,4 +1,9 @@
-import { MenuAlt1Icon, ShoppingCartIcon } from "@heroicons/react/outline";
+import {
+  LoginIcon,
+  MenuAlt1Icon,
+  ShoppingBagIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
 import DropDown from "../general/dropdown/DropDown";
@@ -45,13 +50,15 @@ const Navbar = () => {
         <li>
           <DropDown title="Account">
             <Link href="/login">
-              <a className="w-full px-2 py-2 rounded hover:bg-blue-100">
+              <a className="w-full px-2 py-2 rounded hover:bg-blue-50 hover:text-gray-500 flex items-center gap-x-4">
+                <LoginIcon className="w-5 h-5 text-blue-500" />
                 Login
               </a>
             </Link>
             <Link href="/orders">
-              <a className="w-full px-2 py-2 rounded hover:bg-blue-100">
-                My Orders
+              <a className="w-full px-2 py-2 rounded hover:bg-blue-50 hover:text-gray-500 flex items-center gap-x-4">
+                <ShoppingBagIcon className="w-5 h-5 text-blue-500" />
+                My Bag
               </a>
             </Link>
           </DropDown>
