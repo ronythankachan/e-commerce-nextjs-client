@@ -9,12 +9,12 @@ const Filters = ({
   categories: CategoryType[];
 }) => {
   return (
-    <div className="w-60 bg-white min-h-screen p-3 shadow-md fixed md:visible invisible">
+    <div className="w-60 bg-white min-h-screen p-5 shadow-md fixed md:visible invisible">
       <form className="space-y-4">
         <div className="form-group">
           <h2 className="text-lg font-bold ml-1">Brands</h2>
           <select
-            className="input-text"
+            className="input-text text-sm"
             name="brand"
             // value={formData.brand}
             // onChange={handleBrandChange}
@@ -27,9 +27,10 @@ const Filters = ({
             ))}
           </select>
         </div>
+        <hr />
         <div className="space-y-4">
           <h2 className="text-lg font-bold ml-1">Categories</h2>
-          <div className="grid grid-cols-2 gap-y-2">
+          <div className="grid grid-cols-2 gap-2">
             {categories.map((category) => (
               <div key={category._id} className="space-x-2">
                 <input
@@ -37,7 +38,7 @@ const Filters = ({
                   // checked={formData.categories.includes(category._id!)}
                   // onChange={(e) => handleCategoryChange(e, category.name)}
                 />
-                <label className="text-md">{category.name}</label>
+                <label className="text-sm">{category.name}</label>
               </div>
             ))}
           </div>

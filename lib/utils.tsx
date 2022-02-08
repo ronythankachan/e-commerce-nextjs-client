@@ -92,6 +92,11 @@ const getProductByIdAPI = async (id: string) => {
   return result.data;
 };
 
+const getBrandByIdAPI = async (id: string) => {
+  const result = await server.get(`/brand/${id}`);
+  return result.data;
+};
+
 // Get all categories
 const getAllCategoriesAPI = async () => {
   const result = await server.get("/category/");
@@ -190,5 +195,6 @@ export {
   saveBrandAPI,
   deleteBrandAPI,
   getPublishedProductsAPI,
+  getBrandByIdAPI,
 };
 export const backendURL = "http://localhost:8000";

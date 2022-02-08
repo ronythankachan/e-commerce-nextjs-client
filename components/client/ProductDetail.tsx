@@ -1,9 +1,15 @@
 import { useState } from "react";
 import Image from "next/image";
 import { StarIcon, TruckIcon } from "@heroicons/react/solid";
-import { ProductType } from "../../types";
+import { BrandType, ProductType } from "../../types";
 
-const ProductDetail = ({ product }: { product: ProductType }) => {
+const ProductDetail = ({
+  product,
+  brand,
+}: {
+  product: ProductType;
+  brand: BrandType;
+}) => {
   const [mainImg, setMainImg] = useState(product.images[0]);
   return (
     <section className="grid grid-cols-product-details gap-x-4">
@@ -40,9 +46,7 @@ const ProductDetail = ({ product }: { product: ProductType }) => {
       </div>
       <div className="p-4">
         <div>
-          <p className="text-sm font-thin">
-            {product.brand.toUpperCase() + "'s"}
-          </p>
+          <p className="text-sm font-thin">{brand.name.toUpperCase() + "'s"}</p>
           <span className="flex gap-2">
             <h1 className="text-2xl font-bold">{product.title}</h1>
             <p className="flex items-center gap-1">
@@ -85,4 +89,3 @@ const ProductDetail = ({ product }: { product: ProductType }) => {
 };
 
 export default ProductDetail;
-
