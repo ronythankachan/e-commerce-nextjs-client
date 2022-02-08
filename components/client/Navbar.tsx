@@ -1,4 +1,5 @@
 import {
+  ChevronDownIcon,
   LoginIcon,
   MenuAlt1Icon,
   ShoppingBagIcon,
@@ -48,7 +49,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <DropDown title="Account">
+          <DropDown title={accntTitle}>
             <Link href="/login">
               <a className="w-full px-2 py-2 rounded hover:bg-blue-50 hover:text-gray-500 flex items-center gap-x-4">
                 <LoginIcon className="w-5 h-5 text-blue-500" />
@@ -69,3 +70,11 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+const accntTitle = (
+  <div className="flex items-center gap-x-2">
+    {" "}
+    Account
+    <ChevronDownIcon className="w-5 h-5" />
+  </div>
+);

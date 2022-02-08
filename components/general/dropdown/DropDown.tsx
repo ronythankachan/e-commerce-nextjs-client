@@ -4,7 +4,7 @@ const DropDown = ({
   title,
   children,
 }: {
-  title: string;
+  title: React.ReactNode;
   children: React.ReactNode;
 }) => {
   const [show, setShow] = useState<boolean>(false);
@@ -26,9 +26,9 @@ const DropDown = ({
       className="relative cursor-pointer"
       ref={wrapperRef}
     >
-      <p className="px-6 py-2 border rounded font-semibold hover:text-gray-500">
+      <div className="p-2 border rounded hover:text-blue-500 hover:bg-gray-100">
         {title}
-      </p>
+      </div>
       {show ? (
         <div className="absolute w-44 right-0 border bg-white mt-1 p-2 rounded-md flex flex-col">
           {children}
