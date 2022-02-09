@@ -43,6 +43,7 @@ const createNewProduct = (): ProductType => {
     discount: 0,
     categories: [],
     tags: [],
+    variations:[],
     images: [],
     extraInfo: [],
     rating: 7.5,

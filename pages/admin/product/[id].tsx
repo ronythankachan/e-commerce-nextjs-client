@@ -59,6 +59,33 @@ const saveproduct = ({
     }
   };
 
+  const addVariations = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      let value = (event.target as HTMLInputElement).value;
+      if (!formData.variations.includes(value)) {
+        setFormData({
+          ...formData,
+          variations: [...formData.variations, value],
+        });
+        (event.target as HTMLInputElement).value = "";
+      }
+      event.preventDefault();
+    }
+  };
+
+  const deleteVariation = (
+    event: React.MouseEvent<HTMLElement>,
+    variation: string
+  ) => {
+    event.preventDefault();
+    setFormData({
+      ...formData,
+      variations: formData.variations.filter(
+        (variationVal) => variationVal !== variation
+      ),
+    });
+  };
+
   const deleteTag = (event: React.MouseEvent<HTMLElement>, tag: string) => {
     event.preventDefault();
     setFormData({
@@ -342,6 +369,33 @@ const saveproduct = ({
                           }
                         />
                         <label className="text-md">{category.name}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <hr />
+                <div className="form-group">
+                  <h2 className="text-lg font-bold">Variations</h2>
+                  <input
+                    type="text"
+                    placeholder="Type and Enter"
+                    className="input-text"
+                    name="variations"
+                    onKeyPress={addVariations}
+                  />
+                  <div className="grid grid-cols-2 2xl:grid-cols-4 gap-2">
+                    {formData.variations.map((variation, index) => (
+                      <div
+                        className="flex items-center justify-between gap-x-2 bg-white border px-2 py-1 rounded-md min-w-fit"
+                        key={index}
+                      >
+                        <small>{variation}</small>
+                        <button
+                          className="hover:scale-125 transition-all duration-150 ease-in-out"
+                          onClick={(event) => deleteVariation(event, variation)}
+                        >
+                          <XIcon className="w-3 h-3" />
+                        </button>
                       </div>
                     ))}
                   </div>

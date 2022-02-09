@@ -15,6 +15,7 @@ interface ProductType {
   discount: number;
   categories: string[];
   tags: string[];
+  variations: string[];
   images: string[];
   extraInfo: string[];
   rating: number;
