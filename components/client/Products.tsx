@@ -4,7 +4,7 @@ import Product from "./Product";
 
 const Products = ({ products }: { products: ProductType[] }) => {
   return (
-    <div className="w-full bg-white shadow-sm rounded-md p-3 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center md:justify-items-start ">
+    <div className="w-full bg-white shadow-sm rounded-md p-3 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-8 gap-4 justify-items-center md:justify-items-start ">
       {products.map((product) => (
         <Product key={product._id} product={product} />
       ))}
