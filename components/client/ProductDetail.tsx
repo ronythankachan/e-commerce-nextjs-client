@@ -53,28 +53,25 @@ const ProductDetail = ({
               ( 4.5 <StarIcon className="w-3 h-3 inline-block" />)
             </p>
           </span>
-          <h2 className="text-2xl text-gray-500">RS. {product.price}</h2>
+          <h2 className="text-sm font-thin text-gray-500">
+            RS. {product.price}
+          </h2>
         </div>
 
         <p className="text-sm font-thin mt-4 text-gray-500">
           {product.description}
         </p>
-        <small className="text-xs font-thin mt-4">SELECT SIZE</small>
+        <hr className="my-4" />
+        <small className="text-xs font-thin">SELECT</small>
         <div className="flex gap-x-4 mt-2">
-          <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">
-            S
-          </h2>
-          <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">
-            M
-          </h2>
-          <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">
-            L
-          </h2>
-          <h2 className="py-2 px-4 border rounded-md bg-gray-100 text-blue-500">
-            XL
-          </h2>
+          {product.variations.map((variation, index) => (
+            <button className="text-xs uppercase px-4 py-2 rounded-md bg-blue-100 text-gray-500 hover:bg-blue-50 animation">
+              {variation}
+            </button>
+          ))}
         </div>
-        <button className="mt-4 px-10 border rounded-md bg-black text-white py-2">
+        <hr className="my-4" />
+        <button className="px-10 border rounded-md bg-black text-white py-2">
           Add to cart
         </button>
         <div className="flex items-center gap-x-2 mt-2">
