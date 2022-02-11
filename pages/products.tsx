@@ -3,7 +3,6 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Filters from "../components/client/Filters";
 import Layout from "../components/client/Layout";
-import Product from "../components/client/Product";
 import Products from "../components/client/Products";
 import {
   getAllBrandsAPI,

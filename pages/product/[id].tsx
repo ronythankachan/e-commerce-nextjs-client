@@ -4,11 +4,12 @@ import Layout from "../../components/client/Layout";
 import { BrandType, IParams, ProductType } from "../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import {
-  getAllBrandsAPI,
   getAllProductIds,
   getBrandByIdAPI,
   getProductByIdAPI,
+  getReviewsByProductIdAPI,
 } from "../../lib/utils";
+import Reviews from "../../components/client/Reviews";
 
 const ProductInfo = ({
   product,
@@ -24,6 +25,7 @@ const ProductInfo = ({
       </Head>
       <main className="2xl:container 2xl:mx-auto bg-gray-50 mt-16 p-10">
         <ProductDetail product={product} brand={brand} />
+        <Reviews id={product._id!} />
       </main>
     </Layout>
   );
@@ -41,10 +43,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
   const product = await getProductByIdAPI(id as string);
   const brand = await getBrandByIdAPI(product.brand);
+  const reviews = await getReviewsByProductIdAPI(product._id);
   return {
     props: {
       product,
       brand,
+      reviews,
     },
   };
 };

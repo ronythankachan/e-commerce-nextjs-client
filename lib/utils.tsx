@@ -43,7 +43,7 @@ const createNewProduct = (): ProductType => {
     discount: 0,
     categories: [],
     tags: [],
-    variations:[],
+    variations: [],
     images: [],
     extraInfo: [],
     rating: 7.5,
@@ -179,6 +179,12 @@ const deleteCategoryAPI = async (id: string, accessToken: string) => {
   return result.data;
 };
 
+// Get reviews by product id
+const getReviewsByProductIdAPI = async (id: string) => {
+  const result = await server.get(`/review/${id}`);
+  return result.data;
+};
+
 export {
   loginAPI,
   signUpAPI,
@@ -197,5 +203,6 @@ export {
   deleteBrandAPI,
   getPublishedProductsAPI,
   getBrandByIdAPI,
+  getReviewsByProductIdAPI,
 };
 export const backendURL = "http://localhost:8000";
