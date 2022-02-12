@@ -16,7 +16,7 @@ const ProductDetail = ({
   const [mainImg, setMainImg] = useState<string>(product.images[0]);
   const [variation, setVariation] = useState<string>();
   return (
-    <section className="grid md:grid-cols-2">
+    <section className="grid md:grid-cols-2 bg-white">
       {/* Image section */}
       <div className="flex gap-x-4 md:border-r md:pr-4">
         <div className="flex flex-col gap-y-4">

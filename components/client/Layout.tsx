@@ -4,7 +4,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <Navbar />
-      {children}
+      <div className="bg-gray-50">{children}</div>
     </div>
   );
 };

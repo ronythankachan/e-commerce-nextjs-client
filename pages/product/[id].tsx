@@ -25,7 +25,7 @@ const ProductInfo = ({
       <Head>
         <title>{product.title}</title>
       </Head>
-      <main className="2xl:container 2xl:mx-auto bg-gray-50 mt-16 p-10">
+      <main className="2xl:container 2xl:mx-auto bg-white shadom-sm mt-16 p-10">
         <ProductDetail product={product} brand={brand} reviewRef={reviewRef} />
         <hr className="my-8" />
         <Reviews id={product._id!} reviewRef={reviewRef} />
