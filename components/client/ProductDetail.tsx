@@ -2,13 +2,16 @@ import { useState } from "react";
 import Image from "next/image";
 import { BrandType, ProductType } from "../../types";
 import { TruckIcon } from "@heroicons/react/outline";
+import { StarIcon } from "@heroicons/react/solid";
 
 const ProductDetail = ({
   product,
   brand,
+  reviewRef,
 }: {
   product: ProductType;
   brand: BrandType;
+  reviewRef: React.RefObject<HTMLElement>;
 }) => {
   const [mainImg, setMainImg] = useState<string>(product.images[0]);
   const [variation, setVariation] = useState<string>();
@@ -58,6 +61,18 @@ const ProductDetail = ({
           <span className="mr-1">{"\u20B9"}</span>
           {product.price}
         </h2>
+        <div className="flex items-center gap-x-2 text-sm">
+          <p>{4.5} </p>
+          (<StarIcon className="w-4 h-4" />)
+          <button
+            className="underline"
+            onClick={() =>
+              reviewRef.current?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            125 ratings
+          </button>
+        </div>
         <p className="text-sm font-thin text-gray-500">{product.description}</p>
         {/* variations */}
         <div className="space-y-2">

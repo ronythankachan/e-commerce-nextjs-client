@@ -10,6 +10,7 @@ import {
   getReviewsByProductIdAPI,
 } from "../../lib/utils";
 import Reviews from "../../components/client/Reviews";
+import { createRef } from "react";
 
 const ProductInfo = ({
   product,
@@ -18,14 +19,16 @@ const ProductInfo = ({
   product: ProductType;
   brand: BrandType;
 }) => {
+  const reviewRef = createRef<HTMLElement>();
   return (
     <Layout>
       <Head>
         <title>{product.title}</title>
       </Head>
       <main className="2xl:container 2xl:mx-auto bg-gray-50 mt-16 p-10">
-        <ProductDetail product={product} brand={brand} />
-        <Reviews id={product._id!} />
+        <ProductDetail product={product} brand={brand} reviewRef={reviewRef} />
+        <hr className="my-8" />
+        <Reviews id={product._id!} reviewRef={reviewRef} />
       </main>
     </Layout>
   );
