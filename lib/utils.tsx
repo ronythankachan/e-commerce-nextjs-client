@@ -46,7 +46,6 @@ const createNewProduct = (): ProductType => {
     variations: [],
     images: [],
     extraInfo: [],
-    rating: 7.5,
     publish: false,
     new: false,
   };
@@ -185,6 +184,12 @@ const getReviewsByProductIdAPI = async (id: string) => {
   return result.data;
 };
 
+// Get reviews by product id
+const getRatingByProductIdAPI = async (id: string) => {
+  const result = await server.get(`/review/rating/${id}`);
+  return result.data;
+};
+
 export {
   loginAPI,
   signUpAPI,
@@ -204,5 +209,6 @@ export {
   getPublishedProductsAPI,
   getBrandByIdAPI,
   getReviewsByProductIdAPI,
+  getRatingByProductIdAPI,
 };
 export const backendURL = "http://localhost:8000";

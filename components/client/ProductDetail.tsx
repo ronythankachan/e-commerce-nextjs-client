@@ -1,16 +1,20 @@
 import { useState } from "react";
 import Image from "next/image";
-import { BrandType, ProductType } from "../../types";
+import { BrandType, ProductType, RatingType, ReviewType } from "../../types";
 import { TruckIcon } from "@heroicons/react/outline";
-import { StarIcon } from "@heroicons/react/solid";
+import Rating from "./Rating";
 
 const ProductDetail = ({
   product,
   brand,
+  rating,
+  reviews,
   reviewRef,
 }: {
   product: ProductType;
   brand: BrandType;
+  rating: RatingType;
+  reviews: ReviewType[];
   reviewRef: React.RefObject<HTMLElement>;
 }) => {
   const [mainImg, setMainImg] = useState<string>(product.images[0]);
@@ -61,16 +65,18 @@ const ProductDetail = ({
           <span className="mr-1">{"\u20B9"}</span>
           {product.price}
         </h2>
-        <div className="flex items-center gap-x-2 text-sm">
-          <p>{4.5} </p>
-          (<StarIcon className="w-4 h-4" />)
+        <div className="flex items-center gap-x-2">
+          <small className="text-sm px-2 bg-teal-600 text-white">
+            {rating.rating}
+          </small>
+          <Rating rating={rating.rating} />
           <button
-            className="underline"
+            className="underline text-sm"
             onClick={() =>
               reviewRef.current?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            125 ratings
+            {rating.reviews} reviews
           </button>
         </div>
         <p className="text-sm font-thin text-gray-500">{product.description}</p>

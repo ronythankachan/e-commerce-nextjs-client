@@ -18,7 +18,6 @@ interface ProductType {
   variations: string[];
   images: string[];
   extraInfo: string[];
-  rating: number;
   publish: boolean;
   new: boolean;
 }
@@ -65,6 +64,18 @@ interface FilterType {
   categories: string[];
 }
 
+interface RatingType {
+  rating: number;
+  reviews: number;
+}
+interface ReviewType {
+  _id?: string;
+  rating: number;
+  review: string;
+  user: string;
+  product: string;
+}
+
 export type {
   BrandType,
   ProductType,
@@ -75,4 +86,6 @@ export type {
   LoginFormType,
   TokenType,
   FilterType,
+  RatingType,
+  ReviewType,
 };
