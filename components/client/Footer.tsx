@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { CgInstagram } from "react-icons/cg";
+import { FiGithub, FiTwitter } from "react-icons/fi";
+import { AiOutlineFacebook } from "react-icons/ai";
 
 const Footer = () => {
   return (
@@ -12,7 +15,20 @@ const Footer = () => {
               <Image src="/logo.png" width={50} height={50} />
             </a>
           </Link>
-          <div></div>
+          <div className="flex gap-x-2 -ml-4">
+            <a href="https://www.instagram.com" className="hover:text-gray-500">
+              <CgInstagram />
+            </a>
+            <a href="https://www.twitter.com" className="hover:text-gray-500">
+              <FiTwitter />
+            </a>
+            <a href="https://www.facebook.com" className="hover:text-gray-500">
+              <AiOutlineFacebook />
+            </a>
+            <a href="https://www.github.com" className="hover:text-gray-500">
+              <FiGithub />
+            </a>
+          </div>
         </div>
         <div className="flex flex-col gap-y-2">
           <h1 className="text-sm font-bold text-gray-500">QUICK LINKS</h1>
