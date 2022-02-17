@@ -8,7 +8,7 @@ import { AiOutlineFacebook } from "react-icons/ai";
 const Footer = () => {
   return (
     <section>
-      <div className="grid md:grid-cols-3 bg-gray-100 p-5 justify-items-center">
+      <div className="grid md:grid-cols-3 bg-gray-100 py-10 px-[800px] justify-items-center">
         <div>
           <Link href="/">
             <a>
@@ -31,24 +31,26 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col gap-y-2">
-          <h1 className="text-sm font-bold text-gray-500">QUICK LINKS</h1>
+          <h1 className="text-sm font-bold text-gray-500">Quick Links</h1>
           <Link href="/products">
-            <a className="text-xs uppercase font-semibold text-gray-500">
-              Products
-            </a>
+            <a className="text-xs font-semibold text-gray-500">Products</a>
           </Link>
           <Link href="/about">
-            <a className="text-xs uppercase font-semibold text-gray-500">
-              About Us
-            </a>
+            <a className="text-xs font-semibold text-gray-500">About Us</a>
           </Link>
           <Link href="/contact">
-            <a className="text-xs uppercase font-semibold text-gray-500">
-              Contact Us
-            </a>
+            <a className="text-xs font-semibold text-gray-500">Contact Us</a>
           </Link>
         </div>
-        <div>Third section</div>
+        <div>
+          <h1 className="text-sm font-bold text-gray-500">Contact Us</h1>
+          <small className="text-xs font-semibold text-gray-500">
+            Block No.1 , Bangalore, Yelehanka, 57323
+          </small>
+          <small className="text-xs font-semibold text-gray-500">
+            Ph: 836397275
+          </small>
+        </div>
       </div>
       <div className="bg-gray-200 text-center p-2 ">
         <small className="text-xs text-gray-500">
