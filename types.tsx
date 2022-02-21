@@ -76,6 +76,17 @@ interface ReviewType {
   product: string;
 }
 
+interface CartType {
+  _id?: string;
+  user: string;
+  products: [
+    {
+      _id: string;
+      quantity: number;
+    }
+  ];
+}
+
 export type {
   BrandType,
   ProductType,
@@ -88,4 +99,5 @@ export type {
   FilterType,
   RatingType,
   ReviewType,
+  CartType,
 };
