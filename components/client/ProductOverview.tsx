@@ -2,7 +2,9 @@ import React from "react";
 import { CartType } from "../../types";
 
 const ProductOverview = ({ cart }: { cart: CartType }) => {
-  return <section></section>;
+  return <section>
+    
+  </section>;
 };
 
 export default ProductOverview;

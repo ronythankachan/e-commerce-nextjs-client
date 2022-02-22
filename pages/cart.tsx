@@ -20,11 +20,15 @@ const cart = ({ tokens, cart }: { tokens: TokenType; cart: CartType }) => {
 
 export default cart;
 
-const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const tokens = extractTokensFromCookie(req.cookies);
-  const userid = JSON.parse(jwtDecode(tokens.accessToken)).id;
-  const cart = await getCartAPI(userid, tokens.accessToken);
+  try {
+    const userid = jwtDecode(tokens.accessToken);
+  } catch (err) {}
+  // console.log(userid);
+  // console.log(tokens.accessToken);
+  // const cart = await getCartAPI(userid, tokens.accessToken);
   return {
-    props: { tokens, cart },
+    props: { tokens },
   };
 };
