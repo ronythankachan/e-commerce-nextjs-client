@@ -24,8 +24,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const tokens = extractTokensFromCookie(req.cookies);
   try {
     const userid = jwtDecode(tokens.accessToken);
+    console.log(userid);
   } catch (err) {}
-  // console.log(userid);
   // console.log(tokens.accessToken);
   // const cart = await getCartAPI(userid, tokens.accessToken);
   return {
