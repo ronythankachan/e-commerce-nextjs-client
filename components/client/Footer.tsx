@@ -8,7 +8,7 @@ import { AiOutlineFacebook } from "react-icons/ai";
 const Footer = () => {
   return (
     <section>
-      <div className="grid md:grid-cols-3 bg-gray-100 py-10 px-[800px] justify-items-center">
+      <div className="grid md:grid-cols-3 bg-gray-100 justify-items-center p-10 space-y-8 md:space-y-0">
         <div>
           <Link href="/">
             <a>
@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col gap-y-2">
-          <h1 className="text-sm font-bold text-gray-500">Quick Links</h1>
+          <h1 className="text-sm font-bold text-gray-500 text-center">Quick Links</h1>
           <Link href="/products">
             <a className="text-xs font-semibold text-gray-500">Products</a>
           </Link>
@@ -43,7 +43,7 @@ const Footer = () => {
           </Link>
         </div>
         <div>
-          <h1 className="text-sm font-bold text-gray-500">Contact Us</h1>
+          <h1 className="text-sm font-bold text-gray-500 text-center">Contact Us</h1>
           <small className="text-xs font-semibold text-gray-500">
             Block No.1 , Bangalore, Yelehanka, 57323
           </small>
