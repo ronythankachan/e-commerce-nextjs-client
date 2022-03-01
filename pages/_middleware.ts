@@ -6,7 +6,8 @@ import { backendURL } from "../lib/utils";
 const protectedPages: string[] = ["admin", "cart", "orders"];
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
-  if (isProtectedPath(req)) {
+  const currPath: string = req.nextUrl.pathname;
+  if (isProtectedPath(currPath) || isLoginOrSignupPage(currPath)) {
     const userCookie: string = req.cookies.user;
     const redirectUrl: NextURL = getRedirectUrl(req);
     if (userCookie === undefined) return NextResponse.redirect(redirectUrl);
@@ -14,21 +15,29 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
       const accessToken = JSON.parse(userCookie).accessToken;
       const isAuth = await authorize(accessToken);
       if (!isAuth) return NextResponse.redirect(redirectUrl);
-      else if (isAdminPath(req) && !isAdmin(accessToken))
+      else if (
+        isLoginOrSignupPage(currPath) ||
+        (isAdminPath(currPath) && !isAdmin(accessToken))
+      )
         return NextResponse.redirect("/");
     }
   }
 }
-const isProtectedPath = (req: NextRequest) => {
-  const path = req.nextUrl.pathname;
+
+const isLoginOrSignupPage = (currPath: string) => {
+  if (currPath.includes("login") || currPath.includes("signup")) return true;
+  return false;
+};
+
+const isProtectedPath = (currPath: string) => {
   for (let i = 0; i < protectedPages.length; i++) {
-    if (path.includes(protectedPages[i])) return true;
+    if (currPath.includes(protectedPages[i])) return true;
   }
   return false;
 };
 
-const isAdminPath = (req: NextRequest) => {
-  return req.nextUrl.pathname.includes("admin");
+const isAdminPath = (currPath: string) => {
+  return currPath.includes("admin");
 };
 
 const getRedirectUrl = (req: NextRequest) => {
